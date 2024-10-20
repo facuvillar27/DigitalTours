@@ -1,2 +1,7 @@
-# Para que cualquier cambio en el repositorio sea revisado por al menos dos personas
-* @facuvillar27 @Lordbear117
+# Requiere revisión de al menos dos usuarios para la rama main
+# Cualquier cambio en la rama main debe ser revisado por usuario1 y usuario2
+/main @facuvillar27 @Lordbear117
+
+# Requiere revisión de al menos un usuario para la rama develop
+# Cualquier cambio en la rama develop debe ser revisado por usuario3
+/develop @facuvillar27 

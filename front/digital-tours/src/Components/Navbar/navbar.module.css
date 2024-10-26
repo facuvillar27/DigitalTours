@@ -1,0 +1,26 @@
+
+nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+
+  padding: 1.2vh 10.5vw;
+}
+
+ul{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style-type: none;
+  width: 350px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav_link {
+  text-decoration: none;
+  color: var(--black);
+  font-weight: var(--font-h2-h3-weight);
+  font-size: 24px;
+}

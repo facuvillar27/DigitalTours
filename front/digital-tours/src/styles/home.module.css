@@ -1,7 +1,18 @@
 .main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: var(--white);
 }
 
-.main_body {
+.home_body {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 12px;
+
+  width: 1350px;
+  border-radius: 10px;
   background-color: var(--dark-white);
 }

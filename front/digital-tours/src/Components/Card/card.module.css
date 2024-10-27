@@ -5,6 +5,7 @@
   width: 459px;
   height: 575px;
   gap: 12px;
+  margin: 10px 14px;
 
   border-radius: 10px;
   background-color: var(--white);

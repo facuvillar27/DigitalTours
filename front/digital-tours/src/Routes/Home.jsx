@@ -9,7 +9,10 @@ const Home = () => {
           <p>categories</p>
         </div>
       </div>
-      <div className={styles.main_body}>
+      <div className={styles.home_body}>
+        <Card />
+        <Card />
+        <Card />
         <Card />
       </div>
     </div>

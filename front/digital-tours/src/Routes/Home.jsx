@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "../styles/home.module.css";
 import Card from "../Components/Card/Card";
 
@@ -13,11 +14,21 @@ const Home = () => {
         </div>
       </div>
       <div className={styles.cat_menu}>
-        <p className={styles.cat_btn}>Categoria</p>
-        <p className={styles.cat_btn}>Categoria</p>
-        <p className={styles.cat_btn}>Categoria</p>
-        <p className={styles.cat_btn}>Categoria</p>
-        <p className={styles.cat_btn}>Categoria</p>
+        <Link to="/login" className={styles.cat_link}>
+          <p className={styles.cat_btn}>Categoria</p>
+        </Link>
+        <Link to="#" className={styles.cat_link}>
+          <p className={styles.cat_btn}>Categoria</p>
+        </Link>
+        <Link to="#" className={styles.cat_link}>
+          <p className={styles.cat_btn}>Categoria</p>
+        </Link>
+        <Link to="#" className={styles.cat_link}>
+          <p className={styles.cat_btn}>Categoria</p>
+        </Link>
+        <Link to="#" className={styles.cat_link}>
+          <p className={styles.cat_btn}>Categoria</p>
+        </Link>
       </div>
       <div className={styles.home_body}>
         <Card />

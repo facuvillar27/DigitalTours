@@ -1,0 +1,109 @@
+{
+  "tours": [
+    {
+      "image": "https://example.com/img1.jpg",
+      "categoria": "Aventura",
+      "nombre": "Senderismo en el Cerro Arequita",
+      "descripcion": "Explora la naturaleza y las cavernas del Cerro Arequita en Uruguay con un recorrido de senderismo guiado.",
+      "precio": "50 USD"
+    },
+    {
+      "image": "https://example.com/img2.jpg",
+      "categoria": "Aventura",
+      "nombre": "Tour de Parapente en Medellín",
+      "descripcion": "Vuela sobre Medellín y disfruta de vistas impresionantes de la ciudad y el Valle de Aburrá.",
+      "precio": "120 USD"
+    },
+    {
+      "image": "https://example.com/img3.jpg",
+      "categoria": "Cultural",
+      "nombre": "Recorrido Histórico por la Ciudad Vieja de Montevideo",
+      "descripcion": "Descubre la rica historia de Montevideo con una visita guiada por la Ciudad Vieja.",
+      "precio": "30 USD"
+    },
+    {
+      "image": "https://example.com/img4.jpg",
+      "categoria": "Gastronomía",
+      "nombre": "Tour Gastronómico por Puebla",
+      "descripcion": "Prueba los platillos más emblemáticos de Puebla como los chiles en nogada y las chalupas en un recorrido guiado.",
+      "precio": "60 USD"
+    },
+    {
+      "image": "https://example.com/img5.jpg",
+      "categoria": "Naturaleza",
+      "nombre": "Visita a las Cataratas del Iguazú",
+      "descripcion": "Experimenta la majestuosidad de las Cataratas del Iguazú en un tour guiado desde Argentina y Brasil.",
+      "precio": "150 USD"
+    },
+    {
+      "image": "https://example.com/img6.jpg",
+      "categoria": "Aventura",
+      "nombre": "Rafting en el Río Suárez",
+      "descripcion": "Desciende por las aguas rápidas del Río Suárez en un emocionante tour de rafting en Colombia.",
+      "precio": "80 USD"
+    },
+    {
+      "image": "https://example.com/img7.jpg",
+      "categoria": "Cultural",
+      "nombre": "Visita a las Ruinas de Teotihuacán",
+      "descripcion": "Explora las antiguas ruinas de Teotihuacán y descubre la historia de la civilización mexica.",
+      "precio": "45 USD"
+    },
+    {
+      "image": "https://example.com/img8.jpg",
+      "categoria": "Gastronomía",
+      "nombre": "Cata de Vinos en Canelones",
+      "descripcion": "Disfruta de una experiencia de cata de vinos en las bodegas de Canelones, Uruguay.",
+      "precio": "70 USD"
+    },
+    {
+      "image": "https://example.com/img9.jpg",
+      "categoria": "Aventura",
+      "nombre": "Esnórquel en la Isla de San Andrés",
+      "descripcion": "Explora la vida marina y los arrecifes de San Andrés en una excursión de esnórquel guiada.",
+      "precio": "90 USD"
+    },
+    {
+      "image": "https://example.com/img10.jpg",
+      "categoria": "Naturaleza",
+      "nombre": "Tour en la Reserva de la Biósfera de Sian Ka'an",
+      "descripcion": "Navega por la reserva y descubre la biodiversidad de Sian Ka'an en México.",
+      "precio": "110 USD"
+    },
+    {
+      "image": "https://example.com/img11.jpg",
+      "categoria": "Cultural",
+      "nombre": "Recorrido por el Barrio Gótico de Barcelona",
+      "descripcion": "Camina por las calles medievales del Barrio Gótico y conoce su historia y arquitectura.",
+      "precio": "40 USD"
+    },
+    {
+      "image": "https://example.com/img12.jpg",
+      "categoria": "Gastronomía",
+      "nombre": "Degustación de Comida Caribeña en Cartagena",
+      "descripcion": "Deléitate con los sabores de la cocina caribeña en un recorrido culinario por Cartagena.",
+      "precio": "65 USD"
+    },
+    {
+      "image": "https://example.com/img13.jpg",
+      "categoria": "Naturaleza",
+      "nombre": "Excursión a Cabo Polonio",
+      "descripcion": "Visita el remoto Cabo Polonio en Uruguay y disfruta de sus playas y vida silvestre.",
+      "precio": "55 USD"
+    },
+    {
+      "image": "https://example.com/img14.jpg",
+      "categoria": "Aventura",
+      "nombre": "Surf en las Playas de Puerto Escondido",
+      "descripcion": "Aprende a surfear o mejora tus habilidades en las olas de Puerto Escondido en México.",
+      "precio": "95 USD"
+    },
+    {
+      "image": "https://example.com/img15.jpg",
+      "categoria": "Cultural",
+      "nombre": "Tour por el Casco Histórico de Colonia del Sacramento",
+      "descripcion": "Recorre las calles empedradas de Colonia y conoce su historia como colonia portuguesa y española.",
+      "precio": "35 USD"
+    }
+  ]
+}

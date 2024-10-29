@@ -1,6 +1,7 @@
 {
   "tours": [
     {
+      "id": 1,
       "image": "https://example.com/img1.jpg",
       "categoria": "Aventura",
       "nombre": "Senderismo en el Cerro Arequita",
@@ -8,6 +9,7 @@
       "precio": "50 USD"
     },
     {
+      "id": 2,
       "image": "https://example.com/img2.jpg",
       "categoria": "Aventura",
       "nombre": "Tour de Parapente en Medellín",
@@ -15,6 +17,7 @@
       "precio": "120 USD"
     },
     {
+      "id": 3,
       "image": "https://example.com/img3.jpg",
       "categoria": "Cultural",
       "nombre": "Recorrido Histórico por la Ciudad Vieja de Montevideo",
@@ -22,6 +25,7 @@
       "precio": "30 USD"
     },
     {
+      "id": 4,
       "image": "https://example.com/img4.jpg",
       "categoria": "Gastronomía",
       "nombre": "Tour Gastronómico por Puebla",
@@ -29,6 +33,7 @@
       "precio": "60 USD"
     },
     {
+      "id": 5,
       "image": "https://example.com/img5.jpg",
       "categoria": "Naturaleza",
       "nombre": "Visita a las Cataratas del Iguazú",
@@ -36,6 +41,7 @@
       "precio": "150 USD"
     },
     {
+      "id": 6,
       "image": "https://example.com/img6.jpg",
       "categoria": "Aventura",
       "nombre": "Rafting en el Río Suárez",
@@ -43,6 +49,7 @@
       "precio": "80 USD"
     },
     {
+      "id": 7,
       "image": "https://example.com/img7.jpg",
       "categoria": "Cultural",
       "nombre": "Visita a las Ruinas de Teotihuacán",
@@ -50,6 +57,7 @@
       "precio": "45 USD"
     },
     {
+      "id": 8,
       "image": "https://example.com/img8.jpg",
       "categoria": "Gastronomía",
       "nombre": "Cata de Vinos en Canelones",
@@ -57,6 +65,7 @@
       "precio": "70 USD"
     },
     {
+      "id": 9,
       "image": "https://example.com/img9.jpg",
       "categoria": "Aventura",
       "nombre": "Esnórquel en la Isla de San Andrés",
@@ -64,6 +73,7 @@
       "precio": "90 USD"
     },
     {
+      "id": 10,
       "image": "https://example.com/img10.jpg",
       "categoria": "Naturaleza",
       "nombre": "Tour en la Reserva de la Biósfera de Sian Ka'an",
@@ -71,6 +81,7 @@
       "precio": "110 USD"
     },
     {
+      "id": 11,
       "image": "https://example.com/img11.jpg",
       "categoria": "Cultural",
       "nombre": "Recorrido por el Barrio Gótico de Barcelona",
@@ -78,6 +89,7 @@
       "precio": "40 USD"
     },
     {
+      "id": 12,
       "image": "https://example.com/img12.jpg",
       "categoria": "Gastronomía",
       "nombre": "Degustación de Comida Caribeña en Cartagena",
@@ -85,6 +97,7 @@
       "precio": "65 USD"
     },
     {
+      "id": 13,
       "image": "https://example.com/img13.jpg",
       "categoria": "Naturaleza",
       "nombre": "Excursión a Cabo Polonio",
@@ -92,6 +105,7 @@
       "precio": "55 USD"
     },
     {
+      "id": 14,
       "image": "https://example.com/img14.jpg",
       "categoria": "Aventura",
       "nombre": "Surf en las Playas de Puerto Escondido",
@@ -99,6 +113,7 @@
       "precio": "95 USD"
     },
     {
+      "id": 15,
       "image": "https://example.com/img15.jpg",
       "categoria": "Cultural",
       "nombre": "Tour por el Casco Histórico de Colonia del Sacramento",

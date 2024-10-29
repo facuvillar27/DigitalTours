@@ -10,10 +10,21 @@
   border-radius: 10px;
   background-color: var(--white);
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.10);
+
+  transition: transform 0.3s ease;
+}
+
+.container:hover {
+  transform: scale(1.05);
 }
 
 .card {
   margin: 12px;
+}
+
+
+.card_link {
+  text-decoration: none;
 }
 
 .card_img {

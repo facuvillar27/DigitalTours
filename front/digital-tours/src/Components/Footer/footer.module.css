@@ -1,0 +1,18 @@
+.license {
+  background-color: var(--accent);
+  padding: 0 10.5vw;
+  height: 9.8vh;
+}
+
+.copyright {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: var(--white);
+  margin-top: 50px;
+}
+
+.logo {
+  width: 85px;
+  height: 85px;
+}

@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 77vh;
+  height: 100vh;
 }
 
 .backButton {
@@ -38,4 +38,10 @@
   width: 1350px;
   border-radius: 10px;
   background-color: var(--dark-white);
+}
+
+.gallery_container {
+  align-self: center;
+  width: 45vw;
+  margin: auto;
 }

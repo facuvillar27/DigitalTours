@@ -5,15 +5,23 @@ import Card from "../Components/Card/Card";
 
 import data from "../assets/data.json";
 
-const getRandomItems = (arr, num) => {
-  const shuffled = arr.sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, num);
-};
-
 const Home = () => {
   const [tours, setTours] = useState([]);
+
   useEffect(() => {
-    setTours(getRandomItems(data.tours, 10));
+    const loadToursToLocalStorage = () => {
+      const storedTours = JSON.parse(localStorage.getItem("tours"));
+      if (!storedTours || storedTours.length === 0) {
+        localStorage.setItem("tours", JSON.stringify(data.tours));
+      }
+    };
+
+    loadToursToLocalStorage();
+    const storedTours = JSON.parse(localStorage.getItem("tours")) || [];
+    const sortedTours = storedTours.sort((a, b) =>
+      a.nombre.localeCompare(b.nombre)
+    );
+    setTours(sortedTours);
   }, []);
 
   return (
@@ -44,9 +52,11 @@ const Home = () => {
         </Link>
       </div>
       <div className={styles.home_body}>
-        {tours.map((item) => (
-          <Card key={item.id} item={item} />
-        ))}
+        {tours.length > 0 ? (
+          tours.map((item) => <Card key={item.id} item={item} />)
+        ) : (
+          <p>No hay tours registrados.</p>
+        )}
       </div>
     </div>
   );

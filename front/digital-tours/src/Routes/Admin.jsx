@@ -17,9 +17,7 @@ const Admin = () => {
 
     loadToursToLocalStorage();
     const storedTours = JSON.parse(localStorage.getItem("tours")) || [];
-    const sortedTours = storedTours.sort((a, b) =>
-      a.nombre.localeCompare(b.nombre)
-    );
+    const sortedTours = storedTours.sort((a, b) => a.nombre.localeCompare(b.nombre));
     setTours(sortedTours);
   }, []);
 
@@ -30,7 +28,7 @@ const Admin = () => {
   };
 
   const editTour = (updatedTour) => {
-    const updatedTours = tours.map((tour) =>
+    const updatedTours = tours.map((tour) => 
       tour.id === updatedTour.id ? updatedTour : tour
     );
     setTours(updatedTours);
@@ -50,10 +48,10 @@ const Admin = () => {
           <h1 className={styles.cta_text}>Tours</h1>
           {tours.length > 0 ? (
             tours.map((item) => (
-              <CardList
-                key={item.id}
-                item={item}
-                onDelete={deleteTour}
+              <CardList 
+                key={item.id} 
+                item={item} 
+                onDelete={deleteTour} 
                 onEdit={editTour}
               />
             ))

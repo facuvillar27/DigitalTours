@@ -52,7 +52,7 @@ const Admin = () => {
                 key={item.id} 
                 item={item} 
                 onDelete={deleteTour} 
-                onEdit={editTour} 
+                onEdit={editTour}
               />
             ))
           ) : (

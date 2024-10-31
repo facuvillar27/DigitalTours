@@ -1,20 +1,17 @@
+import { Link } from "react-router-dom";
 import styles from "./card.module.css";
-import cardImg from "../../assets/RioDeJaneiro.png";
 
-const Card = () => {
+const Card = ({ item }) => {
   return (
     <div className={styles.container}>
       <div className={styles.card}>
-        <img src={cardImg} alt="" className={styles.card_img} />
-        <p className={styles.product_type}>categoria/tipo</p>
-        <h3 className={styles.product_name}>
-          RIO DE jANEIRO: 6 PARADAS EN LUGARES DESTACADOS CON ALMUERZO
-        </h3>
-        <p className={styles.product_description}>
-          Disfruta de un tour en Río de Janeiro, admira Cristo Redentor y el Pan
-          de Azúcar. Explora la ciudad visitando el Estadio...
-        </p>
-        <h3 className={styles.product_price}>Desde $$$$</h3>
+        <Link to={`/products/${item.id}`} className={styles.card_link}>
+          <img src={item.image} alt="imageTest" className={styles.card_img} />
+          <p className={styles.product_type}>{item.categoria}</p>
+          <h3 className={styles.product_name}>{item.nombre}</h3>
+          <p className={styles.product_description}>{item.descripcion}</p>
+          <h3 className={styles.product_price}>{item.precio}</h3>
+        </Link>
       </div>
     </div>
   );

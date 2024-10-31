@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import styles from "./navbar.module.css";
-import logo from "../../assets/logo.svg";
+import logo from "../../assets/Logo_digitaltours-black.svg";
 
 const Navbar = () => {
   return (
     <nav>
       <Link to="/" className={styles.nav_logo}>
-        <img src={logo} alt="logo digital tours" />
+        <img src={logo} alt="logo digital tours" className={styles.logo} />
       </Link>
       <ul>
         <li>

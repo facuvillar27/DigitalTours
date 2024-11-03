@@ -51,7 +51,6 @@ const ProductDetails = () => {
             items={images}
             originalHeight={40}
             originalWidth={80}
-            thumbnailPosition={"right"}
             className={styles.gallery_box}
           />
         </div>

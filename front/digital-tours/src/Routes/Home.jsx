@@ -31,7 +31,12 @@ const Home = () => {
           <h1 className={styles.cta_text}>
             Recuerdos de viajes que nunca olvidaras
           </h1>
-          <input type="search" />
+          <input
+            className={styles.input}
+            type="text"
+            name="nombre"
+            placeholder="Encuenta Destinos Ideales"
+          />
         </div>
       </div>
       <div className={styles.cat_menu}>

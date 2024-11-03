@@ -43,5 +43,27 @@
 .gallery_container {
   align-self: center;
   width: 45vw;
-  margin: auto;
+  margin: 20px;
+}
+
+@media (max-width: 992px) {
+  .detail {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .gallery_container {
+    width: 70vw;
+  }
+
+  .detail_box {
+    height: 70vh;
+  }
+}
+
+
+@media (max-width: 576px) {
+
 }

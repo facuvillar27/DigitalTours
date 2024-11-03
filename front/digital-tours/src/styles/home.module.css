@@ -99,6 +99,11 @@
   .cat_menu {
     height: auto;
   }
+
+  .cta_box > h1{
+    font-weight: var(--font-h2-h3-weight);
+    margin: 0;
+  }
 }
 
 

@@ -6,25 +6,40 @@
 }
 
 .cta {
+  display: flex;
   background-image: url('../assets/cta_img.png');
   background-size: cover;
   background-position: bottom;
   width: 100%;
   height: 65vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.input {
+  display: flex;
+  background-color: transparent;
+  color: var(--white);
+  width: 260px;
+  padding: 12px;
+  border-radius: 5px;
+  border: 1px solid var(--white);
 }
 
 .cat_menu {
-display: flex;
-margin: 52px;
-justify-content: center;
-align-items: center;
-gap: 20px;
-width: 1154px;
-height: 133px;
+  margin: 35px;
+  padding: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 80%;
+  height: 133px;
 
-border-radius: 10px;
-background-color: var(--dark-white);
-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.10);
+  border-radius: 10px;
+  background-color: var(--dark-white);
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.10);
 }
 
 .cat_link {
@@ -53,9 +68,6 @@ box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.10);
   transition: transform 0.3s ease;
 }
 
-
-
-
 .home_body {
   display: flex;
   align-items: center;
@@ -63,14 +75,15 @@ box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.10);
   justify-content: center;
   padding: 12px;
 
-  width: 1350px;
+  width: 85%;
   border-radius: 10px;
   background-color: var(--dark-white);
 }
 
 .cta_box {
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
+  justify-content: space-around;
   align-items:flex-start;
   border-radius: 10px;
   width: 684px;
@@ -78,6 +91,33 @@ box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.10);
   font-weight: var(--font-h1-weight);
   background: rgba(56, 56, 56, 0.8);
   color: var(--white);
-  margin: 152px 532px 182px 224px;
+  margin: 60px;
   padding: 12px;
+}
+
+@media (max-width: 768px) {
+  .cat_menu {
+    height: auto;
+  }
+
+  .cta_box > h1{
+    font-weight: var(--font-h2-h3-weight);
+    margin: 0;
+  }
+}
+
+
+@media (max-width: 576px) {
+  .cta_box > h1{
+    font-weight: var(--font-p-weight);
+    margin: 0;
+  }
+
+  .cta_box {
+    width: 80%;
+    font-size: 24px;
+  }
+  .cat_menu {
+    height: auto;
+  }
 }

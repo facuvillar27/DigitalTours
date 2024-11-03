@@ -44,3 +44,14 @@
 .product_type, .product_price {
   color: var(--black);
 }
+
+@media (max-width: 576px) {
+  .container {
+    width: 90%;
+  }
+
+  .card_img {
+    max-width: 100%;
+    object-fit: cover;
+  }
+}

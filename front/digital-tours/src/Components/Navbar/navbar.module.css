@@ -1,10 +1,15 @@
+<<<<<<< Updated upstream
 
 .navbar{
   position: sticky;
   top: 0;
+=======
+nav {
+>>>>>>> Stashed changes
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
+<<<<<<< Updated upstream
   cursor: pointer;
   height: 90px;
   padding: 0 10.5vw;
@@ -36,16 +41,26 @@
 
 .hamburger {
   display: none;
+=======
+  margin: 0 auto;
+  width: auto;
+  top: 0;
+  z-index: 1;
+>>>>>>> Stashed changes
 }
 
-ul{
+ul {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  gap: 20px;
   align-items: center;
-  list-style-type: none;
-  width: 350px;
-  margin: 0;
-  padding: 0;
+  list-style: none;
+}
+
+ul li{
+  display: inline;
+    display: flex;
+    align-items: center;
 }
 
 .logo {
@@ -57,6 +72,7 @@ ul{
   text-decoration: none;
   color: var(--black);
   font-weight: var(--font-h2-h3-weight);
+<<<<<<< Updated upstream
   font-size: 20px;
 }
 
@@ -74,3 +90,7 @@ ul{
     display: none;
   }
 }
+=======
+  font-size: 1.3rem;
+}
+>>>>>>> Stashed changes

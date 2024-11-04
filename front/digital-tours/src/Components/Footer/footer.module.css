@@ -1,24 +1,47 @@
-.license {
+footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem 0 1rem 0;
+  position: relative;
+  bottom: 0;
+  max-width: 100%;
+  width: 100%;
+  height: 10vh;
   background-color: var(--accent);
-  padding: 0 10.5vw;
-  height: 9.8vh;
+  margin: 0;
 }
 
 .copyright {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
   color: var(--white);
-  margin-top: 50px;
 }
 
 .logo {
   width: 85px;
-  height: 85px;
+  height: auto;
 }
 
+<<<<<<< Updated upstream
 @media (max-width: 768px) {
   .copyright span {
     font-size: small;
   }
+=======
+.footer_content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.footer_content .footer_left {
+  display: flex;
+  align-items: center;
+}
+
+.footer_content .footer_right {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+>>>>>>> Stashed changes
 }

@@ -4,16 +4,18 @@ import styles from "./footer.module.css";
 
 const Footer = () => {
   return (
-    <footer className={styles.container}>
-      <div className={styles.license}>
-        <div className={styles.copyright}>
-          <Link to="/" className={styles.nav_logo}>
+    <footer>
+      <div className={styles.footer_content}>
+        <div className={styles.footer_left}>
+          <Link to="/" >
             <img src={logo} alt="logo digital tours" className={styles.logo} />
           </Link>
-          <span>Copyright © {new Date().getFullYear()} Digital Tours </span>
+        </div>
+        <div className={styles.footer_right}>
+          <span className={styles.copyright}>Copyright © {new Date().getFullYear()} Digital Tours </span>
         </div>
       </div>
-    </footer>
+    </footer >
   );
 };
 

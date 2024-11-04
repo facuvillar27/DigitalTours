@@ -1,24 +1,24 @@
 import { Route, Routes } from "react-router-dom";
-import Navbar from "./Components/Navbar/Navbar";
-import Footer from "./Components/Footer/Footer";
 import Home from "./Routes/Home";
 import Admin from "./Routes/Admin";
 import Products from "./Routes/Products";
 import ProductDetails from "./Routes/ProductDetails";
 import RegisterTour from "./Routes/RegisterTour";
+import Layout from "./Layout/Layout";
 
 function App() {
   return (
     <div className="app">
-      <Navbar />
       <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/admin" element={<Admin />}></Route>
-        <Route path="/products" element={<Products />}></Route>
-        <Route path="/products/:id" element={<ProductDetails />}></Route>
-        <Route path="/registerTour" element={<RegisterTour />}></Route>
+        <Route path="/" element={<Layout />}>
+          <Route path="/" element={<Home />}/>
+          <Route path="/admin" element={<Admin />}/>
+          <Route path="/products" element={<Products />}/>
+          <Route path="/products/:id" element={<ProductDetails />}/>
+          <Route path="/registerTour" element={<RegisterTour />}/>
+          <Route path="*" element={<h1>Page not Found</h1>} />
+        </Route>
       </Routes>
-      <Footer />
     </div>
   );
 }

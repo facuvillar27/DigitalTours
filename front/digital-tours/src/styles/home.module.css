@@ -5,6 +5,8 @@
   background-color: var(--white);
 }
 
+/*Catalog Section*/
+
 .cta {
   display: flex;
   background-image: url('../assets/cta_img.png');
@@ -68,6 +70,7 @@
   transition: transform 0.3s ease;
 }
 
+<<<<<<< Updated upstream
 .home_body {
   display: flex;
   align-items: center;
@@ -80,6 +83,8 @@
   background-color: var(--dark-white);
 }
 
+=======
+>>>>>>> Stashed changes
 .cta_box {
   display: flex;
   flex-direction: column;
@@ -95,6 +100,7 @@
   padding: 12px;
 }
 
+<<<<<<< Updated upstream
 @media (max-width: 768px) {
   .cat_menu {
     height: auto;
@@ -121,3 +127,26 @@
     height: auto;
   }
 }
+=======
+/*Cards Section*/
+
+.home_body {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 12px 0 4rem 0;
+  width: 100%;
+  max-width: 1350px;
+  border-radius: 10px;
+  background-color: var(--dark-white);
+}
+
+/* Media Query para pantallas grandes: dos columnas */
+@media (min-width: 800px) {
+  .home_body {
+    flex-direction: row;
+    justify-content: center;
+    gap: 24px; /* Espacio entre las dos columnas */
+  }
+}
+>>>>>>> Stashed changes

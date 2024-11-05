@@ -38,7 +38,7 @@
   display: none;
 }
 
-ul{
+.navbar_list{
   display: flex;
   justify-content: space-between;
   align-items: center;

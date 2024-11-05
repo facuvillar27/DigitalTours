@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import styles from "../styles/productDetails.module.css";
 import data from "../assets/data.json";
 import ImageGallery from "react-image-gallery";
+import Characteristics from "../Components/Characteristics/Characteristics";
 import "react-image-gallery/styles/css/image-gallery.css";
 
 const ProductDetails = () => {
@@ -59,6 +60,9 @@ const ProductDetails = () => {
           <p>{item.descripcion}</p>
           <h3>{item.precio}</h3>
         </div>
+        <div>
+        <Characteristics caracteristicas={item.caracteristicas} />
+      </div>
       </div>
     </div>
   );

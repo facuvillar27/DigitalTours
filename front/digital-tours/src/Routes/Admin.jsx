@@ -1,63 +1,42 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import styles from "../styles/admin.module.css";
-import CardList from "../Components/CardList/CardList";
-import data from "../assets/data.json";
+import { Link } from "react-router-dom";
+import Button from "../Components/Button/Button";
 
 const Admin = () => {
-  const [tours, setTours] = useState([]);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const loadToursToLocalStorage = () => {
-      const storedTours = JSON.parse(localStorage.getItem("tours"));
-      if (!storedTours || storedTours.length === 0) {
-        localStorage.setItem("tours", JSON.stringify(data.tours));
-      }
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
     };
 
-    loadToursToLocalStorage();
-    const storedTours = JSON.parse(localStorage.getItem("tours")) || [];
-    const sortedTours = storedTours.sort((a, b) => a.nombre.localeCompare(b.nombre));
-    setTours(sortedTours);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
-  const deleteTour = (id) => {
-    const updatedTours = tours.filter((tour) => tour.id !== id);
-    setTours(updatedTours);
-    localStorage.setItem("tours", JSON.stringify(updatedTours));
-  };
-
-  const editTour = (updatedTour) => {
-    const updatedTours = tours.map((tour) => 
-      tour.id === updatedTour.id ? updatedTour : tour
+  if (isMobile) {
+    return (
+      <div className={styles.mobileWarning}>
+        <p>Este panel no está disponible en dispositivos móviles.</p>
+      </div>
     );
-    setTours(updatedTours);
-    localStorage.setItem("tours", JSON.stringify(updatedTours));
-  };
+  }
 
   return (
     <div className={styles.main}>
-      <h1>Admin Dashboard</h1>
-      <div className={styles.dashboard}>
-        <div className={styles.reg_btn}>
-          <Link to="/registerTour" className={styles.cat_link}>
-            <p className={styles.registerTour_btn}>Registrar Tour</p>
-          </Link>
-        </div>
-        <div className={styles.home_body}>
-          <h1 className={styles.cta_text}>Tours</h1>
-          {tours.length > 0 ? (
-            tours.map((item) => (
-              <CardList 
-                key={item.id} 
-                item={item} 
-                onDelete={deleteTour} 
-                onEdit={editTour}
-              />
-            ))
-          ) : (
-            <p>No hay tours registrados.</p>
-          )}
+      <h1 className={styles.title}>Panel de administración</h1>
+      <div className={styles.container}>
+        <div className={styles.card}>
+          <Link to="/admin/tours"><Button>Tours</Button></Link>
+          <Link to="/admin/tours"><Button>Tours</Button></Link>
+          <Link to="/admin/tours"><Button>Tours</Button></Link>
+          <Link to="/admin/tours"><Button>Tours</Button></Link>
+          <Link to="/admin/tours"><Button>Tours</Button></Link>
         </div>
       </div>
     </div>

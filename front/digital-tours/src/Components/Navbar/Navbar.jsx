@@ -4,8 +4,10 @@ import logo from "../../assets/Logo_digitaltours-black.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import { useAuth } from "../../services/authContext";
 
 const Navbar = () => {
+  const { isAuthenticated, logout } = useAuth();
   const [color, setColor] = useState(false);
   const changeColor = () => {
     window.scrollY > 50 ? setColor(true) : setColor(false);
@@ -18,7 +20,11 @@ const Navbar = () => {
         <img src={logo} alt="logo digital tours" className={styles.logo} />
       </Link>
       <FontAwesomeIcon className={styles.hamburger} icon={faBars} />
-      <ul>
+      {isAuthenticated ? (
+        <button onClick={logout}>Cerrar sesión</button>
+      ) : (
+        <>
+        <ul>
         <li>
           <Link to="/login" className={styles.nav_link}>
             Iniciar sesión
@@ -30,6 +36,20 @@ const Navbar = () => {
           </Link>
         </li>
       </ul>
+        </>
+      )}
+      {/* <ul>
+        <li>
+          <Link to="/login" className={styles.nav_link}>
+            Iniciar sesión
+          </Link>
+        </li>
+        <li>
+          <Link to="/signUp" className={styles.nav_link}>
+            Crear cuenta
+          </Link>
+        </li>
+      </ul> */}
     </nav>
   );
 };

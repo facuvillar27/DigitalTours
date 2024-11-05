@@ -53,19 +53,19 @@ const Home = () => {
         </div>
       </div>
       <div className={styles.cat_menu}>
-        <Link to="/login" className={styles.cat_link}>
+        <Link to="#" className={styles.cat_link}>
           <p className={styles.cat_btn}>Categoria</p>
         </Link>
-        <Link to="/login" className={styles.cat_link}>
+        <Link to="#" className={styles.cat_link}>
           <p className={styles.cat_btn}>Categoria</p>
         </Link>
-        <Link to="/login" className={styles.cat_link}>
+        <Link to="#" className={styles.cat_link}>
           <p className={styles.cat_btn}>Categoria</p>
         </Link>
-        <Link to="/login" className={styles.cat_link}>
+        <Link to="#" className={styles.cat_link}>
           <p className={styles.cat_btn}>Categoria</p>
         </Link>
-        <Link to="/login" className={styles.cat_link}>
+        <Link to="#" className={styles.cat_link}>
           <p className={styles.cat_btn}>Categoria</p>
         </Link>
       </div>

@@ -6,6 +6,7 @@ import Admin from "./Routes/Admin";
 import Products from "./Routes/Products";
 import ProductDetails from "./Routes/ProductDetails";
 import RegisterTour from "./Routes/RegisterTour";
+import Tours from "./Routes/Tours";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/products" element={<Products />}></Route>
         <Route path="/products/:id" element={<ProductDetails />}></Route>
         <Route path="/registerTour" element={<RegisterTour />}></Route>
+        <Route path="admin/tours" element={<Tours />}></Route>
       </Routes>
       <Footer />
     </div>

@@ -8,20 +8,22 @@ import data from "../assets/data.json";
 const Home = () => {
   const [tours, setTours] = useState([]);
 
-  useEffect(() => {
-    const loadToursToLocalStorage = () => {
-      const storedTours = JSON.parse(localStorage.getItem("tours"));
-      if (!storedTours || storedTours.length === 0) {
-        localStorage.setItem("tours", JSON.stringify(data.tours));
-      }
-    };
+  // Función para mezclar el arreglo aleatoriamente
+  const shuffleArray = (array) => {
+    return array.sort(() => Math.random() - 0.5);
+  };
 
-    loadToursToLocalStorage();
+  useEffect(() => {
+    // Carga los tours de data.json y combínalos con los de localStorage
     const storedTours = JSON.parse(localStorage.getItem("tours")) || [];
-    const sortedTours = storedTours.sort((a, b) =>
-      a.nombre.localeCompare(b.nombre)
-    );
-    setTours(sortedTours);
+    const combinedTours = [...storedTours, ...data.tours];
+
+    // Mezcla los tours combinados y guárdalos en el localStorage
+    const shuffledTours = shuffleArray(combinedTours);
+    localStorage.setItem("tours", JSON.stringify(shuffledTours));
+
+    // Actualiza el estado con los tours mezclados
+    setTours(shuffledTours);
   }, []);
 
   return (
@@ -35,7 +37,7 @@ const Home = () => {
             className={styles.input}
             type="text"
             name="nombre"
-            placeholder="Encuenta Destinos Ideales"
+            placeholder="Encuentra Destinos Ideales"
           />
         </div>
       </div>

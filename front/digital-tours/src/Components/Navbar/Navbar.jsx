@@ -19,7 +19,6 @@ const Navbar = () => {
       <Link to="/" className={styles.nav_logo}>
         <img src={logo} alt="logo digital tours" className={styles.logo} />
       </Link>
-      <FontAwesomeIcon className={styles.hamburger} icon={faBars} />
       {isAuthenticated ? (
         <button onClick={logout}>Cerrar sesión</button>
       ) : (
@@ -31,25 +30,14 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/signUp" className={styles.nav_link}>
+          <Link to="/register" className={styles.nav_link}>
             Crear cuenta
           </Link>
         </li>
       </ul>
         </>
       )}
-      {/* <ul>
-        <li>
-          <Link to="/login" className={styles.nav_link}>
-            Iniciar sesión
-          </Link>
-        </li>
-        <li>
-          <Link to="/signUp" className={styles.nav_link}>
-            Crear cuenta
-          </Link>
-        </li>
-      </ul> */}
+      <FontAwesomeIcon className={styles.hamburger} icon={faBars} />
     </nav>
   );
 };

@@ -11,6 +11,15 @@ export const login = async (username, password) => {
   return response.data;
 };
 
+// Registrar usuario
+export const register = async (username, password, email) => {
+  const response = await axios.post(`${API_URL}/register`, { username, password, email });
+  if (response.data.token) {
+    localStorage.setItem("token", response.data.token);
+  }
+  return response.data;
+};
+
 // Cerrar sesión
 export const logout = () => {
   localStorage.removeItem("token");

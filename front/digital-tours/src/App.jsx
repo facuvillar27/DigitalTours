@@ -11,10 +11,11 @@ import Register from "./Routes/Register";
 import Login from "./Routes/Login"
 import { AuthProvider } from "./services/authContext";
 
+
 function App() {
   return (
     <AuthProvider>
-    <div className="app">
+    <div className="App">
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />}></Route>

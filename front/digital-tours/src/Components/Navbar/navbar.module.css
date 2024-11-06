@@ -64,6 +64,7 @@ ul{
 
   .hamburger {
     display: block;
+    cursor: pointer;
   }
 
   ul{

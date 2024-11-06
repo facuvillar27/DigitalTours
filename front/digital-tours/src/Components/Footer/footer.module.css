@@ -1,15 +1,20 @@
-.license {
+.container{
+  margin-top: 50px;
   background-color: var(--accent);
+  display: flex;
+  flex-direction: column;
+}
+
+/* .license {
   padding: 0 10.5vw;
   height: 9.8vh;
-}
+} */
 
 .copyright {
   display: flex;
   justify-content: space-around;
   align-items: center;
   color: var(--white);
-  margin-top: 50px;
 }
 
 .logo {

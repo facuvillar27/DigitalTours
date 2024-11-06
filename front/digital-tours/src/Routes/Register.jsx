@@ -1,9 +1,9 @@
 import styles from "../styles/register.module.css"
+import RegisterForm from "../Components/RegisterForm/RegisterForm";
 const Register = () => {
     return (
         <div className={styles.main}>
-            <h1 className={styles.cta_text}>Registrarse</h1>
-            <Register />
+            <RegisterForm />
         </div>
     );
 }

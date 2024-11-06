@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useAuth } from "../../services/authContext";
 import { login } from "../../services/authService";
+import styles from "./loginForm.module.css";
+import Button from "../Button/Button";
+
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
@@ -18,21 +21,28 @@ const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        placeholder="Usuario"
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Contraseña"
-      />
-      <button type="submit">Iniciar sesión</button>
-    </form>
+    <div className={styles.main}>
+      <div className={styles.container}>
+        <form onSubmit={handleSubmit} className={styles.form}>
+        <h1 className={styles.title}>Iniciar sesión</h1>
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Usuario"
+          className={styles.input}
+        />
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Contraseña"
+          className={styles.input}
+        />
+        <Button type="submit" className={styles.button}>Iniciar sesión</Button>
+      </form>
+      </div>
+    </div>
   );
 };
 

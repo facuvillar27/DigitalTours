@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const API_URL = "https://tu-api.com/api"; // Cambia a tu URL de API
+const API_URL = "http://localhost:8080/digitaltours/api"; // Cambia a tu URL de API
 
 // Iniciar sesión
 export const login = async (username, password) => {
-  const response = await axios.post(`${API_URL}/login`, { username, password });
+  const response = await axios.post(`${API_URL}/v1/auth/login`, { username, password });
   if (response.data.token) {
     localStorage.setItem("token", response.data.token);
   }
@@ -13,7 +13,7 @@ export const login = async (username, password) => {
 
 // Registrar usuario
 export const register = async (username, password, email) => {
-  const response = await axios.post(`${API_URL}/register`, { username, password, email });
+  const response = await axios.post(`${API_URL}/v1/auth/signup`, { username, password, email });
   if (response.data.token) {
     localStorage.setItem("token", response.data.token);
   }

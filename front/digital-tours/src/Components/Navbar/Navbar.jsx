@@ -3,6 +3,7 @@ import styles from "./navbar.module.css";
 import logo from "../../assets/Logo_digitaltours-black.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { useAuth } from "../../services/authContext";
 
@@ -20,7 +21,7 @@ const Navbar = () => {
         <img src={logo} alt="logo digital tours" className={styles.logo} />
       </Link>
       {isAuthenticated ? (
-        <button onClick={logout}>Cerrar sesión</button>
+        <FontAwesomeIcon icon={faRightFromBracket} className={styles.logout} onClick={logout}/>
       ) : (
         <>
         <ul>

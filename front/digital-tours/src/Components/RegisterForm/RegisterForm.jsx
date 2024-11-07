@@ -1,28 +1,31 @@
 import { useState } from "react";
-import { useAuth } from "../../services/authContext";
-import { register } from "../../services/authService";
+import { register as registerService } from "../../services/authService";
 import styles from "./registerForm.module.css";
 import Button from "../Button/Button";
 
 const RegisterForm = () => {
   const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const { setIsAuthenticated } = useAuth();
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState(""); // Estado para el mensaje de error
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      console.error("Las contraseñas no coinciden");
+      setErrorMessage("Las contraseñas no coinciden");
       return;
     }
 
     try {
-      await register(username, email, password);
-      setIsAuthenticated(true);
+      await registerService(username, password, email); // Llamada al servicio de registro
+      setSuccessMessage("¡Registro exitoso! Se le enviará un correo de confirmación.");
+      setErrorMessage("");
+
     } catch (error) {
       console.error("Error en el registro:", error);
+      setErrorMessage("Error en el registro. Verifique sus datos"); // Establece el mensaje de error
     }
   };
 
@@ -31,6 +34,10 @@ const RegisterForm = () => {
       <div className={styles.container}>
         <form onSubmit={handleSubmit} className={styles.form}>
           <h1 className={styles.title}>Registrarse</h1>
+          
+          {successMessage && <p className={styles.successMessage}>{successMessage}</p>}
+          {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
+
           <input
             type="text"
             value={username}

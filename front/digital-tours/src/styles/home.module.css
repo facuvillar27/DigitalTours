@@ -26,12 +26,16 @@
   border: 1px solid var(--white);
 }
 
+.input::placeholder {
+  color: var(--white);
+}
+
 .cat_menu {
   margin: 35px;
   padding: 12px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   gap: 20px;
   width: 80%;
@@ -42,8 +46,25 @@
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.10);
 }
 
+.cat_icon{
+  color: var(--accent);
+  scale: 1.5;
+}
+
 .cat_link {
   text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: scale(1.1);
+  gap: 12px;
+}
+
+.cat_link:hover{
+  transform: scale(1.2);
+  transition: transform 0.2s ease;
+  color: var(--primary);
 }
 
 .cat_btn:hover {
@@ -93,6 +114,13 @@
   color: var(--white);
   margin: 60px;
   padding: 12px;
+}
+
+.cat.text{
+  color: var(--accent);
+  font-size: 24px;
+  font-weight: var(--font-p-weight);
+  text-align: center;
 }
 
 @media (max-width: 768px) {

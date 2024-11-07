@@ -18,11 +18,29 @@
   --font-p-weight: 400;
 }
 
-body {
-  box-sizing: border-box;
+html, body {
   margin: 0;
   padding: 0;
-  background-color: var(--white);
+  height: 100%;
   font-family: var(--font-family);
-  height: 100vh;
+  background-color: var(--white);
+}
+
+/* Hace que todo el contenedor ocupe el 100% de la ventana */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Aplica flexibilidad en App para llenar el espacio entre el navbar y el footer */
+.App {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Asegura que el footer esté en la parte inferior */
+footer {
+  margin-top: auto;
 }

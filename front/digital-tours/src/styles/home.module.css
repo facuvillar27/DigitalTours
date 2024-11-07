@@ -26,6 +26,10 @@
   border: 1px solid var(--white);
 }
 
+.input::placeholder {
+  color: var(--white);
+}
+
 .cat_menu {
   margin: 35px;
   padding: 12px;

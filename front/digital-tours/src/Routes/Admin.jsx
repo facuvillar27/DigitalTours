@@ -33,7 +33,7 @@ const Admin = () => {
       <div className={styles.container}>
         <div className={styles.card}>
           <Link to="/admin/tours"><Button>Tours</Button></Link>
-          <Link to="/admin/tours"><Button>Tours</Button></Link>
+          <Link to="/admin/usuarios"><Button>Usuarios</Button></Link>
           <Link to="/admin/tours"><Button>Tours</Button></Link>
           <Link to="/admin/tours"><Button>Tours</Button></Link>
           <Link to="/admin/tours"><Button>Tours</Button></Link>

@@ -1,27 +1,39 @@
 import { Link } from "react-router-dom";
 import styles from "./navbar.module.css";
 import logo from "../../assets/Logo_digitaltours-black.svg";
+import logo_white from "../../assets/Logo_digitaltours-white.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import DropdownMenu from "../DropdownMenu/DropdownMenu";
 import { useAuth } from "../../services/authContext";
 
 const Navbar = () => {
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated } = useAuth();
   const [color, setColor] = useState(false);
   const changeColor = () => {
-    window.scrollY > 50 ? setColor(true) : setColor(false);
+    window.scrollY > 10 ? setColor(true) : setColor(false);
   };
   window.addEventListener("scroll", changeColor);
+
+  window.addEventListener('scroll', function() {
+    const image = document.getElementById('logo');
+    
+    if (window.scrollY > 10) {
+      image.src = logo_white;  // Cambia la imagen
+    } else {
+      image.src = logo;  // Cambia de nuevo la imagen
+    }
+  });
 
   return (
     <nav className={color ? styles.scrolled : styles.navbar}>
       <Link to="/" className={styles.nav_logo}>
-        <img src={logo} alt="logo digital tours" className={styles.logo} />
+        <img src={logo} alt="logo digital tours" className={styles.logo} id="logo" />
       </Link>
       {isAuthenticated ? (
-        <FontAwesomeIcon icon={faRightFromBracket} className={styles.logout} onClick={logout}/>
+        // Dropdown desde el profile image
+        <DropdownMenu />   
       ) : (
         <>
         <ul>

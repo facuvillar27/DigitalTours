@@ -1,0 +1,38 @@
+.dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdownIcon {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .dropdownContent {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border-radius: 4px;
+    width: 150px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+  }
+  
+  .dropdownItem {
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    display: block;
+  }
+  
+  .dropdownItem:hover {
+    background-color: var(--accent);
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  

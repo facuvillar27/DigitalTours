@@ -9,7 +9,6 @@
   height: 90px;
   padding: 0 10.5vw;
 
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.10);
   transition: 0.5s ease-in;
 }
 
@@ -26,7 +25,6 @@
   opacity: 0.93;
   z-index: 1000;
 
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.10);
   transition: 0.5s ease-out;
 }
 
@@ -73,5 +71,10 @@ ul{
 
   .nav_link {
     display: none;
+  }
+
+  .dropdown{
+    display: flex;
+    ;
   }
 }

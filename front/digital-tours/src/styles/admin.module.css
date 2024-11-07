@@ -6,12 +6,12 @@
   }
 
   .title{
-    margin-top: 150px;
+    margin-top: 50px;
   }
 
   .container {
   display: flex;
-  margin: 52px;
+  margin: 10px;
   justify-content: center;
   align-items: center;
   gap: 20px;

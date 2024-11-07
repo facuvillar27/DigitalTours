@@ -18,7 +18,7 @@ const Navbar = () => {
         <img src={logo} alt="logo digital tours" className={styles.logo} />
       </Link>
       <FontAwesomeIcon className={styles.hamburger} icon={faBars} />
-      <ul>
+      <ul className={styles.navbar_list}>
         <li>
           <Link to="/login" className={styles.nav_link}>
             Iniciar sesión

@@ -4,6 +4,12 @@
       "id": 1,
       "image": "https://images.unsplash.com/photo-1549969096-964f7bc25177?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fHJpbyUyMGRlJTIwamFuZWlyb3xlbnwwfHwwfHx8MA%3D%3D",
       "categoria": "Aventura",
+      "caracteristicas": [
+        { "id": 1, "nombre": "Nivel de dificultad: Medio", "icono": "🧗" },
+        { "id": 2, "nombre": "Duración: 4 horas", "icono": "⏱️" },
+        { "id": 3, "nombre": "Transporte incluido: Bicicleta", "icono": "🚴" },
+        { "id": 4, "nombre": "Incluye guía", "icono": "🧑‍🏫" }
+      ],
       "nombre": "Senderismo en el Cerro Arequita",
       "descripcion": "Explora la naturaleza y las cavernas del Cerro Arequita en Uruguay con un recorrido de senderismo guiado.",
       "precio": "50 USD"
@@ -12,6 +18,12 @@
       "id": 2,
       "image": "https://images.unsplash.com/photo-1549969096-964f7bc25177?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fHJpbyUyMGRlJTIwamFuZWlyb3xlbnwwfHwwfHx8MA%3D%3D",
       "categoria": "Aventura",
+      "caracteristicas": [
+        { "id": 1, "nombre": "Nivel de dificultad: Medio", "icono": "🧗" },
+        { "id": 2, "nombre": "Duración: 4 horas", "icono": "⏱️" },
+        { "id": 3, "nombre": "Transporte incluido: Bicicleta", "icono": "🚴" },
+        { "id": 4, "nombre": "Incluye guía", "icono": "🧑‍🏫" }
+      ],
       "nombre": "Tour de Parapente en Medellín",
       "descripcion": "Vuela sobre Medellín y disfruta de vistas impresionantes de la ciudad y el Valle de Aburrá.",
       "precio": "120 USD"
@@ -20,6 +32,10 @@
       "id": 3,
       "image": "https://images.unsplash.com/photo-1549969096-964f7bc25177?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fHJpbyUyMGRlJTIwamFuZWlyb3xlbnwwfHwwfHx8MA%3D%3D",
       "categoria": "Cultural",
+      "caracteristicas": [
+        { "id": 1, "nombre": "Duración: 4 horas", "icono": "⏱️" },
+        { "id": 2, "nombre": "Incluye comida", "icono": "🥪" }
+      ],
       "nombre": "Recorrido Histórico por la Ciudad Vieja de Montevideo",
       "descripcion": "Descubre la rica historia de Montevideo con una visita guiada por la Ciudad Vieja.",
       "precio": "30 USD"
@@ -28,6 +44,10 @@
       "id": 4,
       "image": "https://images.unsplash.com/photo-1549969096-964f7bc25177?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fHJpbyUyMGRlJTIwamFuZWlyb3xlbnwwfHwwfHx8MA%3D%3D",
       "categoria": "Gastronomía",
+      "caracteristicas": [
+        { "id": 1, "nombre": "Duración: 4 horas", "icono": "⏱️" },
+        { "id": 2, "nombre": "Incluye comida", "icono": "🥪" }
+      ],
       "nombre": "Tour Gastronómico por Puebla",
       "descripcion": "Prueba los platillos más emblemáticos de Puebla como los chiles en nogada y las chalupas en un recorrido guiado.",
       "precio": "60 USD"
@@ -36,6 +56,10 @@
       "id": 5,
       "image": "https://images.unsplash.com/photo-1549969096-964f7bc25177?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fHJpbyUyMGRlJTIwamFuZWlyb3xlbnwwfHwwfHx8MA%3D%3D",
       "categoria": "Naturaleza",
+      "caracteristicas": [
+        { "id": 1, "nombre": "Duración: 4 horas", "icono": "⏱️" },
+        { "id": 2, "nombre": "Incluye comida", "icono": "🥪" }
+      ],
       "nombre": "Visita a las Cataratas del Iguazú",
       "descripcion": "Experimenta la majestuosidad de las Cataratas del Iguazú en un tour guiado desde Argentina y Brasil.",
       "precio": "150 USD"
@@ -44,6 +68,12 @@
       "id": 6,
       "image": "https://images.unsplash.com/photo-1549969096-964f7bc25177?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fHJpbyUyMGRlJTIwamFuZWlyb3xlbnwwfHwwfHx8MA%3D%3D",
       "categoria": "Aventura",
+      "caracteristicas": [
+        { "id": 1, "nombre": "Nivel de dificultad: Medio", "icono": "🧗" },
+        { "id": 2, "nombre": "Duración: 4 horas", "icono": "⏱️" },
+        { "id": 3, "nombre": "Transporte incluido: Bicicleta", "icono": "🚴" },
+        { "id": 4, "nombre": "Incluye guía", "icono": "🧑‍🏫" }
+      ],
       "nombre": "Rafting en el Río Suárez",
       "descripcion": "Desciende por las aguas rápidas del Río Suárez en un emocionante tour de rafting en Colombia.",
       "precio": "80 USD"
@@ -52,6 +82,10 @@
       "id": 7,
       "image": "https://images.unsplash.com/photo-1549969096-964f7bc25177?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fHJpbyUyMGRlJTIwamFuZWlyb3xlbnwwfHwwfHx8MA%3D%3D",
       "categoria": "Cultural",
+      "caracteristicas": [
+        { "id": 1, "nombre": "Duración: 4 horas", "icono": "⏱️" },
+        { "id": 2, "nombre": "Incluye comida", "icono": "🥪" }
+      ],
       "nombre": "Visita a las Ruinas de Teotihuacán",
       "descripcion": "Explora las antiguas ruinas de Teotihuacán y descubre la historia de la civilización mexica.",
       "precio": "45 USD"
@@ -60,6 +94,10 @@
       "id": 8,
       "image": "https://images.unsplash.com/photo-1549969096-964f7bc25177?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fHJpbyUyMGRlJTIwamFuZWlyb3xlbnwwfHwwfHx8MA%3D%3D",
       "categoria": "Gastronomía",
+      "caracteristicas": [
+        { "id": 1, "nombre": "Duración: 4 horas", "icono": "⏱️" },
+        { "id": 2, "nombre": "Incluye comida", "icono": "🥪" }
+      ],
       "nombre": "Cata de Vinos en Canelones",
       "descripcion": "Disfruta de una experiencia de cata de vinos en las bodegas de Canelones, Uruguay.",
       "precio": "70 USD"
@@ -68,6 +106,12 @@
       "id": 9,
       "image": "https://images.unsplash.com/photo-1549969096-964f7bc25177?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fHJpbyUyMGRlJTIwamFuZWlyb3xlbnwwfHwwfHx8MA%3D%3D",
       "categoria": "Aventura",
+      "caracteristicas": [
+        { "id": 1, "nombre": "Nivel de dificultad: Medio", "icono": "🧗" },
+        { "id": 2, "nombre": "Duración: 4 horas", "icono": "⏱️" },
+        { "id": 3, "nombre": "Transporte incluido: Bicicleta", "icono": "🚴" },
+        { "id": 4, "nombre": "Incluye guía", "icono": "🧑‍🏫" }
+      ],
       "nombre": "Esnórquel en la Isla de San Andrés",
       "descripcion": "Explora la vida marina y los arrecifes de San Andrés en una excursión de esnórquel guiada.",
       "precio": "90 USD"
@@ -76,6 +120,10 @@
       "id": 10,
       "image": "https://images.unsplash.com/photo-1549969096-964f7bc25177?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fHJpbyUyMGRlJTIwamFuZWlyb3xlbnwwfHwwfHx8MA%3D%3D",
       "categoria": "Naturaleza",
+      "caracteristicas": [
+        { "id": 1, "nombre": "Duración: 4 horas", "icono": "⏱️" },
+        { "id": 2, "nombre": "Incluye comida", "icono": "🥪" }
+      ],
       "nombre": "Tour en la Reserva de la Biósfera de Sian Ka'an",
       "descripcion": "Navega por la reserva y descubre la biodiversidad de Sian Ka'an en México.",
       "precio": "110 USD"
@@ -84,6 +132,10 @@
       "id": 11,
       "image": "https://images.unsplash.com/photo-1549969096-964f7bc25177?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fHJpbyUyMGRlJTIwamFuZWlyb3xlbnwwfHwwfHx8MA%3D%3D",
       "categoria": "Cultural",
+      "caracteristicas": [
+        { "id": 1, "nombre": "Duración: 4 horas", "icono": "⏱️" },
+        { "id": 2, "nombre": "Incluye comida", "icono": "🥪" }
+      ],
       "nombre": "Recorrido por el Barrio Gótico de Barcelona",
       "descripcion": "Camina por las calles medievales del Barrio Gótico y conoce su historia y arquitectura.",
       "precio": "40 USD"
@@ -92,6 +144,10 @@
       "id": 12,
       "image": "https://images.unsplash.com/photo-1549969096-964f7bc25177?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fHJpbyUyMGRlJTIwamFuZWlyb3xlbnwwfHwwfHx8MA%3D%3D",
       "categoria": "Gastronomía",
+      "caracteristicas": [
+        { "id": 1, "nombre": "Duración: 4 horas", "icono": "⏱️" },
+        { "id": 2, "nombre": "Incluye comida", "icono": "🥪" }
+      ],
       "nombre": "Degustación de Comida Caribeña en Cartagena",
       "descripcion": "Deléitate con los sabores de la cocina caribeña en un recorrido culinario por Cartagena.",
       "precio": "65 USD"
@@ -100,6 +156,10 @@
       "id": 13,
       "image": "https://images.unsplash.com/photo-1549969096-964f7bc25177?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fHJpbyUyMGRlJTIwamFuZWlyb3xlbnwwfHwwfHx8MA%3D%3D",
       "categoria": "Naturaleza",
+      "caracteristicas": [
+        { "id": 1, "nombre": "Duración: 4 horas", "icono": "⏱️" },
+        { "id": 2, "nombre": "Incluye comida", "icono": "🥪" }
+      ],
       "nombre": "Excursión a Cabo Polonio",
       "descripcion": "Visita el remoto Cabo Polonio en Uruguay y disfruta de sus playas y vida silvestre.",
       "precio": "55 USD"
@@ -108,6 +168,12 @@
       "id": 14,
       "image": "https://images.unsplash.com/photo-1549969096-964f7bc25177?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fHJpbyUyMGRlJTIwamFuZWlyb3xlbnwwfHwwfHx8MA%3D%3D",
       "categoria": "Aventura",
+      "caracteristicas": [
+        { "id": 1, "nombre": "Nivel de dificultad: Medio", "icono": "🧗" },
+        { "id": 2, "nombre": "Duración: 4 horas", "icono": "⏱️" },
+        { "id": 3, "nombre": "Transporte incluido: Bicicleta", "icono": "🚴" },
+        { "id": 4, "nombre": "Incluye guía", "icono": "🧑‍🏫" }
+      ],
       "nombre": "Surf en las Playas de Puerto Escondido",
       "descripcion": "Aprende a surfear o mejora tus habilidades en las olas de Puerto Escondido en México.",
       "precio": "95 USD"
@@ -116,6 +182,10 @@
       "id": 15,
       "image": "https://images.unsplash.com/photo-1549969096-964f7bc25177?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fHJpbyUyMGRlJTIwamFuZWlyb3xlbnwwfHwwfHx8MA%3D%3D",
       "categoria": "Cultural",
+      "caracteristicas": [
+        { "id": 1, "nombre": "Duración: 4 horas", "icono": "⏱️" },
+        { "id": 2, "nombre": "Incluye comida", "icono": "🥪" }
+      ],
       "nombre": "Tour por el Casco Histórico de Colonia del Sacramento",
       "descripcion": "Recorre las calles empedradas de Colonia y conoce su historia como colonia portuguesa y española.",
       "precio": "35 USD"

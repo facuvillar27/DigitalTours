@@ -1,0 +1,46 @@
+:root {
+  --black: #161617;
+  --white: #FBFBFD;
+  --dark-white: #F4F4F4;
+  --grey: #818589;
+  --dark-grey: #383838;
+  --primary: #EB661B;
+  --primary-hover: #D55C0F;
+  --secondary: #90C151;
+  --accent: #604CC3;
+  --success: #0fbda4;
+  --warning: #FBB828;
+  --danger: #D22C2C;
+
+  --font-family: "Nunito", sans-serif;
+  --font-h1-weight: 700;
+  --font-h2-h3-weight: 600;
+  --font-p-weight: 400;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: var(--font-family);
+  background-color: var(--white);
+}
+
+/* Hace que todo el contenedor ocupe el 100% de la ventana */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Aplica flexibilidad en App para llenar el espacio entre el navbar y el footer */
+.App {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Asegura que el footer esté en la parte inferior */
+footer {
+  margin-top: auto;
+}

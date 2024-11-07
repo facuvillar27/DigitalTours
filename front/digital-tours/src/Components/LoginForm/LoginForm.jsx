@@ -16,8 +16,12 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await loginService(username, password);
-      login();
+      // Llamamos al servicio de login y obtenemos el token
+      const token = await loginService(username, password);
+
+      // Llamamos al login del contexto para guardar el estado de autenticación y el token
+      login(token); // Pasa el token al contexto
+
       setSuccessMessage("¡Inicio de sesión exitoso!");
       setErrorMessage(""); // Limpiar el mensaje de error en caso de éxito
 

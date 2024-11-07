@@ -1,8 +1,5 @@
+import React from 'react';
 import styles from "../Pagination/Pagination.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     const maxPagesToShow = 5;
@@ -13,7 +10,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     return (
       <div className={styles.pagination}>
         <button onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1}>
-          <FontAwesomeIcon icon={faArrowLeft} />
+          ⬅️
         </button>
         {startPage > 1 && <span>...</span>}
         {pageNumbers.map((number) => (
@@ -27,7 +24,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         ))}
         {endPage < totalPages && <span>...</span>}
         <button onClick={() => onPageChange(currentPage + 1)} disabled={currentPage === totalPages}>
-        <FontAwesomeIcon icon={faArrowRight} />
+          ➡️
         </button>
       </div>
     );

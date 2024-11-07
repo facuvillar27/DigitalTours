@@ -1,32 +1,31 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import styles from "../styles/home.module.css";
 import Card from "../Components/Card/Card";
 import Pagination from "../Components/Pagination/Pagination";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMountainSun } from "@fortawesome/free-solid-svg-icons";
-import { faUtensils } from "@fortawesome/free-solid-svg-icons";
-import { faTree } from "@fortawesome/free-solid-svg-icons";
-import { faPersonSwimming } from "@fortawesome/free-solid-svg-icons";
+import data from "../assets/data.json";
 
 const Home = () => {
   const [tours, setTours] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
-  // Función para obtener los productos de la API
-  const fetchProducts = async () => {
-    try {
-      const response = await axios.get("http://localhost:8080/digitaltours/api/v1/products");
-      setTours(response.data.data); // Asume que los productos están en `response.data`
-    } catch (error) {
-      console.error("Error al obtener los productos:", error);
-    }
+  // Función para mezclar el arreglo aleatoriamente
+  const shuffleArray = (array) => {
+    return array.sort(() => Math.random() - 0.5);
   };
 
   useEffect(() => {
-    fetchProducts(); // Llama a la función para obtener los productos
+    // Carga los tours de data.json y combínalos con los de localStorage
+    const storedTours = JSON.parse(localStorage.getItem("tours")) || [];
+    const combinedTours = [...storedTours, ...data.tours];
+
+    // Mezcla los tours combinados y guárdalos en el localStorage
+    const shuffledTours = shuffleArray(combinedTours);
+    localStorage.setItem("tours", JSON.stringify(shuffledTours));
+
+    // Actualiza el estado con los tours mezclados
+    setTours(shuffledTours);
   }, []);
 
   const totalPages = Math.ceil(tours.length / itemsPerPage);
@@ -44,7 +43,9 @@ const Home = () => {
     <div className={styles.main}>
       <div className={styles.cta}>
         <div className={styles.cta_box}>
-          <h1 className={styles.cta_text}>Recuerdos de viajes que nunca olvidarás</h1>
+          <h1 className={styles.cta_text}>
+            Recuerdos de viajes que nunca olvidaras
+          </h1>
           <input
             className={styles.input}
             type="text"
@@ -55,20 +56,19 @@ const Home = () => {
       </div>
       <div className={styles.cat_menu}>
         <Link to="#" className={styles.cat_link}>
-          <FontAwesomeIcon icon={faMountainSun} className={styles.cat_icon}/>
-          <span>Cultura</span>
+          <p className={styles.cat_btn}>Categoria</p>
         </Link>
         <Link to="#" className={styles.cat_link}>
-          <FontAwesomeIcon icon={faUtensils} className={styles.cat_icon}/>
-          <span>Gastronomía</span>
+          <p className={styles.cat_btn}>Categoria</p>
         </Link>
         <Link to="#" className={styles.cat_link}>
-          <FontAwesomeIcon icon={faTree} className={styles.cat_icon}/>
-          <span>Naturaleza</span>
+          <p className={styles.cat_btn}>Categoria</p>
         </Link>
         <Link to="#" className={styles.cat_link}>
-          <FontAwesomeIcon icon={faPersonSwimming} className={styles.cat_icon}/>
-          <span>Deporte</span>
+          <p className={styles.cat_btn}>Categoria</p>
+        </Link>
+        <Link to="#" className={styles.cat_link}>
+          <p className={styles.cat_btn}>Categoria</p>
         </Link>
       </div>
       <div className={styles.home_body}>

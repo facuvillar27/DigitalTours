@@ -4,26 +4,20 @@ const API_URL = "http://localhost:8080/digitaltours/api"; // Cambia a tu URL de 
 
 // Iniciar sesión
 export const login = async (username, password) => {
-  try {
-    const response = await axios.post(`${API_URL}/v1/auth/login`, { username, password });
-    if (response.data.token) {
-      return response.data.token;  // Devuelve el token recibido de la API
-    } else {
-      throw new Error("No token found in response");
-    }
-  } catch (error) {
-    throw new Error("Error al iniciar sesión");
+  const response = await axios.post(`${API_URL}/v1/auth/login`, { username, password });
+  if (response.data.token) {
+    localStorage.setItem("token", response.data.token);
   }
+  return response.data;
 };
 
 // Registrar usuario
 export const register = async (username, password, email) => {
-  try {
-    const response = await axios.post(`${API_URL}/v1/auth/signup`, { username, password, email });
-    return response.data;  // Devuelve la respuesta tal cual, sin manipularla
-  } catch (error) {
-    throw new Error("Error al registrar usuario");
+  const response = await axios.post(`${API_URL}/v1/auth/signup`, { username, password, email });
+  if (response.data.token) {
+    localStorage.setItem("token", response.data.token);
   }
+  return response.data;
 };
 
 // Cerrar sesión

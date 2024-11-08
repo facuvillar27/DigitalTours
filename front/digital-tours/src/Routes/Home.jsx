@@ -75,7 +75,7 @@ const Home = () => {
         {currentTours.length > 0 ? (
           currentTours.map((item) => <Card key={item.id} item={item} />)
         ) : (
-          <p>No hay tours registrados.</p>
+          <p className={styles.no_tours}>No hay tours registrados.</p>
         )}
       </div>
       <Pagination

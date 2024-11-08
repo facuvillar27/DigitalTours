@@ -90,13 +90,15 @@
 }
 
 .home_body {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 12px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
 
-  width: 85%;
+    padding: 12px;
+
+  width: 80%;
   border-radius: 10px;
   background-color: var(--dark-white);
 }

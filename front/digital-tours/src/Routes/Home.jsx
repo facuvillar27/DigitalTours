@@ -5,28 +5,33 @@ import styles from "../styles/home.module.css";
 import Card from "../Components/Card/Card";
 import Pagination from "../Components/Pagination/Pagination";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMountainSun } from "@fortawesome/free-solid-svg-icons";
-import { faUtensils } from "@fortawesome/free-solid-svg-icons";
-import { faTree } from "@fortawesome/free-solid-svg-icons";
-import { faPersonSwimming } from "@fortawesome/free-solid-svg-icons";
+import { faMountainSun, faUtensils, faTree, faPersonSwimming } from "@fortawesome/free-solid-svg-icons";
+import Spinner from "../Components/Spinner/Spinner";
 
 const Home = () => {
   const [tours, setTours] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
-  // Función para obtener los productos de la API
+  const shuffleTours = (toursArray) => {
+    return toursArray.sort(() => Math.random() - 0.5);
+  };
+
   const fetchProducts = async () => {
     try {
       const response = await axios.get("http://localhost:8080/digitaltours/api/v1/products");
-      setTours(response.data.data); // Asume que los productos están en `response.data`
+      const shuffledTours = shuffleTours(response.data.data);
+      setTours(shuffledTours);
     } catch (error) {
       console.error("Error al obtener los productos:", error);
+    } finally {
+      setIsLoading(false); // Cambia a `false` cuando los datos se hayan cargado
     }
   };
 
   useEffect(() => {
-    fetchProducts(); // Llama a la función para obtener los productos
+    fetchProducts();
   }, []);
 
   const totalPages = Math.ceil(tours.length / itemsPerPage);
@@ -72,7 +77,9 @@ const Home = () => {
         </Link>
       </div>
       <div className={styles.home_body}>
-        {currentTours.length > 0 ? (
+        {isLoading ? (
+          <Spinner />
+        ) : currentTours.length > 0 ? (
           currentTours.map((item) => <Card key={item.id} item={item} />)
         ) : (
           <p className={styles.no_tours}>No hay tours registrados.</p>

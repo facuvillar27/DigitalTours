@@ -16,7 +16,6 @@ const Tours = () => {
     };
     loadToursToLocalStorage();
     const storedTours = JSON.parse(localStorage.getItem("tours")) || [];
-    // const sortedTours = storedTours.sort((a, b) => a.nombre.localeCompare(b.nombre));  ORDENA RANDOM LOS STORED TOURS
     setTours(storedTours);
   }, []);
 
@@ -36,7 +35,6 @@ const Tours = () => {
 
   return (
     <div className={styles.main}>
-      <h1>Lista de Productos</h1>
       <div className={styles.dashboard}>
         <div className={styles.reg_btn}>
           <Link to="/registerTour" className={styles.cat_link}>

@@ -1,10 +1,18 @@
 import { useEffect, useState } from "react";
 import styles from "../styles/admin.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../Components/Button/Button";
+import { getUserRol } from "../services/authService";
 
 const Admin = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (getUserRol() !== "ROLE_ADMIN") {
+      navigate("/"); 
+    }
+  }, [navigate]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -34,9 +42,8 @@ const Admin = () => {
         <div className={styles.card}>
           <Link to="/admin/tours"><Button>Tours</Button></Link>
           <Link to="/admin/usuarios"><Button>Usuarios</Button></Link>
-          <Link to="/admin/tours"><Button>Tours</Button></Link>
-          <Link to="/admin/tours"><Button>Tours</Button></Link>
-          <Link to="/admin/tours"><Button>Tours</Button></Link>
+          <Link to="/admin/caracteristicas"><Button>Caracteristicas</Button></Link>
+          <Link to="/admin/categorias"><Button>Categorias</Button></Link>
         </div>
       </div>
     </div>

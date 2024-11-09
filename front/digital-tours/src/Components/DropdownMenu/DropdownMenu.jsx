@@ -3,6 +3,8 @@ import { useState, useEffect, useRef } from "react";
 import ProfileImage from "../ProfileImage/ProfileImage";
 import { useAuth } from "../../services/authContext";
 import { getUserInfo } from "../../services/authService";
+import { getUserRol } from "../../services/authService";
+import { useNavigate } from "react-router-dom";
 
 const DropdownMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,6 +12,7 @@ const DropdownMenu = () => {
   const { logout } = useAuth();
   const menuRef = useRef(null);
   const [color, setColor] = useState(false);
+  const navigate = useNavigate();
   const changeColor = () => {
     window.scrollY > 10 ? setColor(true) : setColor(false);
   };
@@ -26,6 +29,10 @@ const DropdownMenu = () => {
     }
   };
 
+  const handleAdminRedirect = () => {
+    navigate('/admin');
+  };
+
   useEffect(() => {
     if (isOpen) {
       document.addEventListener("mousedown", handleClickOutside);
@@ -37,11 +44,10 @@ const DropdownMenu = () => {
     };
   }, [isOpen]);
 
-  // Cargar userInfo solo cuando el token está disponible
   useEffect(() => {
     const info = getUserInfo();
-    setUserInfo(info); // Establecer el userInfo en el estado
-  }, []); // Solo se ejecuta una vez cuando el componente se monta
+    setUserInfo(info);
+  }, []); 
 
   if (!userInfo) {
     return null; // Puedes renderizar un loading spinner aquí si lo deseas
@@ -54,10 +60,15 @@ const DropdownMenu = () => {
       </p>
       <div className={styles.dropdown} ref={menuRef}>
         <button className={styles.dropdownIcon} onClick={toggleMenu}>
-          {<ProfileImage name={userInfo.user} />}
+          <ProfileImage name={userInfo.user} />
         </button>
         {isOpen && (
           <div className={styles.dropdownContent}>
+            {getUserRol() === "ROLE_ADMIN" && (
+              <a onClick={handleAdminRedirect} className={styles.dropdownItem}>
+                Panel de Administración
+              </a>
+            )}
             <a href="#opcion2" className={styles.dropdownItem}>
               Perfil
             </a>
@@ -67,8 +78,8 @@ const DropdownMenu = () => {
           </div>
         )}
       </div>
-  </div>
+    </div>
   );
-};
+}  
 
 export default DropdownMenu;

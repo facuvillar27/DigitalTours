@@ -8,6 +8,9 @@ import RegisterTour from "./Routes/RegisterTour";
 import Tours from "./Routes/Tours";
 import Register from "./Routes/Register";
 import Login from "./Routes/Login";
+import Users from "./Routes/Users";
+import Characteristics from "./Routes/Characteristics";
+import Categories from "./Routes/Categories";
 import { AuthProvider } from "./services/authContext";
 
 function App() {
@@ -21,8 +24,11 @@ function App() {
           <Route path="/products/:id" element={<ProductDetails />}></Route>
           <Route path="/registerTour" element={<RegisterTour />}></Route>
           <Route path="admin/tours" element={<Tours />}></Route>
+          <Route path="admin/usuarios" element={<Users />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="admin/characteristics" element={<Characteristics />}></Route>
+          <Route path="admin/categories" element={<Categories />}></Route>
         </Routes>
         <Footer />
       </div>

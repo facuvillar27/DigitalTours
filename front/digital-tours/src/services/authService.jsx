@@ -37,14 +37,21 @@ export const logout = () => {
 
 // Decodificar token y obtener información del usuario
 export function getUserInfo() {
-  const token = localStorage.getItem("token").toString(); 
-  if (!token) return null;
+  let token;
   try {
+    token = localStorage.getItem("token");
+    if (!token) return null;
+
     const decoded = jwtDecode(token); // Ahora se usa jwt_decode correctamente
     const { sub: user, roles } = decoded; 
     return { user, roles };
   } catch (error) {
-    console.error("Token inválido:", error);
+    console.error("Error al obtener el token o token inválido:", error);
     return null;
   }
+}
+
+export function getUserRol() {
+  const userInfo = getUserInfo();
+  return userInfo ? userInfo.roles : null;
 }

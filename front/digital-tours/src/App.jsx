@@ -27,8 +27,13 @@ function App() {
           <Route path="admin/usuarios" element={<Users />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/login" element={<Login />}></Route>
-          <Route path="admin/characteristics" element={<Characteristics />}></Route>
-          <Route path="admin/categories" element={<Categories />}></Route>
+          <Route
+            path="/admin/characteristics"
+            element={<Characteristics />}
+          ></Route>
+          <Route path="/admin/categories" element={<Categories />}></Route>{" "}
+          {/* esto hay que cambiarlo */}
+          <Route path="/categories" element={<Categories />}></Route>
         </Routes>
         <Footer />
       </div>

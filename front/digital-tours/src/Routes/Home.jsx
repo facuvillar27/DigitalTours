@@ -5,7 +5,12 @@ import styles from "../styles/home.module.css";
 import Card from "../Components/Card/Card";
 import Pagination from "../Components/Pagination/Pagination";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMountainSun, faUtensils, faTree, faPersonSwimming } from "@fortawesome/free-solid-svg-icons";
+import {
+  faMountainSun,
+  faUtensils,
+  faTree,
+  faPersonSwimming,
+} from "@fortawesome/free-solid-svg-icons";
 import Spinner from "../Components/Spinner/Spinner";
 
 const Home = () => {
@@ -20,7 +25,9 @@ const Home = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/digitaltours/api/v1/products");
+      const response = await axios.get(
+        "http://localhost:8080/digitaltours/api/v1/products"
+      );
       const shuffledTours = shuffleTours(response.data.data);
       setTours(shuffledTours);
     } catch (error) {
@@ -49,7 +56,9 @@ const Home = () => {
     <div className={styles.main}>
       <div className={styles.cta}>
         <div className={styles.cta_box}>
-          <h1 className={styles.cta_text}>Recuerdos de viajes que nunca olvidarás</h1>
+          <h1 className={styles.cta_text}>
+            Recuerdos de viajes que nunca olvidarás
+          </h1>
           <input
             className={styles.input}
             type="text"
@@ -59,21 +68,24 @@ const Home = () => {
         </div>
       </div>
       <div className={styles.cat_menu}>
-        <Link to="#" className={styles.cat_link}>
-          <FontAwesomeIcon icon={faMountainSun} className={styles.cat_icon}/>
-          <span>Cultura</span>
+        <Link to="/categories" className={styles.cat_link}>
+          <FontAwesomeIcon icon={faMountainSun} className={styles.cat_icon} />
+          <span>Cultural</span>
         </Link>
-        <Link to="#" className={styles.cat_link}>
-          <FontAwesomeIcon icon={faUtensils} className={styles.cat_icon}/>
+        <Link to="/categories" className={styles.cat_link}>
+          <FontAwesomeIcon icon={faUtensils} className={styles.cat_icon} />
           <span>Gastronomía</span>
         </Link>
-        <Link to="#" className={styles.cat_link}>
-          <FontAwesomeIcon icon={faTree} className={styles.cat_icon}/>
+        <Link to="/categories" className={styles.cat_link}>
+          <FontAwesomeIcon icon={faTree} className={styles.cat_icon} />
           <span>Naturaleza</span>
         </Link>
-        <Link to="#" className={styles.cat_link}>
-          <FontAwesomeIcon icon={faPersonSwimming} className={styles.cat_icon}/>
-          <span>Deporte</span>
+        <Link to="/categories" className={styles.cat_link}>
+          <FontAwesomeIcon
+            icon={faPersonSwimming}
+            className={styles.cat_icon}
+          />
+          <span>Aventura</span>
         </Link>
       </div>
       <div className={styles.home_body}>

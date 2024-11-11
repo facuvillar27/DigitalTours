@@ -1,14 +1,10 @@
 import styles from "./profileImage.module.css";
 
 const ProfileImage = ({ name }) => {
-  const nameParts = name.split(" ");
-  const firstNameInitial = nameParts[0] ? nameParts[0][0] : "";
-  const lastNameInitial = nameParts[1] ? nameParts[1][0] : "";
-
+  const initials = name.slice(0, 2).toUpperCase();
   return (
     <span className={styles.profileImage}>
-      {firstNameInitial}
-      {lastNameInitial}
+      {initials}
     </span>
   );
 };

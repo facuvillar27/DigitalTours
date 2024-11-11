@@ -1,6 +1,24 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .username{
+    color: var(--accent);
+    font-weight: bold;
+    font-size: 18px;
+  }
+
 .dropdown {
     position: relative;
     display: inline-block;
+  }
+  
+  .scrolled{
+    color: var(--white);
+    font-weight: bold;
+    font-size: 18px;
   }
   
   .dropdownIcon {

@@ -1,18 +1,34 @@
+import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import styles from "../styles/productDetails.module.css";
-import data from "../assets/data.json";
 import ImageGallery from "react-image-gallery";
-import Characteristics from "../Components/Characteristics/Characteristics";
+// import Characteristics from "../Components/Characteristics/Characteristics";
 import "react-image-gallery/styles/css/image-gallery.css";
+import { useState, useEffect } from "react";
 
 const ProductDetails = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const item = data.tours.find((tour) => tour.id.toString() === id);
+  const [product, setProduct] = useState([]);
 
-  if (!item) {
-    return <p>Producto no encontrado</p>;
-  }
+  const productDetail = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/digitaltours/api/v1/products/${id}`
+      );
+      setProduct(response.data.data);
+    } catch (error) {
+      console.error("Error al obtener los producto:", error);
+    }
+  };
+
+  useEffect(() => {
+    productDetail();
+  }, []);
+
+  // if (!item) {
+  //   return <p>Producto no encontrado</p>;
+  // }
 
   const images = [
     {
@@ -56,13 +72,13 @@ const ProductDetails = () => {
           />
         </div>
         <div className={styles.detail_info}>
-          <h2>{item.nombre}</h2>
-          <p>{item.descripcion}</p>
-          <h3>{item.precio}</h3>
+          <h2>{product.name}</h2>
+          <p>{product.description}</p>
+          <h3>{product.price} USD</h3>
         </div>
-        <div>
-        <Characteristics caracteristicas={item.caracteristicas} />
-      </div>
+        {/* <div>
+          <Characteristics caracteristicas={product.caracteristicas} />
+        </div> */}
       </div>
     </div>
   );

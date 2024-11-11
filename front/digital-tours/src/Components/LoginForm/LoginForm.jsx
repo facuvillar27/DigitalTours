@@ -4,6 +4,7 @@ import { login as loginService } from "../../services/authService";
 import { useNavigate } from "react-router-dom";
 import styles from "./loginForm.module.css";
 import Button from "../Button/Button";
+import Tick from "../Tick/Tick"; 
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
@@ -38,8 +39,13 @@ const LoginForm = () => {
       <div className={styles.container}>
         <form onSubmit={handleSubmit} className={styles.form}>
           <h1 className={styles.title}>Iniciar sesión</h1>
-          
-          {successMessage && <p className={styles.successMessage}>{successMessage}</p>}
+
+          {successMessage && (
+            <>
+              <p className={styles.successMessage}>{successMessage}</p>
+              <Tick />
+            </>
+          )}
           {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
 
           <input

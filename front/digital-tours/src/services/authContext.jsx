@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
@@ -26,6 +27,7 @@ export const AuthProvider = ({ children }) => {
     setToken(null);
     localStorage.removeItem("isAuthenticated");
     localStorage.removeItem("token");  // Eliminar el token de localStorage
+    useNavigate("/");
   };
 
   return (

@@ -4,7 +4,6 @@ import styles from "./card.module.css";
 const Card = ({ item }) => {
   const defaultImage = "../assets/RioDeJaneiro.png"; // Ruta de la imagen por defecto
 
-
   const handleImageError = (e) => {
     e.target.onerror = null; // Evita bucles en caso de que la imagen por defecto también falle
     e.target.src = defaultImage; // Establece la imagen por defecto si la imagen original no se carga
@@ -13,7 +12,10 @@ const Card = ({ item }) => {
   return (
     <div className={styles.container}>
       <div className={styles.card}>
-        <Link to={`/products/${item.product_id}`} className={styles.card_link}>
+        <Link
+          to={`/products/${item.id.toString()}`}
+          className={styles.card_link}
+        >
           <img
             src={item.image} // Usa la imagen proporcionada por la API
             alt="imageTest"

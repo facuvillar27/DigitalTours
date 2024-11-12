@@ -55,3 +55,33 @@ export function getUserRol() {
   const userInfo = getUserInfo();
   return userInfo ? userInfo.roles : null;
 }
+
+// Obtener productos
+export const getProducts = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/v1/products`);
+    return response.data.data; // Ajustado al formato de respuesta esperado
+  } catch (error) {
+    throw new Error("Error al obtener productos");
+  }
+};
+
+// Registrar nuevo producto
+export const registerProduct = async (productData) => {
+  try {
+    const response = await axios.post(`${API_URL}/v1/products`, productData);
+    return response.data;
+  } catch (error) {
+    throw new Error("Error al registrar producto");
+  }
+};
+
+// Obtener un producto específico por ID
+export const getProductById = async (id) => {
+  try {
+    const response = await axios.get(`${API_URL}/v1/products/${id}`);
+    return response.data.data;
+  } catch (error) {
+    throw new Error("Error al obtener producto por ID");
+  }
+};

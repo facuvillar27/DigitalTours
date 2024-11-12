@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./cardList.module.css";
 
-const Card = ({ item, onDelete, onEdit }) => {
+const CardList = ({ item, onDelete, onEdit }) => {
   const handleDelete = () => {
     if (window.confirm("¿Estás seguro de que deseas eliminar este tour?")) {
       onDelete(item.id);
@@ -9,19 +9,18 @@ const Card = ({ item, onDelete, onEdit }) => {
   };
 
   const handleEdit = () => {
-    const nombre = prompt("Ingresa el nuevo nombre:", item.nombre);
-    const categoria = prompt("Ingresa la nueva categoría:", item.categoria);
-    const descripcion = prompt("Ingresa la nueva descripción:", item.descripcion);
-    const precio = prompt("Ingresa el nuevo precio:", item.precio);
+    const name = prompt("Ingresa el nuevo nombre:", item.name);
+    const category = prompt("Ingresa la nueva categoría:", item.category);
+    const description = prompt("Ingresa la nueva descripción:", item.description);
+    const price = prompt("Ingresa el nuevo precio:", item.price);
 
-    // Verificar que se haya ingresado un nombre y que no sea vacío
-    if (nombre && categoria && descripcion && precio) {
+    if (name && category && description && price) {
       const updatedTour = {
         ...item,
-        nombre,
-        categoria,
-        descripcion,
-        precio: parseFloat(precio),
+        name,
+        category,
+        description,
+        price: parseFloat(price),
       };
       onEdit(updatedTour);
     }
@@ -32,12 +31,12 @@ const Card = ({ item, onDelete, onEdit }) => {
       <div className={styles.card}>
         <div className={styles.cardContent}>
           <Link to={`/products/${item.id}`} className={styles.cardList_link}>
-            <img src={item.image} alt={item.nombre} className={styles.cardImage} />
+            <img src={item.image} alt={item.name} className={styles.cardImage} />
             <div>
-              <p className={styles.product_type}>{item.categoria}</p>
-              <h3 className={styles.product_name}>{item.nombre}</h3>
-              <p className={styles.product_description}>{item.descripcion}</p>
-              <h3 className={styles.product_price}>{item.precio}</h3>
+              <p className={styles.product_type}>{item.category}</p>
+              <h3 className={styles.product_name}>{item.name}</h3>
+              <p className={styles.product_description}>{item.description}</p>
+              <h3 className={styles.product_price}>{item.price}</h3>
             </div>
           </Link>
         </div>
@@ -50,4 +49,4 @@ const Card = ({ item, onDelete, onEdit }) => {
   );
 };
 
-export default Card;
+export default CardList;

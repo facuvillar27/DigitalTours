@@ -1,36 +1,21 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../styles/tours.module.css";
 import CardList from "../Components/CardList/CardList";
-import data from "../assets/data.json";
+import useProducts from "../hooks/useProducts"; // Importa el hook
 
 const Tours = () => {
-  const [tours, setTours] = useState([]);
-
-  useEffect(() => {
-    const loadToursToLocalStorage = () => {
-      const storedTours = JSON.parse(localStorage.getItem("tours"));
-      if (!storedTours || storedTours.length === 0) {
-        localStorage.setItem("tours", JSON.stringify(data.tours));
-      }
-    };
-    loadToursToLocalStorage();
-    const storedTours = JSON.parse(localStorage.getItem("tours")) || [];
-    setTours(storedTours);
-  }, []);
+  const { products, updateProducts } = useProducts(); // Usa el hook
 
   const deleteTour = (id) => {
-    const updatedTours = tours.filter((tour) => tour.id !== id);
-    setTours(updatedTours);
-    localStorage.setItem("tours", JSON.stringify(updatedTours));
+    const updatedProducts = products.filter((product) => product.id !== id);
+    updateProducts(updatedProducts); // Actualiza usando el hook
   };
 
-  const editTour = (updatedTour) => {
-    const updatedTours = tours.map((tour) => 
-      tour.id === updatedTour.id ? updatedTour : tour
+  const editTour = (updatedProduct) => {
+    const updatedProducts = products.map((product) => 
+      product.id === updatedProduct.id ? updatedProduct : product
     );
-    setTours(updatedTours);
-    localStorage.setItem("tours", JSON.stringify(updatedTours));
+    updateProducts(updatedProducts); // Actualiza usando el hook
   };
 
   return (
@@ -43,8 +28,8 @@ const Tours = () => {
         </div>
         <div className={styles.home_body}>
           <h1 className={styles.cta_text}>Tours</h1>
-          {tours.length > 0 ? (
-            tours.map((item) => (
+          {products.length > 0 ? (
+            products.map((item) => (
               <CardList 
                 key={item.id} 
                 item={item} 

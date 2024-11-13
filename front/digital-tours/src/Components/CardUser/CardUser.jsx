@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import styles from "./cardUser.module.css";
+import ProfileImage from "../ProfileImage/ProfileImage";
 
-const Card = ({ item, onDelete, onEdit }) => {
+const CardUser = ({ item, onDelete, onEdit }) => {
   const handleDelete = () => {
     if (window.confirm("¿Estás seguro de que deseas eliminar este usuario?")) {
       onDelete(item.id);
@@ -9,16 +10,16 @@ const Card = ({ item, onDelete, onEdit }) => {
   };
 
   const handleEdit = () => {
-    const nombre = prompt("Ingresa el nuevo nombre:", item.nombre);
+    const username = prompt("Ingresa el nuevo nombre:", item.username);  // Cambié nombre por username
     const email = prompt("Ingresa el nuevo email:", item.email);
-    const rol = prompt("Ingresa el nuevo rol:", item.rol);
+    const role = prompt("Ingresa el nuevo rol:", item.role);  // Cambié rol por role
 
-    if (nombre && email && rol) {
+    if (username && email && role) {
       const updatedUser = {
         ...item,
-        nombre,
+        username,  // Cambié nombre por username
         email,
-        rol,
+        role,  // Cambié rol por role
       };
       onEdit(updatedUser);
     }
@@ -29,10 +30,11 @@ const Card = ({ item, onDelete, onEdit }) => {
       <div className={styles.card}>
         <div className={styles.cardContent}>
           <Link to={`/users/${item.id}`} className={styles.cardList_link}>
+          <ProfileImage name={item.username} />
             <div>
-              <h3 className={styles.user_name}>{item.nombre}</h3>
+              <h3 className={styles.user_name}>{item.username}</h3>  {/* Cambié nombre por username */}
               <p className={styles.user_email}>{item.email}</p>
-              <p className={styles.user_role}>{item.rol}</p>
+              <p className={styles.user_role}>{item.role}</p>  {/* Cambié rol por role */}
             </div>
           </Link>
         </div>
@@ -45,4 +47,4 @@ const Card = ({ item, onDelete, onEdit }) => {
   );
 };
 
-export default Card;
+export default CardUser;

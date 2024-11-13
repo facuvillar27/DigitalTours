@@ -18,11 +18,11 @@ const Card = ({ item }) => {
         >
           <img
             src={item.image} // Usa la imagen proporcionada por la API
-            alt="imageTest"
+            alt="Imagen del tour"
             className={styles.card_img}
             onError={handleImageError} // Maneja el error si la imagen no se carga
           />
-          <p className={styles.product_type}>{item.category}</p>
+          <p className={styles.product_type}>{item.category.name}</p>
           <h3 className={styles.product_name}>{item.name}</h3>
           <p className={styles.product_description}>{item.description}</p>
           <h3 className={styles.product_price}>{item.price} USD</h3>

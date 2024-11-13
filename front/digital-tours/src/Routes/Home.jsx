@@ -19,15 +19,12 @@ const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
-  const shuffleTours = (toursArray) => {
-    return toursArray.sort(() => Math.random() - 0.5);
-  };
-
   const fetchProducts = async () => {
     try {
       const response = await axios.get(
         "http://localhost:8080/digitaltours/api/v1/products"
       );
+      console.log(response.data.data);
       const shuffledTours = shuffleTours(response.data.data);
       setTours(shuffledTours);
     } catch (error) {
@@ -40,6 +37,10 @@ const Home = () => {
   useEffect(() => {
     fetchProducts();
   }, []);
+
+  const shuffleTours = (toursArray) => {
+    return toursArray.sort(() => Math.random() - 0.5);
+  };
 
   const totalPages = Math.ceil(tours.length / itemsPerPage);
 

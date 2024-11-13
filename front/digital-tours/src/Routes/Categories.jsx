@@ -1,46 +1,54 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import styles from "../styles/categories.module.css";
+import Card from "../Components/Card/Card";
+import Spinner from "../Components/Spinner/Spinner";
 
 const Categories = () => {
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [tours, setTours] = useState([]);
   const [filteredTours, setFilteredTours] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // const handleCategoryChange = (event) => {
-  //   const category = event.target.value;
-  //   const isChecked = event.target.checked;
+  const handleCategoryChange = (e) => {
+    const category = e.target.value;
+    const isChecked = e.target.checked;
 
-  //   let newSelectedCategories = [...selectedCategories];
+    let newSelectedCategories = [...selectedCategories];
 
-  //   if (isChecked) {
-  //     newSelectedCategories.push(category);
-  //   } else {
-  //     newSelectedCategories = newSelectedCategories.filter(
-  //       (cat) => cat !== category
-  //     );
-  //   }
+    if (isChecked) {
+      newSelectedCategories.push(category);
+    } else {
+      newSelectedCategories = newSelectedCategories.filter(
+        (cat) => cat !== category
+      );
+    }
 
-  //   setSelectedCategories(newSelectedCategories);
+    setSelectedCategories(newSelectedCategories);
 
-  //   if (newSelectedCategories.length === 0) {
-  //     setFilteredTours(data.tours);
-  //   } else {
-  //     const newFilteredTours = data.tours.filter((tour) =>
-  //       newSelectedCategories.includes(tour.categoria)
-  //     );
-  //     setFilteredTours(newFilteredTours);
-  //   }
-  // };
+    if (newSelectedCategories.length === 0) {
+      setFilteredTours(tours);
+    } else {
+      const newFilteredTours = tours.filter((tour) =>
+        newSelectedCategories.includes(tour.categoria.name)
+      );
+      setFilteredTours(newFilteredTours);
+    }
+  };
 
   const fetchProducts = async () => {
     try {
       const response = await axios.get(
         "http://localhost:8080/digitaltours/api/v1/products"
       );
-      const tours = response.data;
+      const tours = response.data.data;
+      setTours(tours);
+      console.log(`Tours cat: ${tours}`);
       setFilteredTours(tours);
-      console.log(filteredTours);
     } catch (error) {
       console.error("Error al obtener los productos:", error);
+    } finally {
+      setIsLoading(false); // Cambia a `false` cuando los datos se hayan cargado
     }
   };
 
@@ -50,40 +58,52 @@ const Categories = () => {
 
   const handleClearFilters = () => {
     setSelectedCategories([]);
-    setFilteredTours(data.tours);
+    setFilteredTours(tours);
   };
 
+  const uniqueCategories = [
+    ...new Set(tours.map((tour) => tour.category.name)),
+  ];
+
   return (
-    <div>
-      <h1>Tours</h1>
-      <div>
-        <h2>Filtros</h2>
-        {filteredTours.category.map((cat) => (
-          <div key={cat.id}>
-            <input
-              type="checkbox"
-              id={cat.id}
-              value={cat}
-              onChange={handleCategoryChange}
-              checked={selectedCategories.includes(cat)}
-            />
-            <label>{cat}</label>
-          </div>
-        ))}
-        <button onClick={handleClearFilters}>Limpiar Filtros</button>
-      </div>
-      <div>
-        <p>
-          Mostrando {filteredTours.length} de {data.tours.length} productos
-        </p>
-        <ul>
-          {filteredTours.map((tour) => (
-            <li key={tour.id}>
-              <h2>{tour.nombre}</h2> <p>{tour.descripcion}</p>
-              <h3>{tour.precio}</h3>
-            </li>
+    <div className={styles.container}>
+      <div className={styles.cat_container}>
+        <h2>Tours</h2>
+        <div className={styles.filters}>
+          <h3>Filtros</h3>
+          {uniqueCategories.map((cat) => (
+            <div key={cat}>
+              <input
+                type="checkbox"
+                id={cat.id}
+                value={cat}
+                onChange={handleCategoryChange}
+                checked={selectedCategories.includes(cat)}
+              />
+              <label>{cat}</label>
+            </div>
           ))}
-        </ul>
+          <button
+            className={styles.clear_filter_btn}
+            onClick={handleClearFilters}
+          >
+            Limpiar Filtros
+          </button>
+        </div>
+        <div className={styles.filter_container}>
+          <p>
+            Mostrando {filteredTours.length} de {tours.length} productos
+          </p>
+          <div className={styles.cat_cards}>
+            {isLoading ? (
+              <Spinner />
+            ) : filteredTours.length > 0 ? (
+              filteredTours.map((item) => <Card key={item.id} item={item} />)
+            ) : (
+              <p className={styles.no_tours}>No hay tours.</p>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );

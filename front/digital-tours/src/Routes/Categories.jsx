@@ -69,7 +69,7 @@ const Categories = () => {
     <div className={styles.container}>
       <div className={styles.cat_container}>
         <h2>Tours</h2>
-        <div>
+        <div className={styles.filters}>
           <h3>Filtros</h3>
           {uniqueCategories.map((cat) => (
             <div key={cat}>
@@ -83,7 +83,12 @@ const Categories = () => {
               <label>{cat}</label>
             </div>
           ))}
-          <button onClick={handleClearFilters}>Limpiar Filtros</button>
+          <button
+            className={styles.clear_filter_btn}
+            onClick={handleClearFilters}
+          >
+            Limpiar Filtros
+          </button>
         </div>
         <div className={styles.filter_container}>
           <p>
@@ -97,10 +102,6 @@ const Categories = () => {
             ) : (
               <p className={styles.no_tours}>No hay tours.</p>
             )}
-
-            {/* {filteredTours.map((item) => (
-              <Card key={item.id} item={item} />
-            ))} */}
           </div>
         </div>
       </div>

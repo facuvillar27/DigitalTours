@@ -3,12 +3,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../styles/users.module.css";
 import CardUser from "../Components/CardUser/CardUser";
-<<<<<<< HEAD
 import Spinner from "../Components/Spinner/Spinner";
-import { getUsers, deleteUser, updateUser, getUserRoleById } from "../services/userService";
-=======
 import { getUsers, deleteUser, updateUser, getUserById, getUserRoleById } from "../services/userService";
->>>>>>> c73c3951e037aacc74152597f681bfb969e48886
 
 const Users = () => {
   const [users, setUsers] = useState([]);

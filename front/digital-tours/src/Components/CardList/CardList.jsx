@@ -3,7 +3,7 @@ import styles from "./cardList.module.css";
 
 const CardList = ({ item, onDelete, onEdit }) => {
   if (!item) {
-    return <p>No products available</p>;
+    return <p>No hay productos disponibles</p>;
   }
 
   return (

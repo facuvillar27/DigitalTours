@@ -43,7 +43,7 @@ const LoginForm = () => {
           {successMessage && (
             <>
               <p className={styles.successMessage}>{successMessage}</p>
-              <Tick />
+              <Tick  />
             </>
           )}
           {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}

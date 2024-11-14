@@ -27,7 +27,7 @@ const RegisterTourForm = () => {
     const fetchProducts = async () => {
       try {
         const response = await getProducts(); // Llamamos a la función del productService
-        setProducts(response.data); // Asumiendo que el API devuelve productos bajo 'data'
+        setProducts(response); // Asumiendo que el API devuelve productos bajo 'data'
       } catch (error) {
         console.error("Error al obtener productos", error);
       }

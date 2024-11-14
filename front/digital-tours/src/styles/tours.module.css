@@ -78,6 +78,7 @@
     padding: 40px;
     margin: auto;
     width: 1350px;
+    min-height: 700px;
     border-radius: 10px;
     background-color: var(--dark-white);
   }

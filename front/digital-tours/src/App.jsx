@@ -11,6 +11,7 @@ import Login from "./Routes/Login";
 import Users from "./Routes/Users";
 import Characteristics from "./Routes/Characteristics";
 import Categories from "./Routes/Categories";
+import EditCategories from "./Routes/editCategories";
 import Profile from "./Routes/Profile";
 import { AuthProvider } from "./services/authContext";
 
@@ -29,11 +30,8 @@ function App() {
           <Route path="/registerUser" element={<Register />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
-          <Route
-            path="/admin/characteristics"
-            element={<Characteristics />}
-          ></Route>
-          <Route path="/admin/categories" element={<Categories />}></Route>{" "}
+          <Route path="/admin/caracteristicas"element={<Characteristics />}></Route>
+          <Route path="/admin/categorias" element={<EditCategories />}></Route>
           <Route path="/categories" element={<Categories />}></Route>
         </Routes>
         <Footer />

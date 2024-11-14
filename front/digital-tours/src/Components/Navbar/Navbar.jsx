@@ -32,7 +32,6 @@ const Navbar = () => {
         <img src={logo} alt="logo digital tours" className={styles.logo} id="logo" />
       </Link>
       {isAuthenticated ? (
-        // Dropdown desde el profile image
         <DropdownMenu />   
       ) : (
         <>
@@ -43,7 +42,7 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/register" className={styles.nav_link}>
+          <Link to="/registerUser" className={styles.nav_link}>
             Crear cuenta
           </Link>
         </li>

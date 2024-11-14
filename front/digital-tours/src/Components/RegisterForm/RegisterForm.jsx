@@ -1,7 +1,6 @@
 import { Formik, Form, Field } from "formik";
 import { register as registerService } from "../../services/authService";
 import styles from "./registerForm.module.css";
-import Button from "../Button/Button";
 import * as Yup from "yup";
 
 const RegisterForm = () => {
@@ -21,20 +20,21 @@ const RegisterForm = () => {
   });
 
   const handleSubmit = async (values, { setSubmitting, resetForm, setStatus }) => {
-    try {
-      await registerService(values.username, values.password, values.email);
+    const response = await registerService(values.username, values.password, values.email);
+    if (response=== "User registered successfully"){
       setStatus({ successMessage: "¡Registro exitoso! Se le enviará un correo de confirmación." });
-      resetForm();
-    } catch (error) {
+      setTimeout(() => {
+        resetForm();
+      }, 3000);
+    }else{
       setStatus({ errorMessage: "Error en el registro. Verifique sus datos." });
     }
-    setSubmitting(false);
+  setSubmitting(false);
   };
 
   return (
     <div className={styles.main}>
-      <div className={styles.container}>
-        <Formik
+      <Formik
           initialValues={{
             username: "",
             email: "",
@@ -43,34 +43,69 @@ const RegisterForm = () => {
           }}
           validationSchema={RegisterSchema}
           onSubmit={handleSubmit}
-        >
-          {({ isSubmitting, errors, status, submitCount }) => (
-            <Form className={styles.form}>
-              <h1 className={styles.title}>Registrarse</h1>
+          >
+          {({ isSubmitting, errors, touched, status, submitCount }) => (
+            <div className={styles.formWrapper}>
+              {/* Mostrar el mensaje de éxito después de enviar el formulario y si es exitoso */}
+              {submitCount > 0 && !isSubmitting && status?.successMessage && (
+                <p className={styles.successMessage}>{status.successMessage}</p>
+              )} 
 
-              {status?.successMessage && <p className={styles.successMessage}>{status.successMessage}</p>}
-              {status?.errorMessage && <p className={styles.errorMessage}>{status.errorMessage}</p>}
-
-              {submitCount > 0 && Object.keys(errors).length > 0 && (
-                <div className={styles.errorContainer}>
-                  <ul>
-                    {Object.values(errors).map((error, index) => (
-                      <li key={index} className={styles.errorMessage}>{error}</li>
-                    ))}
-                  </ul>
-                </div>
+              {/* Mostrar el mensaje de error después de enviar el formulario y si hay errores */}
+              {submitCount > 0 && status?.errorMessage && !isSubmitting && (
+                <p className={styles.errorMessage}>{status.errorMessage}</p>
               )}
 
-              <Field type="text" name="username" placeholder="Usuario" className={styles.input} />
-              <Field type="email" name="email" placeholder="Correo electrónico" className={styles.input} />
-              <Field type="password" name="password" placeholder="Contraseña" className={styles.input} />
-              <Field type="password" name="confirmPassword" placeholder="Confirmar contraseña" className={styles.input} />
+              <Form className={styles.form}>
+                <h1 className={styles.title}>Registrarse</h1>
 
-              <Button type="submit" className={styles.button} disabled={isSubmitting}>Registrarse</Button>
-            </Form>
+                {/* Mostrar los errores solo después de intentar enviar el formulario */}
+                {submitCount > 0 && Object.keys(errors).length > 0 && (
+                  <div className={styles.errorContainer}>
+                    <ul>
+                      {Object.keys(errors).map((field) => (
+                        <li key={field} className={styles.errorMessage}>
+                          {errors[field]}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Campos del formulario */}
+                <Field
+                  type="text"
+                  name="username"
+                  placeholder="Usuario"
+                  className={`${styles.input} ${touched.username && errors.username ? styles.inputError : ""}`}
+                />
+                <Field
+                  type="email"
+                  name="email"
+                  placeholder="Correo electrónico"
+                  className={`${styles.input} ${touched.email && errors.email ? styles.inputError : ""}`}
+                />
+                <Field
+                  type="password"
+                  name="password"
+                  placeholder="Contraseña"
+                  className={`${styles.input} ${touched.password && errors.password ? styles.inputError : ""}`}
+                />
+                <Field
+                  type="password"
+                  name="confirmPassword"
+                  placeholder="Confirmar contraseña"
+                  className={`${styles.input} ${touched.confirmPassword && errors.confirmPassword ? styles.inputError : ""}`}
+                />
+
+              <button type="submit" className={styles.button} disabled={isSubmitting}>
+                Registrarse
+              </button>
+              </Form>
+            </div>
           )}
-        </Formik>
-      </div>
+      </Formik>
+
     </div>
   );
 };

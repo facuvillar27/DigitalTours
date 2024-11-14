@@ -2,10 +2,12 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "../styles/tours.module.css";
 import CardList from "../Components/CardList/CardList";
+import Spinner from "../Components/Spinner/Spinner";
 import { updateProduct, deleteProduct, getProducts } from "../services/productService";
 
 const Tours = () => {
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedTour, setSelectedTour] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -17,19 +19,29 @@ const Tours = () => {
   ]);
 
   useEffect(() => {
-    // Cargar productos al iniciar el componente
     const fetchProducts = async () => {
       try {
         const response = await getProducts();
         setProducts(response);
       } catch (error) {
         console.error("Error al cargar los productos:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchProducts();
   }, []);
 
-  // Eliminar tour
+  const handleOpenDeleteModal = (tour) => {
+    setSelectedTour(tour);
+    setShowDeleteModal(true);
+  };
+
+  const handleOpenEditModal = (tour) => {
+    setSelectedTour(tour);
+    setShowEditModal(true);
+  };
+
   const handleDelete = async () => {
     try {
       await deleteProduct(selectedTour.id);
@@ -40,33 +52,50 @@ const Tours = () => {
     }
   };
 
-  // Editar tour
-  const handleEdit = async (product) => {
-    setSelectedTour(product);
-    setShowEditModal(true);
+  const handleEdit = async (updatedTour) => {
+    try {
+      await updateProduct(updatedTour.id, updatedTour);
+      setProducts(products.map((product) =>
+        product.id === updatedTour.id ? updatedTour : product
+      ));
+      setShowEditModal(false);
+    } catch (error) {
+      console.error("Error al actualizar el tour:", error);
+    }
   };
 
   return (
     <div className={styles.main}>
       <div className={styles.dashboard}>
-        <div className={styles.reg_btn}>
-          <Link to="/registerTour" className={styles.cat_link}>
-            <p className={styles.registerTour_btn}>Registrar Tour</p>
-          </Link>
-        </div>
+        {!isLoading && (
+          <div className={styles.reg_btn}>
+            <Link to="/registerTour" className={styles.cat_link}>
+              <p className={styles.registerTour_btn}>Registrar Tour</p>
+            </Link>
+          </div>
+        )}
+
         <div className={styles.home_body}>
-          <h1 className={styles.cta_text}>Tours</h1>
-          {products.length > 0 ? (
-            products.map((item) => (
-              <CardList
-                key={item.id}
-                item={item}
-                onDelete={handleDelete}
-                onEdit={handleEdit}
-              />
-            ))
+          {isLoading ? (
+            <div className={styles.spinnerContainer}>
+              <Spinner />
+            </div>
           ) : (
-            <p>No hay tours registrados.</p>
+            <>
+              <h1 className={styles.cta_text}>Tours</h1>
+              {products.length > 0 ? (
+                products.map((item) => (
+                  <CardList
+                    key={item.id}
+                    item={item}
+                    onDelete={handleOpenDeleteModal}
+                    onEdit={handleOpenEditModal}
+                  />
+                ))
+              ) : (
+                <p>No hay tours registrados.</p>
+              )}
+            </>
           )}
         </div>
       </div>
@@ -75,8 +104,8 @@ const Tours = () => {
         <div className={styles.modal}>
           <div className={styles.modalContent}>
             <h2>¿Estás seguro de que deseas eliminar este tour?</h2>
-            <button onClick={handleDelete}>Eliminar</button>
-            <button onClick={() => setShowDeleteModal(false)}>Cancelar</button>
+            <button onClick={handleDelete} className={styles.confirmButton}>Eliminar</button>
+            <button onClick={() => setShowDeleteModal(false)} className={styles.cancelButton}>Cancelar</button>
           </div>
         </div>
       )}
@@ -126,9 +155,7 @@ const Tours = () => {
                 required
               />
               <button type="submit">Guardar cambios</button>
-              <button type="button" onClick={() => setShowEditModal(false)}>
-                Cancelar
-              </button>
+              <button type="button" onClick={() => setShowEditModal(false)}>Cancelar</button>
             </form>
           </div>
         </div>

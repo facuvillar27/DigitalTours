@@ -27,7 +27,8 @@ export const login = async (username, password) => {
 export const register = async (username, password, email) => {
   try {
     const response = await axios.post(`${API_URL}/v1/auth/signup`, { username, password, email });
-    return response.data;
+    console.log("respuesta del register",response.data.data);
+    return response.data.data;
   } catch (error) {
     throw new Error("Error al registrar usuario");
   }

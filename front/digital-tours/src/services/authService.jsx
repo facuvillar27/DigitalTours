@@ -1,19 +1,23 @@
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
-const API_URL = "http://localhost:8080/digitaltours/api"; 
-const errorLogin = "Incorrect username or password"
+const API_URL = "http://localhost:8080/digitaltours/api";
+const errorLogin = "Incorrect username or password";
+
+// Función para manejar respuestas y errores comunes
+const handleApiResponse = (response, errorMessage) => {
+  if (response.data && response.data.data !== errorLogin) {
+    return response.data.data;
+  } else {
+    throw new Error(errorMessage);
+  }
+};
 
 // Iniciar sesión
 export const login = async (username, password) => {
   try {
     const response = await axios.post(`${API_URL}/v1/auth/login`, { username, password });
-
-    if (response.data.data !== errorLogin && response.data.data) {
-      return response.data.data;  
-    } else{      
-      throw new Error;
-    }
+    return handleApiResponse(response, "Error al iniciar sesión");
   } catch (error) {
     throw new Error("Error al iniciar sesión");
   }
@@ -23,8 +27,7 @@ export const login = async (username, password) => {
 export const register = async (username, password, email) => {
   try {
     const response = await axios.post(`${API_URL}/v1/auth/signup`, { username, password, email });
-    return response.data;  // Devuelve la respuesta tal cual, sin manipularla
-
+    return response.data;
   } catch (error) {
     throw new Error("Error al registrar usuario");
   }
@@ -35,53 +38,46 @@ export const logout = () => {
   localStorage.removeItem("token");
 };
 
-// Decodificar token y obtener información del usuario
-export function getUserInfo() {
-  let token;
+// Función genérica para decodificar el token
+export function decodeToken(token) {
   try {
-    token = localStorage.getItem("token");
-    if (!token) return null;
-
-    const decoded = jwtDecode(token); // Ahora se usa jwt_decode correctamente
-    const { sub: user, roles } = decoded; 
-    return { user, roles };
+    return jwtDecode(token);
   } catch (error) {
-    console.error("Error al obtener el token o token inválido:", error);
+    console.error("Error al decodificar el token:", error);
     return null;
   }
 }
 
+// Obtener el rol del usuario desde el token
 export function getUserRol() {
-  const userInfo = getUserInfo();
-  return userInfo ? userInfo.roles : null;
+  const token = localStorage.getItem("token");
+  if (!token) return null;
+
+  const decoded = decodeToken(token);
+  return decoded ? decoded.roles : null;
 }
 
-// Obtener productos
-export const getProducts = async () => {
-  try {
-    const response = await axios.get(`${API_URL}/v1/products`);
-    return response.data.data; // Ajustado al formato de respuesta esperado
-  } catch (error) {
-    throw new Error("Error al obtener productos");
-  }
-};
+// Obtener la información del usuario desde el token
+export function getUserInfo() {
+  const token = localStorage.getItem("token");
+  if (!token) return null;
 
-// Registrar nuevo producto
-export const registerProduct = async (productData) => {
-  try {
-    const response = await axios.post(`${API_URL}/v1/products`, productData);
-    return response.data;
-  } catch (error) {
-    throw new Error("Error al registrar producto");
-  }
-};
+  const decoded = decodeToken(token);
+  return decoded ? { user: decoded.sub, roles: decoded.roles } : null;
+}
 
-// Obtener un producto específico por ID
-export const getProductById = async (id) => {
+// Obtener el ID del usuario desde el token
+export function getIdFromToken(token) {
+  const decoded = decodeToken(token);
+  return decoded ? decoded.id : null;
+}
+
+// Obtener usuario por ID
+export const getUserById = async (id) => {
   try {
-    const response = await axios.get(`${API_URL}/v1/products/${id}`);
+    const response = await axios.get(`${API_URL}/v1/users/${id}`);
     return response.data.data;
   } catch (error) {
-    throw new Error("Error al obtener producto por ID");
+    throw new Error("Error al obtener usuario por ID");
   }
 };

@@ -1,34 +1,41 @@
 import { useState, useEffect } from "react";
-import { registerProduct, getProducts } from "../../services/authService";
+import { createProduct, getProducts } from "../../services/productService"; // Asegúrate de que la ruta sea correcta
 import styles from "./RegisterTourForm.module.css";
 
-const RegisterProductForm = () => {
+const categories = [
+  { id: 1, name: "Gastronomía" },
+  { id: 2, name: "Aventura" },
+  { id: 3, name: "Cultura" },
+  { id: 4, name: "Naturaleza" },
+];
+
+const RegisterTourForm = () => {
   const [products, setProducts] = useState([]);
   const [formData, setFormData] = useState({
     name: "",
-    category: "",
+    category: categories[0].id, // Set initial category
     description: "",
     price: "",
-    image: "", // Modificado para manejar un enlace de imagen
+    image: "",
   });
   const [confirmationMessage, setConfirmationMessage] = useState("");
-  const [errorMessage, setErrorMessage] = useState(""); // Para almacenar mensajes de error
+  const [errorMessage, setErrorMessage] = useState("");
   const [isFormVisible, setIsFormVisible] = useState(true);
-  const [imagePreview, setImagePreview] = useState(""); // Para la vista previa de la imagen
 
+  // Cargar productos desde el servicio
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const productsList = await getProducts(); // Llamamos al API para obtener los productos
-        setProducts(productsList);
+        const response = await getProducts(); // Llamamos a la función del productService
+        setProducts(response.data); // Asumiendo que el API devuelve productos bajo 'data'
       } catch (error) {
         console.error("Error al obtener productos", error);
       }
     };
-
     fetchProducts();
   }, []);
 
+  // Manejar cambios en el formulario
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -37,51 +44,68 @@ const RegisterProductForm = () => {
     }));
   };
 
+  // Manejar el envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Verificar si el nombre del producto ya existe
-    const isDuplicate = products.some((product) => product.name.toLowerCase() === formData.name.toLowerCase());
-    if (isDuplicate) {
-      setErrorMessage("El nombre del producto ya existe."); // Mostrar mensaje de error
-      setConfirmationMessage(""); // Limpiar el mensaje de confirmación
-      return; // No continuar con el registro si el nombre es duplicado
-    } else {
-      setErrorMessage(""); // Limpiar el mensaje de error si no es duplicado
-    }
-
-    const newProduct = {
-      id: 0, // Asumimos que el backend asignará un ID automáticamente
-      name: formData.name,
-      description: formData.description,
-      category: formData.category,
-      price: formData.price,
-      image: formData.image || "https://example.com/default.jpg", // Usar el enlace de imagen o una imagen por defecto
-    };
-
     try {
-      // Llamada al API para registrar el nuevo producto
-      await registerProduct(newProduct);
+      // Validación de producto duplicado
+      const isDuplicate = products.some(
+        (product) => product.name.toLowerCase() === formData.name.toLowerCase()
+      );
+
+      if (isDuplicate) {
+        setErrorMessage("El nombre del producto ya existe.");
+        setConfirmationMessage("");
+        return;
+      } else {
+        setErrorMessage("");
+      }
+
+      // Validar categoría seleccionada
+      const selectedCategory = categories.find(cat => cat.id === Number(formData.category));
+
+      if (!selectedCategory) {
+        setErrorMessage("La categoría seleccionada no es válida.");
+        return;
+      }
+
+      // Crear el nuevo producto
+      const newProduct = {
+        id: 0, // Suponiendo que el backend asignará el ID
+        name: formData.name,
+        description: formData.description,
+        category: {
+          id: selectedCategory.id,
+          name: selectedCategory.name,
+        },
+        price: Number(formData.price),
+        image: formData.image || "https://example.com/default.jpg",
+      };
+
+      // Crear el producto usando la función createProduct del servicio
+      await createProduct(newProduct);
 
       setConfirmationMessage("¡Producto registrado exitosamente!");
-      setErrorMessage(""); // Limpiar mensaje de error si el producto se registró correctamente
-      setIsFormVisible(false); // Ocultar el formulario
+      setErrorMessage("");
+      setIsFormVisible(false);
 
+      // Restablecer el formulario después de 3 segundos
       setTimeout(() => {
         setConfirmationMessage("");
         setIsFormVisible(true);
         setFormData({
           name: "",
-          category: "",
+          category: categories[0].id,
           description: "",
           price: "",
-          image: "", // Reiniciar el campo de imagen
+          image: "",
         });
-        setImagePreview(""); // Reiniciar la vista previa
       }, 3000);
+
     } catch (error) {
+      console.error("Error al registrar el producto:", error);
       alert("Error al registrar el producto");
-      console.error(error);
     }
   };
 
@@ -103,14 +127,19 @@ const RegisterProductForm = () => {
           <br />
           <label className={styles.product_name}>
             Categoría:
-            <input
+            <select
               className={styles.input}
-              type="text"
               name="category"
               value={formData.category}
               onChange={handleChange}
               required
-            />
+            >
+              {categories.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
           </label>
           <br />
           <label className={styles.product_name}>
@@ -125,10 +154,10 @@ const RegisterProductForm = () => {
           </label>
           <br />
           <label className={styles.product_name}>
-            Precio:
+            Precio (USD):
             <input
               className={styles.input}
-              type="text"
+              type="number"
               name="price"
               value={formData.price}
               onChange={handleChange}
@@ -173,4 +202,4 @@ const RegisterProductForm = () => {
   );
 };
 
-export default RegisterProductForm;
+export default RegisterTourForm;

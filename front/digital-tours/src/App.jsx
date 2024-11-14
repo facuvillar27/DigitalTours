@@ -11,6 +11,8 @@ import Login from "./Routes/Login";
 import Users from "./Routes/Users";
 import Characteristics from "./Routes/Characteristics";
 import Categories from "./Routes/Categories";
+import EditCategories from "./Routes/editCategories";
+import Profile from "./Routes/Profile";
 import { AuthProvider } from "./services/authContext";
 
 function App() {
@@ -25,14 +27,11 @@ function App() {
           <Route path="/registerTour" element={<RegisterTour />}></Route>
           <Route path="admin/tours" element={<Tours />}></Route>
           <Route path="admin/usuarios" element={<Users />}></Route>
-          <Route path="/register" element={<Register />}></Route>
+          <Route path="/registerUser" element={<Register />}></Route>
           <Route path="/login" element={<Login />}></Route>
-          <Route
-            path="/admin/characteristics"
-            element={<Characteristics />}
-          ></Route>
-          <Route path="/admin/categories" element={<Categories />}></Route>{" "}
-          {/* esto hay que cambiarlo */}
+          <Route path="/profile" element={<Profile />}></Route>
+          <Route path="/admin/caracteristicas"element={<Characteristics />}></Route>
+          <Route path="/admin/categorias" element={<EditCategories />}></Route>
           <Route path="/categories" element={<Categories />}></Route>
         </Routes>
         <Footer />

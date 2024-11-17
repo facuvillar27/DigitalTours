@@ -11,23 +11,22 @@ const Card = ({ item }) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.card}>
-        <Link
-          to={`/products/${item.id.toString()}`}
-          className={styles.card_link}
-        >
-          <img
-            src={item.image} // Usa la imagen proporcionada por la API
-            alt="Imagen del tour"
-            className={styles.card_img}
-            onError={handleImageError} // Maneja el error si la imagen no se carga
-          />
+      <Link to={`/products/${item.id.toString()}`} className={styles.card_link}>
+        <div className={styles.card}>
+          <div className={styles.card_img_container}>
+            <img
+              src={item.image} // Usa la imagen proporcionada por la API
+              alt="Imagen del tour"
+              className={styles.card_img}
+              onError={handleImageError} // Maneja el error si la imagen no se carga
+            />
+          </div>
           <p className={styles.product_type}>{item.category.name}</p>
           <h3 className={styles.product_name}>{item.name}</h3>
           <p className={styles.product_description}>{item.description}</p>
           <h3 className={styles.product_price}>{item.price} USD</h3>
-        </Link>
-      </div>
+        </div>
+      </Link>
     </div>
   );
 };

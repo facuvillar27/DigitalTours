@@ -30,7 +30,7 @@ const Categories = () => {
       setFilteredTours(tours);
     } else {
       const newFilteredTours = tours.filter((tour) =>
-        newSelectedCategories.includes(tour.categoria.name)
+        newSelectedCategories.includes(tour.categoriy.name)
       );
       setFilteredTours(newFilteredTours);
     }
@@ -72,7 +72,7 @@ const Categories = () => {
         <div className={styles.filters}>
           <h3>Filtros</h3>
           {uniqueCategories.map((cat) => (
-            <div key={cat}>
+            <div key={cat} className={styles.filter_cat}>
               <input
                 type="checkbox"
                 id={cat.id}

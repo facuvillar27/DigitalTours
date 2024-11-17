@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 import styles from "../styles/categories.module.css";
 import Card from "../Components/Card/Card";
@@ -9,10 +10,48 @@ const Categories = () => {
   const [tours, setTours] = useState([]);
   const [filteredTours, setFilteredTours] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const location = useLocation();
+
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:8080/digitaltours/api/v1/products"
+      );
+      const tours = response.data.data;
+      setTours(tours);
+      console.log("Tours cat: ", tours);
+      setFilteredTours(tours);
+    } catch (error) {
+      console.error("Error al obtener los productos:", error);
+    } finally {
+      setIsLoading(false); // Cambia a `false` cuando los datos se hayan cargado
+    }
+  };
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const category = queryParams.get("category");
+    if (category) {
+      const newFilteredTours = tours.filter(
+        (tour) => tour.category.name === category
+      );
+      setFilteredTours(newFilteredTours);
+      setSelectedCategories([category]);
+    } else {
+      setFilteredTours(tours);
+    }
+  }, [location.search, tours]);
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   const handleCategoryChange = (e) => {
     const category = e.target.value;
     const isChecked = e.target.checked;
+
+    console.log(category);
+    console.log(isChecked);
 
     let newSelectedCategories = [...selectedCategories];
 
@@ -25,36 +64,17 @@ const Categories = () => {
     }
 
     setSelectedCategories(newSelectedCategories);
+    console.log(newSelectedCategories);
 
     if (newSelectedCategories.length === 0) {
       setFilteredTours(tours);
     } else {
       const newFilteredTours = tours.filter((tour) =>
-        newSelectedCategories.includes(tour.categoriy.name)
+        newSelectedCategories.includes(tour.category.name)
       );
       setFilteredTours(newFilteredTours);
     }
   };
-
-  const fetchProducts = async () => {
-    try {
-      const response = await axios.get(
-        "http://localhost:8080/digitaltours/api/v1/products"
-      );
-      const tours = response.data.data;
-      setTours(tours);
-      console.log(`Tours cat: ${tours}`);
-      setFilteredTours(tours);
-    } catch (error) {
-      console.error("Error al obtener los productos:", error);
-    } finally {
-      setIsLoading(false); // Cambia a `false` cuando los datos se hayan cargado
-    }
-  };
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
 
   const handleClearFilters = () => {
     setSelectedCategories([]);
@@ -110,43 +130,3 @@ const Categories = () => {
 };
 
 export default Categories;
-
-// const Categories = () => {
-//   const [categories] = useState([
-//     "Cultura",
-//     "Gastronomía",
-//     "Naturaleza",
-//     "Deportes",
-//   ]);
-//   const [newCategory, setNewCategory] = useState("");
-
-//   const handleCategoryChange = (event) => {
-//     setNewCategory(event.target.value);
-//   };
-
-//   const handleCategorySubmit = () => {
-//     alert(`Categoría seleccionada: ${newCategory}`);
-//   };
-
-//   return (
-//     <div>
-//       <h1>Gestión de Categorías</h1>
-//       <select>
-//         {categories.map((category, index) => (
-//           <option key={index} value={category}>
-//             {category}
-//           </option>
-//         ))}
-//       </select>
-//       <input
-//         type="text"
-//         value={newCategory}
-//         onChange={handleCategoryChange}
-//         placeholder="Seleccionar o agregar categoría"
-//       />
-//       <button onClick={handleCategorySubmit}>Agregar Categoría</button>
-//     </div>
-//   );
-// };
-
-// export default Categories;

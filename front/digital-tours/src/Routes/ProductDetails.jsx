@@ -1,61 +1,64 @@
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
-import styles from "../styles/productDetails.module.css";
-import ImageGallery from "react-image-gallery";
-// import Characteristics from "../Components/Characteristics/Characteristics";
-import "react-image-gallery/styles/css/image-gallery.css";
 import { useState, useEffect } from "react";
+import ImageGallery from "react-image-gallery";
+import "react-image-gallery/styles/css/image-gallery.css";
+import styles from "../styles/productDetails.module.css";
+import Spinner from "../Components/Spinner/Spinner";
 
 const ProductDetails = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState(null);
+  const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const productDetail = async () => {
+  const fetchProductDetails = async () => {
     try {
       const response = await axios.get(
         `http://localhost:8080/digitaltours/api/v1/products/${id}`
       );
       setProduct(response.data.data);
     } catch (error) {
-      console.error("Error al obtener los producto:", error);
+      console.error("Error al obtener el producto:", error);
+    }
+  };
+
+  const fetchProductImages = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:8080/digitaltours/api/v1/images"
+      );
+      const productImages = response.data.data
+        .filter(image => image.idProducto === Number(id))
+        .map(image => ({
+          original: image.urlImagen,
+          thumbnail: image.urlImagen,
+        }));
+      setImages(productImages);
+    } catch (error) {
+      console.error("Error al obtener las imágenes:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    productDetail();
-  }, []);
+    fetchProductDetails();
+    fetchProductImages();
+  }, [id]);
 
-  // if (!item) {
-  //   return <p>Producto no encontrado</p>;
-  // }
+  if (loading) {
+    return (
+      <div className={styles.loadingContainer}>
+        <Spinner />
+      </div>
+    );
+  }
 
-  const images = [
-    {
-      original:
-        "https://images.unsplash.com/photo-1507125524815-d9d6dccda1dc?q=80&w=1982&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      thumbnail:
-        "https://images.unsplash.com/photo-1507125524815-d9d6dccda1dc?q=80&w=1982&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-    {
-      original:
-        "https://images.unsplash.com/photo-1551312183-66bca7944e4e?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      thumbnail:
-        "https://images.unsplash.com/photo-1551312183-66bca7944e4e?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-    {
-      original:
-        "https://images.unsplash.com/photo-1551312183-66bca7944e4e?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      thumbnail:
-        "https://images.unsplash.com/photo-1551312183-66bca7944e4e?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-    {
-      original:
-        "https://images.unsplash.com/photo-1551312183-66bca7944e4e?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      thumbnail:
-        "https://images.unsplash.com/photo-1551312183-66bca7944e4e?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-  ];
+  if (!product) {
+    return <p>Producto no encontrado</p>;
+  }
 
   return (
     <div className={styles.detail}>
@@ -76,9 +79,6 @@ const ProductDetails = () => {
           <p>{product.description}</p>
           <h3>{product.price} USD</h3>
         </div>
-        {/* <div>
-          <Characteristics caracteristicas={product.caracteristicas} />
-        </div> */}
       </div>
     </div>
   );

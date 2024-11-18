@@ -3,6 +3,7 @@
     justify-content: center;
     align-items: center;
     width: 800px;
+    min-height: 580px;
     height: auto;
     padding: 40px;
     border-radius: 10px;

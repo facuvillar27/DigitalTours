@@ -1,16 +1,18 @@
-// src/pages/Users.jsx
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../styles/users.module.css";
 import CardUser from "../Components/CardUser/CardUser";
 import Spinner from "../Components/Spinner/Spinner";
-import { getUsers, deleteUser, updateUser, getUserById, getUserRoleById } from "../services/userService";
+import { getUsers, deleteUser, updateUser } from "../services/userService";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [showEditModal, setShowEditModal] = useState(false); 
+  const [showDeleteModal, setShowDeleteModal] = useState(false); 
+  const [userToEdit, setUserToEdit] = useState(null); 
+  const [userToDelete, setUserToDelete] = useState(null); 
 
-  // Cargar usuarios al montar el componente
   useEffect(() => {
     const loadUsers = async () => {
       try {
@@ -18,29 +20,35 @@ const Users = () => {
         setUsers(usersList);
       } catch (error) {
         console.error("Error loading users:", error);
-
       } finally {
         setIsLoading(false);
       }
     };
-
     loadUsers();
   }, []);
 
-
   // Eliminar un usuario
-  const handleDelete = async (id) => {
+  const handleDelete = async () => {
     try {
-      await deleteUser(id);
-      const updatedUsers = users.filter((user) => user.id !== id);
+      await deleteUser(userToDelete.id);
+      const updatedUsers = users.filter((user) => user.id !== userToDelete.id);
       setUsers(updatedUsers);
+      setShowDeleteModal(false);
     } catch (error) {
       console.error("Error deleting user:", error);
     }
   };
 
+  const handleOpenEditModal = (user) => {
+    setUserToEdit(user);
+    setShowEditModal(true);
+  };
 
-  // Editar un usuario
+  const handleCloseEditModal = () => {
+    setShowEditModal(false);
+    setUserToEdit(null);
+  };
+
   const handleEdit = async (updatedUser) => {
     try {
       await updateUser(updatedUser);
@@ -48,47 +56,118 @@ const Users = () => {
         user.id === updatedUser.id ? updatedUser : user
       );
       setUsers(updatedUsers);
+      setShowEditModal(false);
     } catch (error) {
       console.error("Error updating user:", error);
     }
   };
 
-  // Obtener rol de un usuario por ID
-  const handleGetRole = async (id) => {
-    try {
-      const role = await getUserRoleById(id);
-      console.log("Rol del usuario:", role);
+  const handleOpenDeleteModal = (user) => {
+    setUserToDelete(user);
+    setShowDeleteModal(true);
+  };
 
-      // Aquí podrías mostrar el rol en el componente o hacer algo con el dato
-    } catch (error) {
-      console.error("Error fetching user role:", error);
-    }
+  const handleCloseDeleteModal = () => {
+    setShowDeleteModal(false);
+    setUserToDelete(null);
   };
 
   return (
     <div className={styles.main}>
-      <div className={styles.reg_btn}>
-        <Link to="/registerUser" className={styles.cat_link}>
-          <p className={styles.registerUser_btn}>Registrar Usuario</p>
-        </Link>
-      </div>
-      <div className={styles.home_body}>
-        {isLoading ? (
+      {isLoading ? (
+        <div className={styles.container}>
           <Spinner />
-        ) : users.length > 0 ? (
-          users.map((item) => (
-            <CardUser
-              key={item.id}
-              item={item}
-              onDelete={handleDelete}
-              onEdit={handleEdit}
-              onGetRole={() => handleGetRole(item.id)}
-            />
-          ))
-        ) : (
-          <p className={styles.noUsersText}>No hay usuarios registrados.</p>
-        )}
-      </div>
+        </div>
+      ) : (
+        <>
+          <div className={styles.reg_btn}>
+            <Link to="/registerUser" className={styles.cat_link}>
+              <p className={styles.registerUser_btn}>Registrar Usuario</p>
+            </Link>
+          </div>
+
+          <div className={styles.home_body}>
+            {users.length > 0 ? (
+              users.map((item) => (
+                <CardUser
+                  key={item.id}
+                  item={item}
+                  onDelete={handleOpenDeleteModal} 
+                  onEdit={handleOpenEditModal}
+                />
+              ))
+            ) : (
+              <p className={styles.noUsersText}>No hay usuarios registrados.</p>
+            )}
+          </div>
+
+          {showEditModal && userToEdit && (
+            <div className={styles.modal}>
+              <div className={styles.modalContent}>
+                <h2>Editar Usuario</h2>
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    const updatedUser = {
+                      ...userToEdit,
+                      username: e.target.username.value,
+                      email: e.target.email.value,
+                      role: e.target.role.value,
+                    };
+                    handleEdit(updatedUser);
+                  }}
+                >
+                  <div>
+                    <label htmlFor="username">Nombre de Usuario:</label>
+                    <input
+                      type="text"
+                      id="username"
+                      name="username"
+                      defaultValue={userToEdit.username}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email">Correo Electrónico:</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      defaultValue={userToEdit.email}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="role">Rol:</label>
+                    <select name="role" defaultValue={userToEdit.role}>
+                      <option value="ROLE_USER">Usuario</option>
+                      <option value="ROLE_ADMIN">Administrador</option>
+                    </select>
+                  </div>
+                  <div className={styles.modalButtons}>
+                    <button type="submit">Guardar</button>
+                    <button type="button" onClick={handleCloseEditModal}>Cancelar</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          )}
+
+          {showDeleteModal && (
+            <div className={styles.modal}>
+              <div className={styles.modalContent}>
+                <h4>¿Estás seguro de que deseas eliminar este usuario?</h4>
+                <div className={styles.modalActions}>
+                  <button onClick={handleDelete} className={styles.confirmButton}>
+                    Sí, eliminar
+                  </button>
+                  <button onClick={handleCloseDeleteModal} className={styles.cancelButton}>
+                    Cancelar
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
 };

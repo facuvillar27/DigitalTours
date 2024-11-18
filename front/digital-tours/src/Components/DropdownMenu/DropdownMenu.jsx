@@ -23,6 +23,11 @@ const DropdownMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  const handleLogout = () => {
+    logout(); 
+    navigate("/"); 
+  };
+
   const handleClickOutside = (event) => {
     if (menuRef.current && !menuRef.current.contains(event.target)) {
       setIsOpen(false);
@@ -31,6 +36,10 @@ const DropdownMenu = () => {
 
   const handleAdminRedirect = () => {
     navigate('/admin');
+  };
+
+  const handleProfile = () => {
+    navigate('/profile');
   };
 
   useEffect(() => {
@@ -50,7 +59,7 @@ const DropdownMenu = () => {
   }, []); 
 
   if (!userInfo) {
-    return null; // Puedes renderizar un loading spinner aquí si lo deseas
+    return null;
   }
 
   return (
@@ -69,10 +78,10 @@ const DropdownMenu = () => {
                 Panel de Administración
               </a>
             )}
-            <a href="#opcion2" className={styles.dropdownItem}>
+            <a onClick={handleProfile} className={styles.dropdownItem}>
               Perfil
             </a>
-            <a onClick={logout} className={styles.dropdownItem}>
+            <a onClick={handleLogout} className={styles.dropdownItem}>
               Cerrar sesión
             </a>
           </div>

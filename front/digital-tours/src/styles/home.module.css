@@ -93,14 +93,12 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-content: center;
-  align-items: center;
-  justify-items: center;
   padding: 12px;
-  width: 80%;
-  min-height: 90px; 
-  border-radius: 10px;
+  width: 90%;
   background-color: var(--dark-white);
+  border-radius: 10px;
 }
+
 
 .cta_box {
   display: flex;
@@ -134,8 +132,21 @@
   padding: 20px;
 }
 
+@media (max-width: 992px) {
+  .home_body {
+    padding: 5px;
+  }
+}
+
 @media (max-width: 768px) {
+  .home_body {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+  }
+
   .cat_menu {
+    margin: 5px;
     height: auto;
   }
 
@@ -143,6 +154,24 @@
     font-weight: var(--font-h2-h3-weight);
     margin: 0;
   }
+
+/* 
+    .filters {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      flex-direction: column;
+    }
+  
+    .filter_cat {
+      margin: 10px;
+    }
+  
+  
+    .cat_cards {
+      display: block;
+      width: 100%;
+    } */
 }
 
 

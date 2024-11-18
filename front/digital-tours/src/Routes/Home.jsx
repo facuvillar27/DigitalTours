@@ -69,19 +69,19 @@ const Home = () => {
         </div>
       </div>
       <div className={styles.cat_menu}>
-        <Link to="/categories" className={styles.cat_link}>
+        <Link to="/categories?category=Cultura" className={styles.cat_link}>
           <FontAwesomeIcon icon={faMountainSun} className={styles.cat_icon} />
           <span>Cultural</span>
         </Link>
-        <Link to="/categories" className={styles.cat_link}>
+        <Link to="/categories?category=Gastronomía" className={styles.cat_link}>
           <FontAwesomeIcon icon={faUtensils} className={styles.cat_icon} />
           <span>Gastronomía</span>
         </Link>
-        <Link to="/categories" className={styles.cat_link}>
+        <Link to="/categories?category=Naturaleza" className={styles.cat_link}>
           <FontAwesomeIcon icon={faTree} className={styles.cat_icon} />
           <span>Naturaleza</span>
         </Link>
-        <Link to="/categories" className={styles.cat_link}>
+        <Link to="/categories?category=Aventura" className={styles.cat_link}>
           <FontAwesomeIcon
             icon={faPersonSwimming}
             className={styles.cat_icon}

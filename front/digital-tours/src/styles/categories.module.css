@@ -52,11 +52,39 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-content: center;
-  align-items: center;
-  justify-items: center;
   padding: 12px;
-  width: 80%;
-  min-height: 90px;
-  border-radius: 10px;
+  width: 90%;
   background-color: var(--dark-white);
+}
+
+@media (max-width: 992px) {
+  .cat_cards {
+    padding: 5px;
+    width: 100%;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .filters {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+  }
+
+  .filter_cat {
+    margin: 10px;
+  }
+
+
+  .cat_cards {
+    display: block;
+    width: 100%;
+  }
+}
+
+
+@media (max-width: 576px) {
+
 }

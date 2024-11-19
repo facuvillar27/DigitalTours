@@ -24,7 +24,6 @@ const Home = () => {
       const response = await axios.get(
         "http://localhost:8080/digitaltours/api/v1/products"
       );
-      console.log(response.data.data);
       const shuffledTours = shuffleTours(response.data.data);
       setTours(shuffledTours);
     } catch (error) {

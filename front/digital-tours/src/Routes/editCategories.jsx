@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import styles from '../styles/editCategories.module.css';
 import { getProducts, updateProduct, getProductById } from '../services/productService';
 import Tick from '../Components/Tick/Tick';
@@ -13,70 +13,70 @@ const categories = [
 const EditCategories = () => {
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState({});
-  const [updatedProductIds, setUpdatedProductIds] = useState([]); // Para almacenar los productos que fueron actualizados
-  const [loadingProductIds, setLoadingProductIds] = useState([]); // Para gestionar el estado de carga del botón
+  const [updatedProductIds, setUpdatedProductIds] = useState([]);
+  const [loadingProductIds, setLoadingProductIds] = useState([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const data = await getProducts();
-      setProducts(data);
-      const initialCategoryState = {};
-      data.forEach((product) => {
-        initialCategoryState[product.id] = product.category.id;
-      });
-      setSelectedCategory(initialCategoryState);
+      try {
+        const data = await getProducts();
+        setProducts(data);
+
+        const initialCategoryState = {};
+        data.forEach((product) => {
+          initialCategoryState[product.id] = product.category.id;
+        });
+        setSelectedCategory(initialCategoryState);
+      } catch (error) {
+        console.error('Error al cargar los productos:', error);
+      }
     };
+
     fetchProducts();
   }, []);
 
   const handleCategoryChange = async (productId, newCategoryId) => {
     try {
-      // Marcar el producto como "cargando"
       setLoadingProductIds((prevIds) => [...prevIds, productId]);
 
-      // Obtener el producto completo por ID
       const product = await getProductById(productId);
-  
-      // Buscar la categoría correspondiente por ID
-      const category = categories.find((category) => category.id === newCategoryId);
-  
-      // Crear el objeto actualizado con la categoría completa
+      console.log(product);
+
+      const { id, name, description, price, image } = product.data;
+      const category = categories.find((c) => c.id === newCategoryId);
+
       const updatedProduct = {
-        ...product,
-        category: {
-          id: category.id,
-          name: category.name,
-        },
+        id,
+        name,
+        description,
+        category: { id: category.id, name: category.name },
+        price,
+        image,
       };
-  
-      // Enviar el producto actualizado al backend
+      console.log(updatedProduct);
+
       await updateProduct(productId, updatedProduct);
-  
-      // Actualizar el estado de los productos para reflejar el cambio
+
       setProducts((prevProducts) =>
-        prevProducts.map((product) =>
-          product.id === productId ? { ...product, category: { id: category.id, name: category.name } } : product
+        prevProducts.map((p) =>
+          p.id === productId ? { ...p, category: updatedProduct.category } : p
         )
       );
-  
-      // Actualizar el estado local de la categoría seleccionada
+
       setSelectedCategory((prevState) => ({
         ...prevState,
         [productId]: newCategoryId,
       }));
-  
-      // Marcar el producto como actualizado para mostrar la animación
+
       setUpdatedProductIds((prevIds) => [...prevIds, productId]);
-  
-      // Limpiar el estado de "actualización" después de unos segundos (3 segundos)
+
       setTimeout(() => {
         setUpdatedProductIds((prevIds) => prevIds.filter((id) => id !== productId));
-        // Quitar el producto de la lista de "cargando" después de la animación
         setLoadingProductIds((prevIds) => prevIds.filter((id) => id !== productId));
       }, 3000);
-
     } catch (error) {
       console.error('Error al actualizar la categoría:', error);
+      setLoadingProductIds((prevIds) => prevIds.filter((id) => id !== productId));
     }
   };
 
@@ -95,10 +95,10 @@ const EditCategories = () => {
           <li key={product.id} className={styles.productItem}>
             <span>ID: {product.id}</span>
             <span className={styles.productName}>{product.name}</span>
-            <span>Categoría: </span>
+            <span>Categoría:</span>
             <select
               className={styles.selectCategory}
-              value={selectedCategory[product.id] || product.category.id} // Asegurarse de que el valor corresponda al ID de la categoría
+              value={selectedCategory[product.id] || product.category.id}
               onChange={(e) => handleDropdownChange(product.id, parseInt(e.target.value))}
             >
               {categories.map((category) => (
@@ -107,8 +107,7 @@ const EditCategories = () => {
                 </option>
               ))}
             </select>
-            
-            {/* Mostrar el Tick y ocultar el botón de actualización */}
+
             {!loadingProductIds.includes(product.id) && (
               <button
                 className={styles.updateButton}
@@ -116,6 +115,10 @@ const EditCategories = () => {
               >
                 Actualizar Categoría
               </button>
+            )}
+
+            {loadingProductIds.includes(product.id) && (
+              <span className={styles.loading}>Cargando...</span>
             )}
 
             {updatedProductIds.includes(product.id) && <Tick className={styles.tick} />}

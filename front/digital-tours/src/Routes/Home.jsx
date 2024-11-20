@@ -69,28 +69,31 @@ const Home = () => {
       </div>
       <div className={styles.cat_menu}>
         <Link to="/categories?category=Cultura" className={styles.cat_link}>
-          <FontAwesomeIcon icon={faMountainSun} className={styles.cat_icon} />
-          <span>Cultural</span>
+          <FontAwesomeIcon icon={faMountainSun} className={styles.cat_icon} color="#964B00" />
+          <span className={styles.culturalSpan}>Cultural</span>
         </Link>
         <Link to="/categories?category=Gastronomía" className={styles.cat_link}>
-          <FontAwesomeIcon icon={faUtensils} className={styles.cat_icon} />
-          <span>Gastronomía</span>
+          <FontAwesomeIcon icon={faUtensils} className={styles.cat_icon} color="#808080" />
+          <span className={styles.gastronomiaSpan}>Gastronomía</span>
         </Link>
         <Link to="/categories?category=Naturaleza" className={styles.cat_link}>
-          <FontAwesomeIcon icon={faTree} className={styles.cat_icon} />
-          <span>Naturaleza</span>
+          <FontAwesomeIcon icon={faTree} className={styles.cat_icon} color="#008000" />
+          <span className={styles.naturalezaSpan}>Naturaleza</span>
         </Link>
         <Link to="/categories?category=Aventura" className={styles.cat_link}>
           <FontAwesomeIcon
             icon={faPersonSwimming}
             className={styles.cat_icon}
+            color="#0000FF"
           />
-          <span>Aventura</span>
+          <span className={styles.aventuraSpan}>Aventura</span>
         </Link>
       </div>
       <div className={styles.home_body}>
         {isLoading ? (
+          <div className={styles.loader}>
           <Spinner />
+          </div>
         ) : currentTours.length > 0 ? (
           currentTours.map((item) => <Card key={item.id} item={item} />)
         ) : (

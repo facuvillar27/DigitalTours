@@ -50,6 +50,24 @@
     
 }
 
+.select {
+  display: block; 
+  width: 100%;
+  min-width: 400px; 
+  padding: 8px; 
+  border-radius: 5px;
+  border: 1px solid var(--grey);
+  box-sizing: border-box;
+  background-color: white;
+
+}
+
+.select:focus {
+  outline: none;
+  border-color: var(--primary); /* Mismo color de borde en foco */
+}
+
+
 .textarea{
     min-height: 200px;
 }

@@ -47,7 +47,6 @@
 }
 
 .cat_icon{
-  color: var(--accent);
   scale: 1.5;
 }
 
@@ -132,6 +131,18 @@
   padding: 20px;
 }
 
+.culturalSpan{
+  color: #964B00;
+}
+.naturalezaSpan{
+  color: #3E8E41;
+}
+.gastronomiaSpan{
+  color: #808080;
+}
+.aventuraSpan{
+  color: #1976D2;
+}
 @media (max-width: 992px) {
   .home_body {
     padding: 5px;

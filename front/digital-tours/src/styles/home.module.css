@@ -29,63 +29,79 @@
 .input::placeholder {
   color: var(--white);
 }
+/* SEARCH BAR */
 
+.searchContainer {
+  background-color: var(--accent);
+  border-radius: 50px;
+  width: 80%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 80px;
+  margin: 60px 20px 20px 20px;
+  padding: 0 20px
+}
 .search{
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  background-color: --white;
-  color: var(--white);
-  width: auto;
-  height: 40px;
-  padding: 12px;
-  border-radius: 5px;
-  border: 1px solid var(--white);
-  transition: width 0.3s ease;
-  cursor: pointer;
 }
 
 .search:hover{
-  transform: scale(1.01);
-  border: 1px solid var(--accent);;
+  transform: scale(1.02);
+  transition: transform 0.4s ease;
 }
 
-.search_input{
+.calendar_icon{
+  margin-left: 10px;
+}
+
+.form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form .button{
+  border: none;
   background-color: transparent;
-  color: var(--white);
-  width: 400px;
-  height: 30px;
-  padding: 12px;
-  border: none;
-  transition: width 0.3s ease;
 }
 
-.search_input:focus{
-  color: var(--white);
+.form_group{
+  background-color: white;
+  padding: 10px 15px;
+  border: solid 1px var(--accent);
+}
+
+.form_group_left{
+  background-color: white;
+  padding: 10px 15px;
+  border-radius: 50px 0 0 50px;
+}
+
+.form_group_right{
+  background-color: white;
+  padding: 10px 15px;
+  border-radius: 0px 50px 50px 0;
+}
+
+.location{
+  background-color: transparent;
+  border-radius: 50px 0 0 50px;
   border: none;
-  outline: none;
+}
+
+.date{
+  color: rgb(0, 0, 0);
+  background-color: transparent;
+  border: none;
 }
 
 .search_text{
-  font-size: 14px;
-  line-height: 0px;
-}
-
-.search_icon{
-  scale: 0.5;
-}
-.search_input:focus:first
-
-.search_input:focus::placeholder{
-  color: var(--dark-white);
-}
-
-.search_input::placeholder {
+  font-size: 20px;
+  font-weight: bold;
   color: var(--white);
-}
-
-.calendar{
-  background-color: white;
 }
 
 .cat_menu {
@@ -171,6 +187,7 @@
   color: var(--white);
   margin: 60px;
   padding: 12px;
+  height: 200px;
 }
 
 .cat.text{

@@ -10,13 +10,14 @@ import {
   faUtensils,
   faTree,
   faPersonSwimming,
-  faSearch
+  faSearch,
+  faCalendar
 } from "@fortawesome/free-solid-svg-icons";
 import Spinner from "../Components/Spinner/Spinner";
+import { useForm } from "react-hook-form"
 import { DayPicker } from "react-day-picker";
 import calendarStyles from "../styles/calendarStyle.module.css"
 import { es } from "react-day-picker/locale";
-import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
@@ -65,6 +66,13 @@ const Home = () => {
     setIsSearching(true);
   }
 
+  const {
+    register,
+    handleSubmit,
+  } = useForm()
+
+  const onSubmit = (data) => console.log(data)
+
   return (
     <div className={styles.main}>
       <div className={styles.cta}>
@@ -72,20 +80,46 @@ const Home = () => {
           <h1 className={styles.cta_text}>
             Recuerdos de viajes que nunca olvidarás
           </h1>
-          <div className={styles.search} onClick={handleSearchClick}>
-            <FontAwesomeIcon icon={faSearch} className={styles.search_icon} />
+        </div>
+        </div>
+          <div className={styles.searchContainer}>
             <span className={styles.search_text}>Encuentra Destinos Ideales</span>
+            <div className={styles.search}>
+            <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+            <div className={styles.form_group_left}>
+              <select className={styles.location} {...register("location")}>
+                  <option value="uruguay">Uruguay</option>
+                  <option value="colombia">Colombia</option>
+                  <option value="mexico">Mexico</option>
+              </select>
+            </div>
+            <div className={styles.form_group} onClick={handleSearchClick}>
+            <input
+                className={styles.button}
+                type="button"
+                value="Elige una fecha"
+                data-bs-toggle="collapse"
+                data-bs-target="#calendarCollapse"
+                aria-expanded="false"
+                aria-controls="calendarCollapse"
+              />
+              <span><FontAwesomeIcon icon={faCalendar} className={styles.calendar_icon} /></span>
+              <div className="collapse" id="calendarCollapse">
+                <div className="card card-body">
+                  <DayPicker
+                    mode="single"
+                    selected={selected}
+                    onSelect={setSelected}
+                    locale={es}
+                    classNames={calendarStyles}
+                  />
+                </div>
+              </div>
+            </div>
+          <div className={styles.form_group_right}>
+            <button className={styles.button} type="submit"><FontAwesomeIcon icon={faSearch} className={styles.search_icon} /></button>
           </div>
-          {/* <DayPicker
-            mode="single"
-            selected={selected}
-            onSelect={setSelected}
-            classNames={calendarStyles}
-            locale={es}
-            footer={
-              selected ? `Selected: ${selected.toLocaleDateString()}` : "Elige un dia."
-            }
-          /> */}
+        </form>
         </div>
       </div>
       <div className={styles.cat_menu}>

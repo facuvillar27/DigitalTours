@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import styles from '../styles/editCategories.module.css';
 import { getProducts, updateProduct, getProductById } from '../services/productService';
 import Tick from '../Components/Tick/Tick';
+import Spinner from '../Components/Spinner/Spinner';
 
 const categories = [
   { id: 1, name: 'Gastronomía' },
@@ -118,7 +119,7 @@ const EditCategories = () => {
             )}
 
             {loadingProductIds.includes(product.id) && (
-              <span className={styles.loading}>Cargando...</span>
+              <Spinner className={styles.spinner} />
             )}
 
             {updatedProductIds.includes(product.id) && <Tick className={styles.tick} />}

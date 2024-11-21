@@ -7,7 +7,9 @@
   --primary: #EB661B;
   --primary-hover: #D55C0F;
   --secondary: #90C151;
-  --accent: #604CC3;
+  --accent: #493a92;
+  --accent-hover: #6251b0;
+  --accent-light: #5d4ac8;
   --success: #0fbda4;
   --warning: #FBB828;
   --danger: #D22C2C;
@@ -25,7 +27,6 @@ html, body {
   font-family: var(--font-family);
   background-color: var(--white);
 }
-
 /* Hace que todo el contenedor ocupe el 100% de la ventana */
 #root {
   display: flex;

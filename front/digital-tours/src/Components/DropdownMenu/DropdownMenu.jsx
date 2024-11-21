@@ -28,6 +28,10 @@ const DropdownMenu = () => {
     navigate("/"); 
   };
 
+  const handleFav = () => {
+    navigate("/mis-favoritos"); 
+  };
+
   const handleClickOutside = (event) => {
     if (menuRef.current && !menuRef.current.contains(event.target)) {
       setIsOpen(false);
@@ -78,6 +82,12 @@ const DropdownMenu = () => {
                 Panel de Administración
               </a>
             )}
+            <a onClick={handleProfile} className={styles.dropdownItem}>
+              Reservas
+            </a>
+            <a onClick={handleFav} className={styles.dropdownItem}>
+              Favoritos
+            </a>
             <a onClick={handleProfile} className={styles.dropdownItem}>
               Perfil
             </a>

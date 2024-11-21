@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { createProduct, getProducts } from "../../services/productService"; // Asegúrate de que la ruta sea correcta
 import styles from "./RegisterTourForm.module.css";
+import TagsInput from "../TagsInput/TagsInput";
 
 const categories = [
   { id: 1, name: "Gastronomía" },
@@ -13,7 +14,8 @@ const RegisterTourForm = () => {
   const [products, setProducts] = useState([]);
   const [formData, setFormData] = useState({
     name: "",
-    category: categories[0].id, // Set initial category
+    category: categories[0].id,
+    // characteristics: "",
     description: "",
     price: "",
     image: "",
@@ -21,6 +23,7 @@ const RegisterTourForm = () => {
   const [confirmationMessage, setConfirmationMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isFormVisible, setIsFormVisible] = useState(true);
+  // const [tags, setTags] = useState([]);
 
   // Cargar productos desde el servicio
   useEffect(() => {
@@ -128,7 +131,7 @@ const RegisterTourForm = () => {
           <label className={styles.product_name}>
             Categoría:
             <select
-              className={styles.input}
+              className={styles.select} /* Solo esta clase */
               name="category"
               value={formData.category}
               onChange={handleChange}
@@ -140,6 +143,11 @@ const RegisterTourForm = () => {
                 </option>
               ))}
             </select>
+          </label>
+          <br />
+          <label className={styles.product_name}>
+            Caracteristicas:
+            <TagsInput color="blue" onChange={tags => console.log(tags)} />
           </label>
           <br />
           <label className={styles.product_name}>

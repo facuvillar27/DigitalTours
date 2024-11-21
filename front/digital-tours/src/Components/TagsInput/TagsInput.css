@@ -1,0 +1,117 @@
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.tags-input-wrapper {
+  background: #fff;
+  padding: 0.2em;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  min-height: 36px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px solid var(--grey);
+  width: 100%;
+  min-width: 400px;
+  max-width: 400px; 
+}
+
+.tag-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  margin: 2px;
+  padding: 0;
+  height: 26px;
+  line-height: 26px;
+  cursor: default;
+}
+
+.tag-item .title {
+  display: block;
+  position: relative;
+  font-size: 16px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin: 0 8px;
+}
+
+.tag-item .remove-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  width: 26px;
+  height: 100%;
+  line-height: 22px;
+  text-align: center;
+  justify-self: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.color-default {
+  color: rgb(243 244 246);
+  background-color: rgb(156 163 175);
+}
+.color-default button.remove-btn {
+  color: rgb(243 244 246);
+  background-color: rgb(107 114 128);
+}
+
+.color-red {
+  color: rgb(254 226 226);
+  background-color: rgb(248 113 113);
+}
+.color-red button.remove-btn {
+  color: rgb(254 226 226);
+  background-color: rgb(220 38 38) !important;
+}
+
+.color-yellow {
+  color: rgb(254 249 195);
+  background-color: rgb(250 204 21);
+}
+.color-yellow button.remove-btn {
+  color: rgb(254 249 195);
+  background-color: rgb(202 138 4) !important;
+}
+
+.color-green {
+  color: rgb(220 252 231);
+  background-color: rgb(34 197 94);
+}
+.color-green button.remove-btn {
+  color: rgb(220 252 231);
+  background-color: rgb(22 163 74) !important;
+}
+
+.color-blue {
+  color: rgb(224 242 254);
+  background-color: var(--accent);
+}
+.color-blue button.remove-btn {
+  color: rgb(224 242 254);
+  background-color: var(--accent) !important;
+}
+
+.tag-input {
+    display: flex;
+    align-items: flex-end;
+    padding: 8px;
+    border-radius: 5px;
+    width: 100%;
+    border: none;
+}
+
+.tag-input:focus {
+  outline: none;
+}

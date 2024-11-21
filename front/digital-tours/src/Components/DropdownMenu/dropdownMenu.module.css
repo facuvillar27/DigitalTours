@@ -1,13 +1,14 @@
 .container {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: baseline;
   }
 
   .username{
     color: var(--accent);
     font-weight: bold;
     font-size: 18px;
+    margin-right: 10px;
   }
 
 .dropdown {
@@ -19,6 +20,7 @@
     color: var(--white);
     font-weight: bold;
     font-size: 18px;
+    margin-right: 10px;
   }
   
   .dropdownIcon {
@@ -42,7 +44,7 @@
   .dropdownItem {
     padding: 10px;
     text-decoration: none;
-    color: #333;
+    color: var(--accent);
     display: block;
   }
   

@@ -1,0 +1,38 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 77vh;
+    flex-direction: column;
+}
+
+.cardContainer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    padding: 12px;
+    width: 90%;
+    background-color: var(--dark-white);
+    border-radius: 10px;
+    min-height: 70vh;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.30);
+}
+
+.noFavorites{
+    grid-column: span 2; /* Ocupa ambas columnas */
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--accent); 
+    margin: auto; 
+    padding: 20px;
+}
+
+.title{
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--accent);
+}

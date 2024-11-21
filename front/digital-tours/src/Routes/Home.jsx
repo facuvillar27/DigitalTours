@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import styles from "../styles/home.module.css";
@@ -10,14 +10,23 @@ import {
   faUtensils,
   faTree,
   faPersonSwimming,
+  faSearch
 } from "@fortawesome/free-solid-svg-icons";
 import Spinner from "../Components/Spinner/Spinner";
+import { DayPicker } from "react-day-picker";
+import calendarStyles from "../styles/calendarStyle.module.css"
+import { es } from "react-day-picker/locale";
+import Dropdown from 'react-bootstrap/Dropdown';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 const Home = () => {
   const [tours, setTours] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+  const [selected, setSelected] = useState();
+  const [isSearching, setIsSearching] = useState(false);
 
   const fetchProducts = async () => {
     try {
@@ -46,11 +55,15 @@ const Home = () => {
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
-
+  
   const currentTours = tours.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
+
+  const handleSearchClick = () => {
+    setIsSearching(true);
+  }
 
   return (
     <div className={styles.main}>
@@ -59,38 +72,49 @@ const Home = () => {
           <h1 className={styles.cta_text}>
             Recuerdos de viajes que nunca olvidarás
           </h1>
-          <input
-            className={styles.input}
-            type="text"
-            name="nombre"
-            placeholder="Encuentra Destinos Ideales"
-          />
+          <div className={styles.search} onClick={handleSearchClick}>
+            <FontAwesomeIcon icon={faSearch} className={styles.search_icon} />
+            <span className={styles.search_text}>Encuentra Destinos Ideales</span>
+          </div>
+          {/* <DayPicker
+            mode="single"
+            selected={selected}
+            onSelect={setSelected}
+            classNames={calendarStyles}
+            locale={es}
+            footer={
+              selected ? `Selected: ${selected.toLocaleDateString()}` : "Elige un dia."
+            }
+          /> */}
         </div>
       </div>
       <div className={styles.cat_menu}>
         <Link to="/categories?category=Cultura" className={styles.cat_link}>
-          <FontAwesomeIcon icon={faMountainSun} className={styles.cat_icon} />
-          <span>Cultural</span>
+          <FontAwesomeIcon icon={faMountainSun} className={styles.cat_icon} color="#964B00" />
+          <span className={styles.culturalSpan}>Cultural</span>
         </Link>
         <Link to="/categories?category=Gastronomía" className={styles.cat_link}>
-          <FontAwesomeIcon icon={faUtensils} className={styles.cat_icon} />
-          <span>Gastronomía</span>
+          <FontAwesomeIcon icon={faUtensils} className={styles.cat_icon} color="#808080" />
+          <span className={styles.gastronomiaSpan}>Gastronomía</span>
         </Link>
         <Link to="/categories?category=Naturaleza" className={styles.cat_link}>
-          <FontAwesomeIcon icon={faTree} className={styles.cat_icon} />
-          <span>Naturaleza</span>
+          <FontAwesomeIcon icon={faTree} className={styles.cat_icon} color="#008000" />
+          <span className={styles.naturalezaSpan}>Naturaleza</span>
         </Link>
         <Link to="/categories?category=Aventura" className={styles.cat_link}>
           <FontAwesomeIcon
             icon={faPersonSwimming}
             className={styles.cat_icon}
+            color="#0000FF"
           />
-          <span>Aventura</span>
+          <span className={styles.aventuraSpan}>Aventura</span>
         </Link>
       </div>
       <div className={styles.home_body}>
         {isLoading ? (
+          <div className={styles.loader}>
           <Spinner />
+          </div>
         ) : currentTours.length > 0 ? (
           currentTours.map((item) => <Card key={item.id} item={item} />)
         ) : (

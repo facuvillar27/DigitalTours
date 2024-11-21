@@ -15,18 +15,20 @@ const Fav = () => {
             console.error('Error al obtener los favoritos:', error);
           });
       }, []);
-    if (favs.length > 0) {
-        return (
-            <div className={styles.container}>
-                {favs.map(fav => (
-                    <Card key={fav.id} item={fav} />
-                ))}
-            </div>
-        );
-    }
   return (
-    <div className={styles.container}>
-      <p>No hay favoritos</p>
+    <div className={styles.main}>
+      <h1 className={styles.title}>Favoritos</h1>
+      <div className={styles.container}>
+        <div className={styles.cardContainer}>
+            {favs.length > 0 ? (
+            favs.map(fav => (
+              <Card key={fav.id} item={fav} />
+            ))
+            ) : (
+            <p className={styles.noFavorites}>No hay favoritos disponibles</p>
+          )}
+        </div>
+      </div>
     </div>
   )
 }

@@ -82,7 +82,7 @@ const Card = ({ item }) => {
             })}
             {isAuthenticated && (
               <div className={styles.favButtonContainer}>
-                <button
+                <div
                   className={styles.favButton}
                   onClick={toggleFavorite}
                 >
@@ -90,7 +90,7 @@ const Card = ({ item }) => {
                     icon={isFavorited ? faHeartSolid : faHeartRegular}
                     className={styles.favIcon}
                   />
-                </button>
+                </div>
               </div>
             )}
           </div>
@@ -109,11 +109,15 @@ const Card = ({ item }) => {
               return null;
             }
           })}
-          <h3 className={styles.product_name}>{item.name}</h3>
-          <p className={styles.product_description}>{item.description}</p>
+          <div className={styles.cardContent}>
+            <h3 className={styles.product_name}>{item.name}</h3>
+            <p className={styles.product_description}>{item.description}</p>
+          </div >
+          <div className={styles.cardPrice}>
           <h3 className={styles.product_price}>{item.price} USD</h3>
-          <button className={styles.book_button}>Reservar</button>
-        </div>
+          </div>
+          </div>
+        <button className={styles.book_button}>Reservar</button>
       </Link>
     </div>
   );

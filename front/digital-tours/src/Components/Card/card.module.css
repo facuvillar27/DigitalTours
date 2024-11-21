@@ -9,7 +9,7 @@
 
   border-radius: 10px;
   background-color: var(--white);
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.10);
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.20);
 
   transition: transform 0.3s ease;
   min-height: 700px;
@@ -25,7 +25,9 @@
   gap: 12px;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start; 
   height: 100%;
+  position: relative; 
 }
 
 .card > h3 {
@@ -61,12 +63,12 @@
 }
 
 .card_icon{
-  scale: 1.5;
+  scale: 1.2;
   transition: all 0.3s ease;
 }
 
 .card_icon:hover{
-  scale: 1.7;
+  scale: 1.5;
 }
 
 .card_icon_container{
@@ -86,6 +88,8 @@
 
 .product_name {
   color: var(--accent);
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .product_description {
@@ -95,12 +99,22 @@
   color: var(--black);
 }
 
-.product_price{
-  justify-self: end;
+.product_price {
+  position: absolute;
+  bottom: 70px;
+  left: 15px; 
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--black);
+  z-index: 2; 
+}
+
+.cardPrice{
+  margin-top: 100px;
 }
 
 .product_type{
-  font-size: 18px;
+  font-size: 14px;
   font-weight: bold;
 }
 
@@ -123,10 +137,12 @@
   background-color: transparent;
 }
 .favIcon{
-  scale: 1.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  scale: 1.2;
   color: red;
   transition: all 0.2s ease-in-out;
-
 }
 
 .favIcon:hover{
@@ -135,10 +151,9 @@
 
 .book_button {
   position: absolute;
-  left: -5px;
+  left: 0;
   right: 0;
   bottom: 0;
-  width: 100%;
   padding: 20px;
   border: none;
   border-radius: 0 0 10px 10px;

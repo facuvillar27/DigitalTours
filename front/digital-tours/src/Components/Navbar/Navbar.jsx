@@ -20,9 +20,9 @@ const Navbar = () => {
     const image = document.getElementById('logo');
     
     if (window.scrollY > 10) {
-      image.src = logo_white;  // Cambia la imagen
+      image.src = logo_white;
     } else {
-      image.src = logo;  // Cambia de nuevo la imagen
+      image.src = logo; 
     }
   });
 

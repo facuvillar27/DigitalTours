@@ -8,6 +8,12 @@ const RegisterForm = () => {
     username: Yup.string()
       .min(3, "El nombre de usuario debe tener al menos 3 caracteres")
       .required("El nombre de usuario es obligatorio"),
+    name: Yup.string()
+      .min(3, "El nombre debe tener al menos 3 caracteres")
+      .required("El nombre es obligatorio"),
+    last_name: Yup.string()
+      .min(3, "El apellido debe tener al menos 3 caracteres")
+      .required("El apellido es obligatorio"),
     email: Yup.string()
       .email("Correo electrónico no válido")
       .required("El correo electrónico es obligatorio"),
@@ -20,7 +26,7 @@ const RegisterForm = () => {
   });
 
   const handleSubmit = async (values, { setSubmitting, resetForm, setStatus }) => {
-    const response = await registerService(values.username, values.password, values.email);
+    const response = await registerService(values.username, values.name, values.last_name, values.password, values.email);
     if (response=== "User registered successfully"){
       setStatus({ successMessage: "¡Registro exitoso! Se le enviará un correo de confirmación." });
       setTimeout(() => {
@@ -37,6 +43,8 @@ const RegisterForm = () => {
       <Formik
           initialValues={{
             username: "",
+            name: "",
+            last_name: "",
             email: "",
             password: "",
             confirmPassword: "",
@@ -78,6 +86,18 @@ const RegisterForm = () => {
                   name="username"
                   placeholder="Usuario"
                   className={`${styles.input} ${touched.username && errors.username ? styles.inputError : ""}`}
+                />
+                <Field
+                  type="text"
+                  name="name"
+                  placeholder="Nombre"
+                  className={`${styles.input} ${touched.name && errors.name ? styles.inputError : ""}`}
+                />
+                <Field
+                  type="text"
+                  name="last_name"
+                  placeholder="Apellido"
+                  className={`${styles.input} ${touched.last_name && errors.last_name ? styles.inputError : ""}`}
                 />
                 <Field
                   type="email"

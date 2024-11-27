@@ -11,7 +11,7 @@ const CardList = ({ item, onDelete, onEdit }) => {
       <div className={styles.card}>
         <Link to={`/products/${item.id}`} className={styles.cardList_link}>
           <div className={styles.cardContent}>
-            <img src={item.image} alt={item.name} className={styles.cardImage} />
+            <img src={item.imageUrls[0]} alt={item.name} className={styles.cardImage} />
             <div>
               <p className={styles.product_type}>{item.category.name}</p>
               <h3 className={styles.product_name}>{item.name}</h3>

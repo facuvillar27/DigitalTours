@@ -7,7 +7,7 @@
 
 .cta {
   display: flex;
-  background-image: url('../assets/cta_img.png');
+  background-image: url("../assets/cta_img.png");
   background-size: cover;
   background-position: bottom;
   width: 100%;
@@ -40,65 +40,85 @@
   align-items: center;
   height: 80px;
   margin: 60px 20px 20px 20px;
-  padding: 0 20px
+  padding: 0 20px;
 }
-.search{
+.search {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
 
-.search:hover{
+
+.search:hover {
   transform: scale(1.02);
   transition: transform 0.4s ease;
 }
 
-.calendar_icon{
+.searchTitle {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--accent);
+  grid-column: span 2;
+  text-align: center;
+  padding: 20px;
+}
+
+.calendar_icon {
   margin-left: 10px;
 }
 
-.form{
+.form {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.form .button{
+.form .button {
   border: none;
   background-color: transparent;
 }
 
-.form_group{
+.form_group {
   background-color: white;
   padding: 10px 15px;
   border: solid 1px var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 50px 0 0 50px;
+  height: 62px;
 }
 
-.form_group_left{
+.form_group_left {
   background-color: white;
   padding: 10px 15px;
   border-radius: 50px 0 0 50px;
 }
 
-.form_group_right{
+.form_group_right {
   background-color: white;
   padding: 10px 15px;
   border-radius: 0px 50px 50px 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.location{
+.location {
   background-color: transparent;
   border-radius: 50px 0 0 50px;
   border: none;
 }
 
-.date{
+.date {
   color: rgb(0, 0, 0);
   background-color: transparent;
   border: none;
 }
 
-.search_text{
+.search_text {
   font-size: 20px;
   font-weight: bold;
   color: var(--white);
@@ -117,10 +137,10 @@
 
   border-radius: 10px;
   background-color: var(--dark-white);
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.20);
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
 }
 
-.cat_icon{
+.cat_icon {
   scale: 1.5;
 }
 
@@ -134,7 +154,7 @@
   gap: 12px;
 }
 
-.cat_link:hover{
+.cat_link:hover {
   transform: scale(1.2);
   transition: transform 0.2s ease;
   color: var(--primary);
@@ -142,7 +162,7 @@
 
 .cat_btn:hover {
   background-color: var(--primary);
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.10);
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
   transform: scale(1.1);
 }
 
@@ -173,12 +193,11 @@
   min-height: 30vh;
 }
 
-
 .cta_box {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  align-items:flex-start;
+  align-items: flex-start;
   border-radius: 10px;
   width: 684px;
   font-size: 36px;
@@ -190,7 +209,7 @@
   height: 200px;
 }
 
-.cat.text{
+.cat.text {
   color: var(--accent);
   font-size: 24px;
   font-weight: var(--font-p-weight);
@@ -207,24 +226,61 @@
   padding: 20px;
 }
 
-.culturalSpan{
-  color: #964B00;
+.culturalSpan {
+  color: #964b00;
 }
-.naturalezaSpan{
-  color: #3E8E41;
+.naturalezaSpan {
+  color: #3e8e41;
 }
-.gastronomiaSpan{
+.gastronomiaSpan {
   color: #808080;
 }
-.aventuraSpan{
-  color: #1976D2;
+.aventuraSpan {
+  color: #1976d2;
 }
 
-.loader{
+.loader {
   grid-column: span 2;
   text-align: center;
   margin: auto;
 }
+.popover {
+  width: auto;
+  max-width: fit-content; 
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+} 
+
+.custom-popover-body {
+  width: auto;
+  max-width: fit-content;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  padding: 0; 
+  background-color: white !important;
+} 
+
+.calendarContainer {
+  width: 100%;
+  background-color: white;
+  padding: 0; 
+  border: solid 1px var(--accent);
+  border-radius: 5px;
+} 
+
+.react-day-picker {
+  width: 100%;
+}
+.react-day-picker-wrapper {
+  padding: 0;
+  width: 100%;
+}
+
+.searchButton{
+  border: none;
+  background-color: transparent;
+}
+
 @media (max-width: 992px) {
   .home_body {
     padding: 5px;
@@ -243,12 +299,12 @@
     height: auto;
   }
 
-  .cta_box > h1{
+  .cta_box > h1 {
     font-weight: var(--font-h2-h3-weight);
     margin: 0;
   }
 
-/* 
+  /* 
     .filters {
       display: flex;
       align-items: center;
@@ -267,9 +323,8 @@
     } */
 }
 
-
 @media (max-width: 576px) {
-  .cta_box > h1{
+  .cta_box > h1 {
     font-weight: var(--font-p-weight);
     margin: 0;
   }

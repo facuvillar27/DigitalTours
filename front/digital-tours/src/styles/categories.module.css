@@ -1,5 +1,4 @@
 .container {
-  background-color: var(--white);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,6 +55,14 @@
   width: 90%;
   background-color: var(--dark-white);
 }
+
+.cat_cards_loading{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+}
+
 
 @media (max-width: 992px) {
   .cat_cards {

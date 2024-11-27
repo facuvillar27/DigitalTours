@@ -114,9 +114,11 @@ const Categories = () => {
           <p>
             Mostrando {filteredTours.length} de {tours.length} productos
           </p>
-          <div className={styles.cat_cards}>
+          <div
+            className={isLoading ? styles.cat_cards_loading : styles.cat_cards}
+          >
             {isLoading ? (
-              <Spinner />
+              <Spinner className={styles.spinner} />
             ) : filteredTours.length > 0 ? (
               filteredTours.map((item) => <Card key={item.id} item={item} />)
             ) : (

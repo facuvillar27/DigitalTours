@@ -5,10 +5,10 @@ import {
   faUtensils,
   faTree,
   faPersonSwimming,
-} from '@fortawesome/free-solid-svg-icons';
-import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
-import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+} from "@fortawesome/free-solid-svg-icons";
+import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAuth } from "../../services/authContext";
 import { useState } from "react";
 
@@ -25,7 +25,7 @@ const Card = ({ item }) => {
     },
     {
       icon: faUtensils,
-      topic: "Gastronomía",
+      topic: "Gastronomia",
       color: "#808080",
     },
     {
@@ -82,10 +82,7 @@ const Card = ({ item }) => {
             })}
             {isAuthenticated && (
               <div className={styles.favButtonContainer}>
-                <div
-                  className={styles.favButton}
-                  onClick={toggleFavorite}
-                >
+                <div className={styles.favButton} onClick={toggleFavorite}>
                   <FontAwesomeIcon
                     icon={isFavorited ? faHeartSolid : faHeartRegular}
                     className={styles.favIcon}
@@ -112,11 +109,11 @@ const Card = ({ item }) => {
           <div className={styles.cardContent}>
             <h3 className={styles.product_name}>{item.name}</h3>
             <p className={styles.product_description}>{item.description}</p>
-          </div >
+          </div>
           <div className={styles.cardPrice}>
-          <h3 className={styles.product_price}>{item.price} USD</h3>
+            <h3 className={styles.product_price}>{item.price} USD</h3>
           </div>
-          </div>
+        </div>
         <button className={styles.book_button}>Reservar</button>
       </Link>
     </div>

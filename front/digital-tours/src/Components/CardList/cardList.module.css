@@ -61,6 +61,7 @@
 .product_price {
   color: var(--black);
   font-weight: bold;
+  font-size: 20px;
   margin-top: 5px; /* Añadir espacio adicional sobre el precio */
 }
 

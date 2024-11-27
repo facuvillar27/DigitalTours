@@ -24,9 +24,10 @@ export const login = async (username, password) => {
 };
 
 // Registrar usuario
-export const register = async (username, password, email) => {
+export const register = async (username, name, last_name, password, email) => {
+  console.log("Datos enviados al servidor:", { username, name, last_name, password, email });
   try {
-    const response = await axios.post(`${API_URL}/v1/auth/signup`, { username, password, email });
+    const response = await axios.post(`${API_URL}/v1/auth/signup`, { username, name, last_name, password, email });
     console.log("respuesta del register",response.data.data);
     return response.data.data;
   } catch (error) {

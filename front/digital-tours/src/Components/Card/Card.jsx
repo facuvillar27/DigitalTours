@@ -10,11 +10,13 @@ import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useAuth } from "../../services/authContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getIdFromToken } from "../../services/authService";
+import axios from "axios";
 
-const Card = ({ item }) => {
+const Card = ({ item, isFavorited: initialFavorited, onRemove, shouldUnmountFav = false }) => {
   const { isAuthenticated } = useAuth();
-  const [isFavorited, setIsFavorited] = useState(false);
+  const [isFavorited, setIsFavorited] = useState(initialFavorited || false);
   const defaultImage = "../assets/RioDeJaneiro.png";
 
   const iconos = [
@@ -45,11 +47,37 @@ const Card = ({ item }) => {
     e.target.src = defaultImage;
   };
 
-  const toggleFavorite = (e) => {
+  const toggleFavorite = async (e) => {
     e.preventDefault(); // Previene el comportamiento predeterminado del enlace
     e.stopPropagation(); // Detiene la propagación hacia el contenedor padre
-    setIsFavorited(!isFavorited);
-  };
+
+    const token = localStorage.getItem("token");
+    const userId = parseInt(getIdFromToken(token));
+    const tourId = item.id;
+
+    const body = {
+      id:0,
+      userId: userId,
+      tourId: tourId,
+      addedDate: new Date().toISOString().split("T")[0],
+    };
+
+    try {
+      if (!isFavorited) {
+        await axios.post(`http://localhost:8080/digitaltours/api/v1/favorites`, body);
+        setIsFavorited(true);
+      } else {
+        await axios.delete(`http://localhost:8080/digitaltours/api/v1/favorites/${userId}/${tourId}`);
+        setIsFavorited(false);
+
+        if (shouldUnmountFav && onRemove) {
+          onRemove(item.id);
+        }
+      }
+    } catch (error) {
+      console.error("Error al agregar o eliminar de favoritos:", error);
+    }
+};
 
   return (
     <div className={styles.container}>
@@ -57,7 +85,7 @@ const Card = ({ item }) => {
         <div className={styles.card}>
           <div className={styles.card_img_container}>
             <img
-              src={item.image}
+              src={item.imageUrls[0]}
               alt="Imagen del tour"
               className={styles.card_img}
               onError={handleImageError}

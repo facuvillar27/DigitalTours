@@ -46,6 +46,10 @@ const DropdownMenu = () => {
     navigate('/profile');
   };
 
+  const handleReserve = () => {
+    navigate('/reserves');
+  };
+
   useEffect(() => {
     if (isOpen) {
       document.addEventListener("mousedown", handleClickOutside);
@@ -82,7 +86,7 @@ const DropdownMenu = () => {
                 Panel de Administración
               </a>
             )}
-            <a onClick={handleProfile} className={styles.dropdownItem}>
+            <a onClick={handleReserve} className={styles.dropdownItem}>
               Reservas
             </a>
             <a onClick={handleFav} className={styles.dropdownItem}>

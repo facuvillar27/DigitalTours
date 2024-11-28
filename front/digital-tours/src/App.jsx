@@ -15,6 +15,8 @@ import EditCategories from "./Routes/editCategories";
 import Profile from "./Routes/Profile";
 import { AuthProvider } from "./services/authContext";
 import Fav from "./Routes/Fav";
+import ReservationDetails from "./Routes/ReservationDetails";
+import MyReserves from "./Routes/MyReserves";
 
 function App() {
   return (
@@ -35,6 +37,8 @@ function App() {
           <Route path="/admin/categorias" element={<EditCategories />}></Route>
           <Route path="/categories" element={<Categories />}></Route>
           <Route path="/mis-favoritos" element={<Fav />}></Route>
+          <Route path="/products/:id/reserve-confirmation" element={<ReservationDetails />}></Route>
+          <Route path="/reserves" element={<MyReserves />}></Route>
         </Routes>
         <Footer />
       </div>

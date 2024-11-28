@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
-import { Calendar } from "react-date-range";
+import Calendar from "react-calendar";
 import axios from "axios";
-import "react-date-range/dist/styles.css";
-import "react-date-range/dist/theme/default.css";
+import styles from "./availabilityCalendar.module.css";
+import "react-calendar/dist/Calendar.css";
+import ReserveForm from "../ReserveForm/ReserveForm";
 
 const AvailabilityCalendar = ({ productId }) => {
   const [availableDates, setAvailableDates] = useState([]);
   const [reservedDates, setReservedDates] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDateId, setSelectedDateId] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -17,13 +20,19 @@ const AvailabilityCalendar = ({ productId }) => {
         `http://localhost:8080/digitaltours/api/v1/dates/${productId}`
       );
       const dates = response.data.data;
-      console.log(dates);
       // Filtrar y mapear fechas
       setAvailableDates(
-        dates.filter((d) => d.available_space > 0).map((d) => d.date)
+        dates
+          .filter((d) => d.available_space > 0)
+          .map((d) => ({
+            date: parseLocalDate(d.date),
+            id: d.id,
+          }))
       );
       setReservedDates(
-        dates.filter((d) => d.available_space === 0).map((d) => d.date)
+        dates
+          .filter((d) => d.available_space === 0)
+          .map((d) => parseLocalDate(d.date))
       );
       setError(null);
     } catch (error) {
@@ -45,11 +54,35 @@ const AvailabilityCalendar = ({ productId }) => {
     fetchDates();
   };
 
-  const isDateReserved = (date) =>
-    reservedDates.includes(date.toISOString().split("T")[0]);
+  const parseLocalDate = (dateString) => {
+    const [year, month, day] = dateString.split("-").map(Number);
+    return new Date(year, month - 1, day);
+  }
 
-  const isDateAvailable = (date) =>
-    availableDates.includes(date.toISOString().split("T")[0]);
+  const tileClassName = ({ date }) => {
+    const reserved = reservedDates.some((d) => isSameDay(d, date));
+    const available = availableDates.some((d) => isSameDay(d.date, date));
+
+    if (reserved) return styles.reserved;
+    if (available) return styles.available;
+    return null;
+  };
+  
+  const isSameDay = (date1, date2) => {
+    return (
+      date1.getFullYear() === date2.getFullYear() &&
+      date1.getMonth() === date2.getMonth() &&
+      date1.getDate() === date2.getDate()
+    );
+  }
+
+  const handleDateClick = (date) => {
+    const selected = availableDates.find((d) => isSameDay(d.date, date));
+    if (selected) {
+      setSelectedDate(date);
+      setSelectedDateId(selected.id);
+    }
+  }
 
   if (loading) {
     return <p>Cargando disponibilidad...</p>;
@@ -67,30 +100,13 @@ const AvailabilityCalendar = ({ productId }) => {
   return (
     <div>
       <h3>Disponibilidad del producto</h3>
-      <Calendar
-        date={new Date()}
-        color="green"
-        disabledDates={reservedDates.map((date) => new Date(date))}
-        renderDayContent={(date) => {
-          const isReserved = isDateReserved(date);
-          const isAvailable = isDateAvailable(date);
-
-          return (
-            <div
-              style={{
-                padding: "10px",
-                backgroundColor: isReserved
-                  ? "#ffcccc" // Rojo para reservadas
-                  : isAvailable
-                  ? "#ccffcc" // Verde para disponibles
-                  : "white",
-              }}
-            >
-              {date.getDate()}
-            </div>
-          );
-        }}
+      <Calendar 
+        tileClassName={tileClassName}
+        onClickDay={handleDateClick}
       />
+      {selectedDate && (
+        <ReserveForm date={selectedDate} id={selectedDateId} productId={productId} />
+      )}
     </div>
   );
 };

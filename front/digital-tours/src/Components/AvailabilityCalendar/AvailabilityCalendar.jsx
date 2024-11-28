@@ -57,7 +57,7 @@ const AvailabilityCalendar = ({ productId }) => {
   const parseLocalDate = (dateString) => {
     const [year, month, day] = dateString.split("-").map(Number);
     return new Date(year, month - 1, day);
-  }
+  };
 
   const tileClassName = ({ date }) => {
     const reserved = reservedDates.some((d) => isSameDay(d, date));
@@ -67,14 +67,14 @@ const AvailabilityCalendar = ({ productId }) => {
     if (available) return styles.available;
     return null;
   };
-  
+
   const isSameDay = (date1, date2) => {
     return (
       date1.getFullYear() === date2.getFullYear() &&
       date1.getMonth() === date2.getMonth() &&
       date1.getDate() === date2.getDate()
     );
-  }
+  };
 
   const handleDateClick = (date) => {
     const selected = availableDates.find((d) => isSameDay(d.date, date));
@@ -82,7 +82,7 @@ const AvailabilityCalendar = ({ productId }) => {
       setSelectedDate(date);
       setSelectedDateId(selected.id);
     }
-  }
+  };
 
   if (loading) {
     return <p>Cargando disponibilidad...</p>;
@@ -98,14 +98,15 @@ const AvailabilityCalendar = ({ productId }) => {
   }
 
   return (
-    <div>
+    <div className={styles.calendar_container}>
       <h3>Disponibilidad del producto</h3>
-      <Calendar 
-        tileClassName={tileClassName}
-        onClickDay={handleDateClick}
-      />
+      <Calendar tileClassName={tileClassName} onClickDay={handleDateClick} />
       {selectedDate && (
-        <ReserveForm date={selectedDate} id={selectedDateId} productId={productId} />
+        <ReserveForm
+          date={selectedDate}
+          id={selectedDateId}
+          productId={productId}
+        />
       )}
     </div>
   );

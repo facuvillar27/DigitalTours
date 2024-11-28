@@ -295,7 +295,6 @@
   }
 
   .cat_menu {
-    margin: 5px;
     height: auto;
   }
 
@@ -304,23 +303,21 @@
     margin: 0;
   }
 
-  /* 
-    .filters {
-      display: flex;
-      align-items: center;
-      justify-content: space-evenly;
-      flex-direction: column;
-    }
-  
-    .filter_cat {
-      margin: 10px;
-    }
-  
-  
-    .cat_cards {
-      display: block;
-      width: 100%;
-    } */
+  .cat_link {
+    gap: 5px;
+  }
+
+  .cat_icon {
+    scale: 1.2;
+  }
+
+  .search_text {
+    font-size: 17px;
+  }
+
+  .form_group button{
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 576px) {
@@ -335,5 +332,25 @@
   }
   .cat_menu {
     height: auto;
+  }
+
+  .cat_link {
+    gap: 3px;
+  }
+
+  .cat_link span {
+    font-size: 12px;
+  }
+
+  .cat_icon {
+    scale: 1;
+  }
+
+  .search_text {
+    font-size: 15px;
+  }
+
+  .form_group button{
+    font-size: 12px;
   }
 }

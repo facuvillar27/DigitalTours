@@ -35,6 +35,19 @@
   height: 85px;
 }
 
+
+.downloadText {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.downloadText:hover {
+  text-decoration: underline;
+}
+
+
 @media (max-width: 768px) {
   .copyright span {
     font-size: small;

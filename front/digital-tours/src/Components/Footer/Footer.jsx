@@ -12,6 +12,11 @@ const Footer = () => {
             <img src={logo} alt="logo digital tours" className={styles.logo} />
           </Link>
           <span>Copyright © {new Date().getFullYear()} Digital Tours </span>
+          <div className={styles.downloadLink}>
+            <a href="../../assets/politicas.pdf" download className={styles.downloadText}>
+              Politicas de la empresa
+            </a>
+          </div>
             <div onClick={() => window.scrollTo(0, 0)} className={styles.arrowUp}><FontawesomeIcon icon={faArrowUp} /></div>
         </div>
     </footer>

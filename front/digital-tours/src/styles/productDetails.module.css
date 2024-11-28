@@ -72,6 +72,34 @@
   height: auto;
 }
 
+.product_characteristics {
+  display: grid;
+  grid-template-columns: repeat(4, 0.2fr); /* Dos columnas de igual tamaño */
+  gap: 5px; /* Espacio entre las columnas y filas */
+}
+
+.feature {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.featureImage {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.featureName {
+  font-size: 12px;
+  color: #333;
+  text-align: center;
+  margin: 0;
+}
+
+
 @media (max-width: 992px) {
   .detail {
     align-items: flex-start;

@@ -1,0 +1,65 @@
+/* CardCharacteristic.module.css */
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 250px;
+    height: 250px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: var(--dark-white);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
+  .image {
+    width: 50%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 10px;
+  }
+  
+  .name {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--primary);
+    margin: 10px 0;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+  
+  .editButton,
+  .deleteButton {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .editButton {
+    background-color: var(--accent);
+  }
+  
+  .editButton:hover {
+    background-color: var(--primary);
+  }
+  
+  .deleteButton {
+    background-color: #f44336;
+  }
+  
+  .deleteButton:hover {
+    background-color: #e53935;
+  }
+  

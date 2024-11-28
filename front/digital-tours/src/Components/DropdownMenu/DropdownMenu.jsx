@@ -81,7 +81,7 @@ const DropdownMenu = () => {
         </button>
         {isOpen && (
           <div className={styles.dropdownContent}>
-            {getUserRol() === "ROLE_ADMIN" && (
+            {getUserRol().name === "ADMIN" && (
               <a onClick={handleAdminRedirect} className={styles.dropdownItem}>
                 Panel de Administración
               </a>

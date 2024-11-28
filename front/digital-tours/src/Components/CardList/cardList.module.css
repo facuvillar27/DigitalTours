@@ -94,3 +94,33 @@
   background-color: #dc3545;
   color: white;
 }
+
+.product_characteristics {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.feature {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.featureImage {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.featureName {
+  font-size: 14px;
+  color: #333;
+}
+
+.grayscale {
+  filter: grayscale(100%) contrast(150%) brightness(0.25);
+}

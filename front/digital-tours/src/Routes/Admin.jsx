@@ -9,7 +9,7 @@ const Admin = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (getUserRol() !== "ROLE_ADMIN") {
+    if (getUserRol().name !== "ADMIN") {
       navigate("/"); 
     }
   }, [navigate]);

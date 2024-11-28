@@ -4,6 +4,7 @@ import styles from "../styles/users.module.css";
 import CardUser from "../Components/CardUser/CardUser";
 import Spinner from "../Components/Spinner/Spinner";
 import { getUsers, deleteUser, updateUser } from "../services/userService";
+import { id } from "react-day-picker/locale";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -17,6 +18,7 @@ const Users = () => {
     const loadUsers = async () => {
       try {
         const usersList = await getUsers();
+        console.log('Usuarios:', usersList);
         setUsers(usersList);
       } catch (error) {
         console.error("Error loading users:", error);
@@ -55,6 +57,7 @@ const Users = () => {
       const updatedUsers = users.map((user) =>
         user.id === updatedUser.id ? updatedUser : user
       );
+      console.log('Usuarios actualizados:', updatedUsers);
       setUsers(updatedUsers);
       setShowEditModal(false);
     } catch (error) {
@@ -108,11 +111,15 @@ const Users = () => {
                 <form
                   onSubmit={(e) => {
                     e.preventDefault();
+                    let id_role = e.target.role.value === "ADMIN" ? 1 : 2;       
                     const updatedUser = {
                       ...userToEdit,
                       username: e.target.username.value,
                       email: e.target.email.value,
-                      role: e.target.role.value,
+                      role: {
+                        id: id_role,
+                        name: e.target.role.value
+                      },
                     };
                     handleEdit(updatedUser);
                   }}
@@ -137,9 +144,9 @@ const Users = () => {
                   </div>
                   <div>
                     <label htmlFor="role">Rol:</label>
-                    <select name="role" defaultValue={userToEdit.role}>
-                      <option value="ROLE_USER">Usuario</option>
-                      <option value="ROLE_ADMIN">Administrador</option>
+                    <select name="role" defaultValue={userToEdit.role.name}>
+                      <option value="USER">Usuario</option>
+                      <option value="ADMIN">Administrador</option>
                     </select>
                   </div>
                   <div className={styles.modalButtons}>

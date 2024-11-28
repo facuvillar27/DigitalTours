@@ -19,34 +19,22 @@ const ProductDetails = () => {
       const response = await axios.get(
         `http://localhost:8080/digitaltours/api/v1/products/${id}`
       );
+      console.log('Response:', response.data.data);
       setProduct(response.data.data);
+      const images = response.data.data.imageUrls.map((url) => ({
+        original: url,
+        thumbnail: url,
+      }));
+      setImages(images);
+      setLoading(false);
     } catch (error) {
       console.error("Error al obtener el producto:", error);
     }
   };
 
-  const fetchProductImages = async () => {
-    try {
-      const response = await axios.get(
-        "http://localhost:8080/digitaltours/api/v1/images"
-      );
-      const productImages = response.data.data
-        .filter((image) => image.idProducto === Number(id))
-        .map((image) => ({
-          original: image.urlImagen,
-          thumbnail: image.urlImagen,
-        }));
-      setImages(productImages);
-    } catch (error) {
-      console.error("Error al obtener las imágenes:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   useEffect(() => {
     fetchProductDetails();
-    fetchProductImages();
   }, [id]);
 
   if (loading) {
@@ -68,12 +56,13 @@ const ProductDetails = () => {
           Volver
         </button>
         <div className={styles.gallery_container}>
-          <ImageGallery
-            items={images}
-            originalHeight={40}
-            originalWidth={80}
-            className={styles.gallery_box}
-          />
+        <ImageGallery
+          items={images}
+          showThumbnails={true}
+          showFullscreenButton={true}
+          showPlayButton={false}
+          className={styles.gallery_box}
+        /> 
         </div>
         <div className={styles.detail_info}>
           <h2>{product.name}</h2>

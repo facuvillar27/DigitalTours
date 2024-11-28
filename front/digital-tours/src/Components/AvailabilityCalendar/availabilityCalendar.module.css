@@ -2,9 +2,13 @@
     background-color: #ffcccc !important;
     border-radius: 50% !important;
   }
-  
+
   .available {
-    background-color: #ccffcc !important;
-    border-radius: 50% !important;
+    background-color: var(--accent-light) !important;
+    border-radius: 45% !important;
   }
-  
+
+  .calendar_container{
+    margin-top: 50px;
+    margin-bottom: 10px;
+  }

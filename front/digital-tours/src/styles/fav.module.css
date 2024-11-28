@@ -2,8 +2,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 77vh;
     flex-direction: column;
+
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
 }
 
 .cardContainer{
@@ -11,6 +18,7 @@
     grid-template-columns: 1fr 1fr;
     justify-content: center;
     padding: 12px;
+    margin-top: 2rem;
     width: 90%;
     background-color: var(--dark-white);
     border-radius: 10px;

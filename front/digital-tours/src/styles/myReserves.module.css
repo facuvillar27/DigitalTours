@@ -1,0 +1,85 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f5f7fa;
+    min-height: 100vh;
+  }
+  
+  .title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .message {
+    font-size: 1.2rem;
+    color: #666;
+  }
+  
+  .reservationDetails {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 10px 0;
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .text {
+    font-size: 1rem;
+    color: #444;
+    margin: 0;
+  }
+  
+  .text span {
+    font-weight: bold;
+    color: #007bff;
+  }
+  
+  /* Spinner alignment */
+  .spinnerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .cancelButton {
+    background-color: #ff4d4f;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cancelButton:hover {
+    background-color: #d9363e;
+  }
+  
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .reservationDetails {
+      width: 95%;
+    }
+  
+    .title {
+      font-size: 1.5rem;
+    }
+  }
+
+  
+
+  

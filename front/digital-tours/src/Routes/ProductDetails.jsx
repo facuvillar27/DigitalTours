@@ -5,6 +5,7 @@ import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import styles from "../styles/productDetails.module.css";
 import Spinner from "../Components/Spinner/Spinner";
+import AvailabilityCalendar from "../Components/AvailabilityCalendar/AvailabilityCalendar";
 
 const ProductDetails = () => {
   const navigate = useNavigate();
@@ -30,8 +31,8 @@ const ProductDetails = () => {
         "http://localhost:8080/digitaltours/api/v1/images"
       );
       const productImages = response.data.data
-        .filter(image => image.idProducto === Number(id))
-        .map(image => ({
+        .filter((image) => image.idProducto === Number(id))
+        .map((image) => ({
           original: image.urlImagen,
           thumbnail: image.urlImagen,
         }));
@@ -79,6 +80,7 @@ const ProductDetails = () => {
           <p>{product.description}</p>
           <h3>{product.price} USD</h3>
         </div>
+        <AvailabilityCalendar productId={id} />
       </div>
     </div>
   );

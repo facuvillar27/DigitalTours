@@ -1,0 +1,10 @@
+.reserved {
+    background-color: #ffcccc !important;
+    border-radius: 50% !important;
+  }
+  
+  .available {
+    background-color: #ccffcc !important;
+    border-radius: 50% !important;
+  }
+  

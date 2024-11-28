@@ -12,7 +12,7 @@ const CardUser = ({ item, onDelete, onEdit }) => {
           <div className={styles.userDetails}>
             <h3 className={styles.user_name}>{item.username}</h3>
             <p className={styles.user_email}>{item.email}</p>
-            <p className={styles.user_role}>{item.role}</p>
+            <p className={styles.user_role}>{item.role.name}</p>
           </div>
         </div>
         <div className={styles.buttonContainer}>

@@ -77,14 +77,16 @@
 
   .home_body {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Ajusta el número de columnas si es necesario */
-    gap: 20px; /* Espacio entre elementos */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Permite que las cards tengan un tamaño fijo pero se adapten al contenedor */
+    gap: 20px; /* Espacio entre las cards */
     padding: 40px;
     max-width: 1350px;
     margin: auto;
     border-radius: 10px;
     background-color: var(--dark-white);
+    overflow-x: hidden;
   }
+  
 
   .cta_text{
     text-align: center;

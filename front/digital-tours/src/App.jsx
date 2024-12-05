@@ -17,6 +17,7 @@ import { AuthProvider } from "./services/authContext";
 import Fav from "./Routes/Fav";
 import ReservationDetails from "./Routes/ReservationDetails";
 import MyReserves from "./Routes/MyReserves";
+import Policies from "./Routes/Policies";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path="/mis-favoritos" element={<Fav />}></Route>
           <Route path="/products/:id/reserve-confirmation" element={<ReservationDetails />}></Route>
           <Route path="/reserves" element={<MyReserves />}></Route>
+          <Route path="/policies" element={<Policies />}></Route>
         </Routes>
         <Footer />
       </div>

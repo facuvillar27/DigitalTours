@@ -13,9 +13,9 @@ const Footer = () => {
           </Link>
           <span>Copyright © {new Date().getFullYear()} Digital Tours </span>
           <div className={styles.downloadLink}>
-            <a href="../../assets/politicas.pdf" download className={styles.downloadText}>
-              Politicas de la empresa
-            </a>
+            <Link to="/policies" className={styles.policies_link}>
+              <p>Politicas de la empresa</p>
+            </Link>
           </div>
             <div onClick={() => window.scrollTo(0, 0)} className={styles.arrowUp}><FontawesomeIcon icon={faArrowUp} /></div>
         </div>

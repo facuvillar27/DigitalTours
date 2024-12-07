@@ -28,6 +28,7 @@ export const getProductById = async (id) => {
 export const createProduct = async (productData) => {
   try {
     const response = await axios.post(API_URL, productData);
+    console.log("Respuesta del backend:", response);
     return response.data;
   } catch (error) {
     console.error("Error al crear el producto:", error);

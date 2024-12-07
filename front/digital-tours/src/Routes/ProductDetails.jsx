@@ -6,7 +6,7 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import styles from "../styles/productDetails.module.css";
 import Spinner from "../Components/Spinner/Spinner";
 import AvailabilityCalendar from "../Components/AvailabilityCalendar/AvailabilityCalendar";
-import { set } from "react-hook-form";
+//import { set } from "react-hook-form";
 
 const ProductDetails = () => {
   const navigate = useNavigate();
@@ -36,20 +36,26 @@ const ProductDetails = () => {
     }
   };
 
-
   useEffect(() => {
     const fetchFeatures = async () => {
       try {
-        const response = await fetch("http://localhost:8080/digitaltours/api/v1/features");
+        const response = await fetch(
+          "http://localhost:8080/digitaltours/api/v1/features"
+        );
         const data = await response.json();
-        setFeaturesList(data.data);
+
+        const filteredFeatures = data.data.filter(
+          (feature) =>
+            product && product.features.some((f) => f.id === feature.id)
+        );
+
+        setFeaturesList(filteredFeatures);
       } catch (error) {
         console.error("Error al cargar las características:", error);
       }
     };
     fetchFeatures();
-  }, []);
-
+  }, [product]);
 
   useEffect(() => {
     fetchProductDetails();
@@ -74,32 +80,34 @@ const ProductDetails = () => {
           Volver
         </button>
         <div className={styles.gallery_container}>
-        <ImageGallery
-          items={images}
-          showThumbnails={true}
-          showFullscreenButton={true}
-          showPlayButton={false}
-          className={styles.gallery_box}
-        /> 
+          <ImageGallery
+            items={images}
+            showThumbnails={true}
+            showFullscreenButton={true}
+            showPlayButton={false}
+            className={styles.gallery_box}
+          />
         </div>
         <div className={styles.detail_info}>
           <h2>{product.name}</h2>
           <p>{product.description}</p>
           <div className={styles.product_characteristics}>
-                {featuresList.map((feature) => {
-                  const hasFeature = product.features.some(f => f.id === feature.id);
-                  return (
-                    <div key={feature.id} className={styles.feature}>
-                      <img
-                        src={feature.urlImg}
-                        alt={feature.name}
-                        className={styles.featureImage}
-                      />
-                      <p className={styles.featureName}>{feature.name}</p>
-                    </div>
-                  );
-                })}
-              </div>
+            {featuresList.map((feature) => {
+              const hasFeature = product.features.some(
+                (f) => f.id === feature.id
+              );
+              return (
+                <div key={feature.id} className={styles.feature}>
+                  <img
+                    src={feature.urlImg}
+                    alt={feature.name}
+                    className={styles.featureImage}
+                  />
+                  <p className={styles.featureName}>{feature.name}</p>
+                </div>
+              );
+            })}
+          </div>
           <h3>{product.price} USD</h3>
         </div>
         <AvailabilityCalendar productId={id} />

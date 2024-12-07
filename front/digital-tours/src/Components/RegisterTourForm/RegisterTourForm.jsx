@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { createProduct, getProducts } from "../../services/productService"; // Asegúrate de que la ruta sea correcta
 import styles from "./RegisterTourForm.module.css";
-import TagsInput from "../TagsInput/TagsInput";
+//import TagsInput from "../TagsInput/TagsInput";
 
 const categories = [
   { id: 1, name: "Gastronomía" },
@@ -19,6 +19,14 @@ const RegisterTourForm = () => {
     description: "",
     price: "",
     image: "",
+    duration: "",
+    city: {
+      id: 0,
+      name: "",
+      country: {
+        countryName: "",
+      },
+    },
   });
   const [confirmationMessage, setConfirmationMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -30,6 +38,7 @@ const RegisterTourForm = () => {
     const fetchProducts = async () => {
       try {
         const response = await getProducts(); // Llamamos a la función del productService
+        console.log(response);
         setProducts(response); // Asumiendo que el API devuelve productos bajo 'data'
       } catch (error) {
         console.error("Error al obtener productos", error);
@@ -41,10 +50,32 @@ const RegisterTourForm = () => {
   // Manejar cambios en el formulario
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+
+    if (name === "country") {
+      setFormData((prevData) => ({
+        ...prevData,
+        city: {
+          ...prevData.city,
+          country: {
+            ...prevData.city.country,
+            countryName: value,
+          },
+        },
+      }));
+    } else if (name === "city") {
+      setFormData((prevData) => ({
+        ...prevData,
+        city: {
+          ...prevData.city,
+          name: value,
+        },
+      }));
+    } else {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
   };
 
   // Manejar el envío del formulario
@@ -66,7 +97,9 @@ const RegisterTourForm = () => {
       }
 
       // Validar categoría seleccionada
-      const selectedCategory = categories.find(cat => cat.id === Number(formData.category));
+      const selectedCategory = categories.find(
+        (cat) => cat.id === Number(formData.category)
+      );
 
       if (!selectedCategory) {
         setErrorMessage("La categoría seleccionada no es válida.");
@@ -75,7 +108,7 @@ const RegisterTourForm = () => {
 
       // Crear el nuevo producto
       const newProduct = {
-        id: 0, // Suponiendo que el backend asignará el ID
+        id: 0,
         name: formData.name,
         description: formData.description,
         category: {
@@ -83,10 +116,30 @@ const RegisterTourForm = () => {
           name: selectedCategory.name,
         },
         price: Number(formData.price),
-        image: formData.image || "https://example.com/default.jpg",
+        duration: Number(formData.duration),
+        city: {
+          id: 0,
+          name: formData.city.name,
+          country: {
+            id: 0,
+            countryName: formData.city.country.countryName,
+          },
+        },
+        imageUrls: [formData.image || "https://example.com/default.jpg"],
+        features: [],
+        // id: 0, // Suponiendo que el backend asignará el ID
+        // name: formData.name,
+        // description: formData.description,
+        // category: {
+        //   id: selectedCategory.id,
+        //   name: selectedCategory.name,
+        // },
+        // price: Number(formData.price),
+        // image: formData.image || "https://example.com/default.jpg",
       };
 
       // Crear el producto usando la función createProduct del servicio
+      console.log("Nuevo pruducto", newProduct);
       await createProduct(newProduct);
 
       setConfirmationMessage("¡Producto registrado exitosamente!");
@@ -103,9 +156,16 @@ const RegisterTourForm = () => {
           description: "",
           price: "",
           image: "",
+          duration: "",
+          city: {
+            id: 0,
+            name: "",
+            country: {
+              countryName: "",
+            },
+          },
         });
       }, 3000);
-
     } catch (error) {
       console.error("Error al registrar el producto:", error);
       alert("Error al registrar el producto");
@@ -145,10 +205,10 @@ const RegisterTourForm = () => {
             </select>
           </label>
           <br />
-          <label className={styles.product_name}>
+          {/* <label className={styles.product_name}>
             Caracteristicas:
-            <TagsInput color="blue" onChange={tags => console.log(tags)} />
-          </label>
+            <TagsInput color="blue" onChange={(tags) => console.log(tags)} />
+          </label> */}
           <br />
           <label className={styles.product_name}>
             Descripción:
@@ -172,6 +232,39 @@ const RegisterTourForm = () => {
               required
             />
           </label>
+          <label className={styles.product_name}>
+            Duracion (hrs):
+            <input
+              className={styles.input}
+              type="text"
+              name="duration"
+              value={formData.duration}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label className={styles.product_name}>
+            Pais:
+            <input
+              className={styles.input}
+              type="text"
+              name="country"
+              value={formData.city.country.countryName}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label className={styles.product_name}>
+            Ciudad:
+            <input
+              className={styles.input}
+              type="text"
+              name="city"
+              value={formData.city.name}
+              onChange={handleChange}
+              required
+            />
+          </label>
           <br />
           <label className={styles.product_name}>
             Imagen (URL):
@@ -189,16 +282,26 @@ const RegisterTourForm = () => {
           {formData.image && (
             <div>
               <h4>Vista Previa de la Imagen:</h4>
-              <img src={formData.image} alt="Vista previa" style={{ width: "100px", height: "100px" }} />
+              <img
+                src={formData.image}
+                alt="Vista previa"
+                style={{ width: "100px", height: "100px" }}
+              />
             </div>
           )}
           {(errorMessage || confirmationMessage) && (
             <div className={styles.message}>
-              {confirmationMessage && <div className={styles.success}>{confirmationMessage}</div>}
-              {errorMessage && <div className={styles.error}>{errorMessage}</div>}
+              {confirmationMessage && (
+                <div className={styles.success}>{confirmationMessage}</div>
+              )}
+              {errorMessage && (
+                <div className={styles.error}>{errorMessage}</div>
+              )}
             </div>
           )}
-          <button className={styles.button} type="submit">Registrar Producto</button>
+          <button className={styles.button} type="submit">
+            Registrar Producto
+          </button>
         </form>
       ) : (
         <div className={styles.confirmation}>

@@ -86,8 +86,16 @@ const Categories = () => {
   ];
 
   return (
-    <div className={styles.container}>
-      <div className={styles.cat_container}>
+    <div
+      className={
+        filteredTours.length === 0 ? styles.container_empty : styles.container
+      }
+    >
+      <div
+        className={
+          isLoading ? styles.cat_container_loading : styles.cat_container
+        }
+      >
         <h2>Tours</h2>
         <div className={styles.filters}>
           <h3>Filtros</h3>

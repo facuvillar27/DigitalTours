@@ -1,4 +1,6 @@
 import { Route, Routes } from "react-router-dom";
+import WhatsAppButton from "./Components/WhatsAppButton/WhatsAppButton";
+
 import Navbar from "./Components/Navbar/Navbar";
 import Footer from "./Components/Footer/Footer";
 import Home from "./Routes/Home";
@@ -18,6 +20,7 @@ import Fav from "./Routes/Fav";
 import ReservationDetails from "./Routes/ReservationDetails";
 import MyReserves from "./Routes/MyReserves";
 import Policies from "./Routes/Policies";
+
 
 function App() {
   return (
@@ -42,6 +45,7 @@ function App() {
           <Route path="/reserves" element={<MyReserves />}></Route>
           <Route path="/policies" element={<Policies />}></Route>
         </Routes>
+        <WhatsAppButton />
         <Footer />
       </div>
     </AuthProvider>

@@ -65,6 +65,7 @@ const Fav = () => {
                 isFavorited={true}
                 onRemove={removeFavorite}
                 shouldUnmountFav={true}
+                isFromFavPage={true}
               />
             ))
           ) : (

@@ -2,8 +2,8 @@ import { FaWhatsapp } from "react-icons/fa";
 import "./WhatsAppButton.css"; // Archivo CSS
 
 const WhatsAppButton = () => {
-  const numToSend = "59898559874";
-  const messageToSend = "Soy un tipo tranquilo, chill de cojones";
+  const numToSend = "59892378972";
+  const messageToSend = "Hola, me gustaría contactarme con un asesor comercial.";
   const encodedMessageToSend = encodeURIComponent(messageToSend);
   const href = `https://wa.me/${numToSend}?text=${encodedMessageToSend}`;
 

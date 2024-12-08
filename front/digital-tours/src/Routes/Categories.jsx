@@ -33,7 +33,7 @@ const Categories = () => {
     const category = queryParams.get("category");
     if (category) {
       const newFilteredTours = tours.filter(
-        (tour) => tour.category.name === category
+        (tour) => tour.category === category
       );
       setFilteredTours(newFilteredTours);
       setSelectedCategories([category]);
@@ -70,7 +70,7 @@ const Categories = () => {
       setFilteredTours(tours);
     } else {
       const newFilteredTours = tours.filter((tour) =>
-        newSelectedCategories.includes(tour.category.name)
+        newSelectedCategories.includes(tour.category)
       );
       setFilteredTours(newFilteredTours);
     }
@@ -82,7 +82,7 @@ const Categories = () => {
   };
 
   const uniqueCategories = [
-    ...new Set(tours.map((tour) => tour.category.name)),
+    ...new Set(tours.map((tour) => tour.category)),
   ];
 
   return (

@@ -52,12 +52,37 @@ const Tours = () => {
     }
   };
 
-  const handleEdit = async (updatedTour) => {
+  // const handleEdit = async (updatedTour) => {
+  //   try {
+  //     await updateProduct(updatedTour.id, updatedTour);
+  //     setProducts(products.map((product) =>
+  //       product.id === updatedTour.id ? updatedTour : product
+  //     ));
+  //     setShowEditModal(false);
+  //   } catch (error) {
+  //     console.error("Error al actualizar el tour:", error);
+  //   }
+  // };
+
+  const handleEdit = async (updatedFields) => {
     try {
+      // Combina el objeto existente con los campos actualizados
+      const updatedTour = {
+        ...selectedTour,
+        ...updatedFields,
+        category: {
+          ...selectedTour.category,
+          ...updatedFields.category,
+        }
+      };
+
       await updateProduct(updatedTour.id, updatedTour);
+
+      // Actualiza la lista de productos
       setProducts(products.map((product) =>
         product.id === updatedTour.id ? updatedTour : product
       ));
+
       setShowEditModal(false);
     } catch (error) {
       console.error("Error al actualizar el tour:", error);
@@ -114,7 +139,7 @@ const Tours = () => {
         <div className={styles.modal}>
           <div className={styles.modalContent}>
             <h2>Editar Tour</h2>
-            <form
+            {/* <form
               onSubmit={(e) => {
                 e.preventDefault();
                 handleEdit({
@@ -127,6 +152,20 @@ const Tours = () => {
                   },
                   price: parseFloat(e.target.price.value),
                   image: selectedTour.image,
+                });
+              }}
+            > */}
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleEdit({
+                  name: e.target.name.value || selectedTour.name,
+                  description: e.target.description.value || selectedTour.description,
+                  category: {
+                    id: parseInt(e.target.category.value) || selectedTour.category.id,
+                    name: e.target.category.options[e.target.category.selectedIndex].text || selectedTour.category.name,
+                  },
+                  price: parseFloat(e.target.price.value) || selectedTour.price,
                 });
               }}
             >

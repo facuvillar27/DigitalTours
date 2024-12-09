@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 import { getIdFromToken } from "../../services/authService";
 import axios from "axios";
 
-const Card = ({ item, isFavorited: initialFavorited, onRemove, shouldUnmountFav = false, isFromFavPage = false }) => {
+const Card = ({ item, isFavorited: initialFavorited, onRemove, shouldUnmountFav = false }) => {
   const { isAuthenticated } = useAuth();
   const [isFavorited, setIsFavorited] = useState(initialFavorited || false);
   const defaultImage = "../assets/RioDeJaneiro.png";
@@ -85,13 +85,13 @@ const Card = ({ item, isFavorited: initialFavorited, onRemove, shouldUnmountFav 
         <div className={styles.card}>
           <div className={styles.card_img_container}>
             <img
-              src={isFromFavPage ? item.imageUrls[0] : item.mainImage}
+              src={item.imageUrls[0]}
               alt="Imagen del tour"
               className={styles.card_img}
               onError={handleImageError}
             />
             {iconos.map((icono, index) => {
-              if ((isFromFavPage ? item.category.name : item.category) === icono.topic) {
+              if (item.category.name === icono.topic) {
                 return (
                   <div
                     className={styles.card_icon_container}
@@ -120,14 +120,14 @@ const Card = ({ item, isFavorited: initialFavorited, onRemove, shouldUnmountFav 
             )}
           </div>
           {iconos.map((icono, index) => {
-            if ((isFromFavPage ? item.category.name : item.category) === icono.topic) {
+            if (item.category.name === icono.topic) {
               return (
                 <p
                   className={styles.product_type}
                   style={{ color: icono.color }}
                   key={index}
                 >
-                  {isFromFavPage ? item.category.name : item.category}
+                  {item.category.name}
                 </p>
               );
             } else {

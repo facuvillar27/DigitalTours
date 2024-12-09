@@ -11,7 +11,7 @@ const CardList = ({ item, onDelete, onEdit }) => {
     const fetchFeatures = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8080/digitaltours/api/v1/features"
+          "http://34.229.166.90:8080/digitaltours/api/v1/features"
         );
         const data = await response.json();
         console.log("Características:", data.data);
@@ -36,7 +36,7 @@ const CardList = ({ item, onDelete, onEdit }) => {
     try {
       if (isFeaturePresent) {
         const response = await fetch(
-          `http://localhost:8080/digitaltours/api/v1/tours/${tourId}/features/${featureId}`,
+          `http://34.229.166.90:8080/digitaltours/api/v1/tours/${tourId}/features/${featureId}`,
           {
             method: "DELETE",
           }
@@ -52,7 +52,7 @@ const CardList = ({ item, onDelete, onEdit }) => {
         }
       } else {
         const response = await fetch(
-          `http://localhost:8080/digitaltours/api/v1/tours/${tourId}/features/${featureId}`,
+          `http://34.229.166.90:8080/digitaltours/api/v1/tours/${tourId}/features/${featureId}`,
           {
             method: "POST",
           }

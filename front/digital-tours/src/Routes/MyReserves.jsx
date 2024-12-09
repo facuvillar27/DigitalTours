@@ -16,7 +16,7 @@ const MyReserves = () => {
             const userId = getIdFromToken(token);
         
             try {
-            const reservesResponse = await axios.get(`http://localhost:8080/digitaltours/api/v1/reservations/user/${userId}`); 
+            const reservesResponse = await axios.get(`http://34.229.166.90:8080/digitaltours/api/v1/reservations/user/${userId}`); 
             console.log('Reservas:', reservesResponse.data);
             const reservesData = reservesResponse.data.data;
 
@@ -24,12 +24,12 @@ const MyReserves = () => {
                 reservesData.map(async (reservation) => {
                     const { id, dateId, numberOfPeople, confirmationNumber } = reservation;
 
-                    const dateResponse = await axios.get(`http://localhost:8080/digitaltours/api/v1/dates/${dateId}/product`);
+                    const dateResponse = await axios.get(`http://34.229.166.90:8080/digitaltours/api/v1/dates/${dateId}/product`);
                     console.log('Fecha:', dateResponse.data);
                     const tourId = dateResponse.data.data.productId;
                     const reservationDate = dateResponse.data.data.date;
 
-                    const tourResponse = await axios.get(`http://localhost:8080/digitaltours/api/v1/products/${tourId}`);
+                    const tourResponse = await axios.get(`http://34.229.166.90:8080/digitaltours/api/v1/products/${tourId}`);
                     const tourName = tourResponse.data.data.name;
 
                     return {
@@ -55,7 +55,7 @@ const MyReserves = () => {
 
     const handleCancelReservation = async (id_reservation) => {
         try {
-            await axios.delete(`http://localhost:8080/digitaltours/api/v1/reservation/${id_reservation}`);
+            await axios.delete(`http://34.229.166.90:8080/digitaltours/api/v1/reservation/${id_reservation}`);
             setReservations(prevReservations => prevReservations.filter(reservation => reservation.id_reservation !== id_reservation));
             alert('Reserva cancelada exitosamente');
         } catch (error) {

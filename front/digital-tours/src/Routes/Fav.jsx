@@ -14,12 +14,12 @@ const Fav = () => {
     const userId = getIdFromToken(token);
 
     axios
-      .get(`http://localhost:8080/digitaltours/api/v1/favorites/${userId}`)
+      .get(`http://34.229.166.90:8080/digitaltours/api/v1/favorites/${userId}`)
       .then(async (response) => {
         const favoriteTours = response.data.data;
         const tourDetailsRequests = favoriteTours.map((fav) =>
           axios.get(
-            `http://localhost:8080/digitaltours/api/v1/products/${fav.tourId}`
+            `http://34.229.166.90:8080/digitaltours/api/v1/products/${fav.tourId}`
           )
         );
 

@@ -15,7 +15,7 @@ const Categories = () => {
   const fetchProducts = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/digitaltours/api/v1/products"
+        "http://34.229.166.90:8080/digitaltours/api/v1/products"
       );
       const tours = response.data.data;
       setTours(tours);

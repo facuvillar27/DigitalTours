@@ -27,7 +27,7 @@ export const reserve = async (numberOfPeople, id) => {
     }
 
     try {
-        const response = await axios.post("http://localhost:8080/digitaltours/api/v1/reservation", reservationData); 
+        const response = await axios.post("http://34.229.166.90:8080/digitaltours/api/v1/reservation", reservationData); 
 
         if (response.data.meta.statusCode === 200) {
         const reservationInfo = {

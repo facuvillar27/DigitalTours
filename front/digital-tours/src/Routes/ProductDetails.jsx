@@ -20,7 +20,7 @@ const ProductDetails = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        `http://localhost:8080/digitaltours/api/v1/products/${id}`
+        `http://34.229.166.90:8080/digitaltours/api/v1/products/${id}`
       );
       const productData = response.data.data;
       setProduct(productData);
@@ -40,7 +40,7 @@ const ProductDetails = () => {
     const fetchFeatures = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8080/digitaltours/api/v1/features"
+          "http://34.229.166.90:8080/digitaltours/api/v1/features"
         );
         const data = await response.json();
 

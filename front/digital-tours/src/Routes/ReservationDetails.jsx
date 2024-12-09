@@ -20,7 +20,7 @@ const ReservationDetails = () => {
           confirmationCode,
         } = location.state || {};
         const response = await axios.get(
-          `http://localhost:8080/digitaltours/api/v1/products/${productId}`
+          `http://34.229.166.90:8080/digitaltours/api/v1/products/${productId}`
         );
         if (numberOfPeople && date && tourId && successMessage) {
           setReservationData({

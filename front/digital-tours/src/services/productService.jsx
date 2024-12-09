@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/digitaltours/api/v1/products";
+const API_URL = "http://34.229.166.90:8080/digitaltours/api/v1/products";
 
 // Obtener todos los productos
 export const getProducts = async () => {

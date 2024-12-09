@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/digitaltours/api/v1/features";
+const API_URL = "http://34.229.166.90:8080/digitaltours/api/v1/features";
 
 // Obtener todas las características
 export const getCharacteristics = async () => {

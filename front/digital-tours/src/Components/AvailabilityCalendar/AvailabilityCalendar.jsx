@@ -17,7 +17,7 @@ const AvailabilityCalendar = ({ productId }) => {
     try {
       setLoading(true);
       const response = await axios.get(
-        `http://localhost:8080/digitaltours/api/v1/dates/${productId}`
+        `http://34.229.166.90:8080/digitaltours/api/v1/dates/${productId}`
       );
       const dates = response.data.data;
       // Filtrar y mapear fechas

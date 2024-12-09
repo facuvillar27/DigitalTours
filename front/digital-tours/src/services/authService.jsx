@@ -1,7 +1,7 @@
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
-const API_URL = "http://localhost:8080/digitaltours/api";
+const API_URL = "http://34.229.166.90:8080/digitaltours/api";
 const errorLogin = "Incorrect username or password";
 
 // Función para manejar respuestas y errores comunes

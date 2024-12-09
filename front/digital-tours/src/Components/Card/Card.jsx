@@ -64,10 +64,10 @@ const Card = ({ item, isFavorited: initialFavorited, onRemove, shouldUnmountFav 
 
     try {
       if (!isFavorited) {
-        await axios.post(`http://localhost:8080/digitaltours/api/v1/favorites`, body);
+        await axios.post(`http://34.229.166.90:8080/digitaltours/api/v1/favorites`, body);
         setIsFavorited(true);
       } else {
-        await axios.delete(`http://localhost:8080/digitaltours/api/v1/favorites/${userId}/${tourId}`);
+        await axios.delete(`http://34.229.166.90:8080/digitaltours/api/v1/favorites/${userId}/${tourId}`);
         setIsFavorited(false);
 
         if (shouldUnmountFav && onRemove) {

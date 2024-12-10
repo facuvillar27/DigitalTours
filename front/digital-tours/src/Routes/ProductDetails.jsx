@@ -6,7 +6,8 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import styles from "../styles/productDetails.module.css";
 import Spinner from "../Components/Spinner/Spinner";
 import AvailabilityCalendar from "../Components/AvailabilityCalendar/AvailabilityCalendar";
-//import { set } from "react-hook-form";
+import { getIdFromToken } from "../services/authService";
+
 
 const ProductDetails = () => {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ const ProductDetails = () => {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [featuresList, setFeaturesList] = useState([]);
+  const [userId, setUserId] = useState(null);
 
   const fetchProductDetails = async () => {
     setLoading(true);
@@ -36,6 +38,12 @@ const ProductDetails = () => {
     }
   };
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const userIdFromToken = getIdFromToken(token);
+    setUserId(userIdFromToken);
+  }, []);
+  
   useEffect(() => {
     const fetchFeatures = async () => {
       try {
@@ -110,7 +118,21 @@ const ProductDetails = () => {
           </div>
           <h3>{product.price} USD</h3>
         </div>
-        <AvailabilityCalendar productId={id} />
+        {userId ? (
+          <AvailabilityCalendar productId={id} />
+        ) : (
+          <div className={styles.loginPrompt}>
+            <p className={styles.loginMessage}>
+              Inicia sesión o registrese para reservar este tour
+            </p>
+            <button
+              className={styles.loginButton}
+              onClick={() => navigate("/login")}
+            >
+              Ir a Login
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

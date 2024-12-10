@@ -1,6 +1,5 @@
 import { Formik, Form, Field } from "formik";
 import { useNavigate } from "react-router-dom";
-import { reserve as reserveTour } from "../../services/tourService";
 import styles from "./reserveForm.module.css";
 import * as Yup from "yup";
 
@@ -17,27 +16,17 @@ const ReserveForm = ({ date, id, productId }) => {
 
   const handleSubmit = async (
     values,
-    { setSubmitting, resetForm, setStatus }
+    { setSubmitting }
   ) => {
-    const response = await reserveTour(values.numberOfPeople, id);
-    if (response.message === "Reserva exitosa") {
-      setStatus({ successMessage: "¡Reserva exitosa! Gracias por reservar." });
-      navigate(`/products/${productId}/reserve-confirmation`, {
-        state: {
-          numberOfPeople: values.numberOfPeople,
-          date,
-          tourId: id,
-          productId,
-          confirmationCode: response.confirmationNumber,
-          successMessage: "¡Reserva exitosa! Gracias por reservar.",
-        },
-      });
-      setTimeout(() => {
-        resetForm();
-      }, 3000);
-    } else {
-      setStatus({ errorMessage: "Error en la reserva. Intenta nuevamente." });
-    }
+    navigate(`/products/${productId}/reserve-confirmation`, {
+      state: {
+        numberOfPeople: values.numberOfPeople,
+        date,
+        tourId: id,
+        productId,
+        successMessage: "",
+      },
+    });
     setSubmitting(false);
   };
 
@@ -90,7 +79,7 @@ const ReserveForm = ({ date, id, productId }) => {
                   className={styles.button}
                   disabled={isSubmitting}
                 >
-                  Confirmar
+                  Reservar
                 </button>
               </div>
             </Form>

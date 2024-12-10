@@ -99,6 +99,24 @@
   margin: 0;
 }
 
+.loginButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 50px;
+  color: var(--dark-white);
+  font-size: 24px;
+  font-weight: var(--font-h2-h3-weight);
+  border-radius: 10px;
+  background-color: var(--primary);
+  transition: transform 0.1s ease;
+  border: none;
+}
+
+.loginButton:hover {
+  transform: scale(1.1);
+}
 
 @media (max-width: 992px) {
   .detail {

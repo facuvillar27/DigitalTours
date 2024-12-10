@@ -101,6 +101,12 @@ const AvailabilityCalendar = ({ productId }) => {
     <div className={styles.calendar_container}>
       <h3>Disponibilidad del producto</h3>
       <Calendar tileClassName={tileClassName} onClickDay={handleDateClick} />
+      <p>
+        <span className={styles.reference_available}>14</span>: disponible
+      </p>
+      <p>
+        <span className={styles.reference_reserved}>8</span>: reservado
+      </p>
       {selectedDate && (
         <ReserveForm
           date={selectedDate}

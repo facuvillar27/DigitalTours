@@ -1,14 +1,37 @@
 .reserved {
-    background-color: #ffcccc !important;
-    border-radius: 50% !important;
+    text-decoration-line:line-through;
+    color:red;
   }
 
   .available {
-    background-color: var(--accent-light) !important;
-    border-radius: 45% !important;
+    background-color: rgb(132, 208, 132) !important;
+    border-radius: 50% !important;
+    color: white !important;
   }
 
   .calendar_container{
     margin-top: 50px;
     margin-bottom: 10px;
   }
+
+  .reference_available{ 
+    width: 45px;
+    height: 35px; 
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 14px; 
+    background-color: rgb(132, 208, 132);
+    color: white;
+  }
+
+.reference_reserved {
+    text-decoration-line: line-through;
+    width: 45px;
+    height: 35px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+

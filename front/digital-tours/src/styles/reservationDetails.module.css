@@ -1,95 +1,53 @@
-.container {
+.detail {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80vh;
+    flex-direction: column;
+    margin: 20px;
 }
 
-.reservationDetails {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 10px;
-    border: none;
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.20);
-    height: 70%;
-    width: 40%;
+.detailBox {
+    width: 80%;
+    max-width: 1200px;
     background-color: var(--dark-white);
-}
-
-.reservationDetails > h1 {
-    margin-bottom: 50px;
-}
-
-.reservationDetails > .details {
-    align-items: start;
-}
-
-.reservation {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
     padding: 20px;
-    margin: 50px;
-    width: 600px;
-    border-radius: 10px;
-    background-color: var(--dark-white);
-}
-
-.reservationTitle {
-    font-size: 24px;
-    font-weight: var(--font-p-weight);
-    color: var(--primary);
-    margin-bottom: 15px;
-}
-
-.reservationInfo {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
 }
 
-.reservationText {
-    font-size: 18px;
-    color: var(--dark-gray);
-    margin: 5px 0;
+.backButton {
+    align-self: flex-start;
+    margin-bottom: 20px;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-@media (max-width: 992px) {
-    .container {
-        align-items: flex-start;
-        padding: 0;
-    }
-
-    .reservation {
-        width: 100%;
-        margin: 20px;
-    }
-
-    .reservationTitle {
-        font-size: 20px;
-    }
-
-    .reservationText {
-        font-size: 16px;
-    }
+.galleryContainer {
+    margin-bottom: 20px;
 }
 
-@media (max-width: 768px) {
-    .reservation {
-        width: 100%;
-    }
+.detailInfo {
+    margin-top: 20px;
+    line-height: 1.6;
+}
 
-    .reservationTitle {
-        font-size: 18px;
-    }
+.confirmButton {
+    margin-top: 20px;
+    background-color: var(--secondary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
-    .reservationText {
-        font-size: 14px;
-    }
+.errorMessage {
+    color: red;
+    margin-top: 10px;
 }

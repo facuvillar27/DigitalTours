@@ -14,7 +14,6 @@ import Users from "./Routes/Users";
 import Characteristics from "./Routes/Characteristics";
 import Categories from "./Routes/Categories";
 import EditCategories from "./Routes/editCategories";
-import Profile from "./Routes/Profile";
 import { AuthProvider } from "./services/authContext";
 import Fav from "./Routes/Fav";
 import ReservationDetails from "./Routes/ReservationDetails";
@@ -36,7 +35,6 @@ function App() {
           <Route path="admin/usuarios" element={<Users />}></Route>
           <Route path="/registerUser" element={<Register />}></Route>
           <Route path="/login" element={<Login />}></Route>
-          <Route path="/profile" element={<Profile />}></Route>
           <Route path="/admin/caracteristicas"element={<Characteristics />}></Route>
           <Route path="/admin/categorias" element={<EditCategories />}></Route>
           <Route path="/categories" element={<Categories />}></Route>

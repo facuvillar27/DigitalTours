@@ -39,6 +39,10 @@ const LoginForm = () => {
       <div className={styles.container}>
         <form onSubmit={handleSubmit} className={styles.form}>
           <h1 className={styles.title}>Iniciar sesión</h1>
+          
+          <p className={styles.infoText}>
+            El inicio de sesión es obligatorio. Si no estás registrada, por favor, <a href="/registerUser" className={styles.link}>regístrate aquí</a>.
+          </p>
 
           {successMessage && (
             <>

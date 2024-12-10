@@ -42,10 +42,6 @@ const DropdownMenu = () => {
     navigate('/admin');
   };
 
-  const handleProfile = () => {
-    navigate('/profile');
-  };
-
   const handleReserve = () => {
     navigate('/reserves');
   };
@@ -91,9 +87,6 @@ const DropdownMenu = () => {
             </a>
             <a onClick={handleFav} className={styles.dropdownItem}>
               Favoritos
-            </a>
-            <a onClick={handleProfile} className={styles.dropdownItem}>
-              Perfil
             </a>
             <a onClick={handleLogout} className={styles.dropdownItem}>
               Cerrar sesión

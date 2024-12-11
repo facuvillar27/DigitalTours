@@ -19,8 +19,11 @@ import { DayPicker } from "react-day-picker";
 import calendarStyles from "../styles/calendarStyle.module.css";
 import { es } from "react-day-picker/locale";
 import { Button, Overlay, Popover } from "react-bootstrap";
-import { searchToursByDate, searchToursByOneDate } from "../services/searchService";
-import {getProductById} from "../services/productService";
+import {
+  searchToursByDate,
+  searchToursByOneDate,
+} from "../services/searchService";
+import { getProductById } from "../services/productService";
 
 const Home = () => {
   const [tours, setTours] = useState([]);
@@ -39,6 +42,7 @@ const Home = () => {
         "http://34.229.166.90:8080/digitaltours/api/v1/products"
       );
       const shuffledTours = shuffleTours(response.data.data);
+      console.log(shuffledTours);
       setTours(shuffledTours);
     } catch (error) {
       console.error("Error al obtener los productos:", error);
@@ -73,47 +77,52 @@ const Home = () => {
     } else {
       setIsSearching(true);
       setShowCalendar(false);
-  
+
       const formatDate = (date) => {
         const d = new Date(date);
         const year = d.getFullYear();
-        const month = String(d.getMonth() + 1).padStart(2, '0');
-        const day = String(d.getDate()).padStart(2, '0');
+        const month = String(d.getMonth() + 1).padStart(2, "0");
+        const day = String(d.getDate()).padStart(2, "0");
         return `${year}-${month}-${day}`;
       };
-  
+
       const formattedFrom = formatDate(selectedRange.from);
-      const formattedTo = selectedRange.to ? formatDate(selectedRange.to) : null;
-  
+      const formattedTo = selectedRange.to
+        ? formatDate(selectedRange.to)
+        : null;
+
       try {
         let response;
         if (formattedTo) {
           response = await searchToursByDate(formattedFrom, formattedTo);
-          console.log("Response searchtourbydate",response);
+          console.log("Response searchtourbydate", response);
         } else {
           response = await searchToursByOneDate(formattedFrom);
           console.log(response);
         }
-  
-        const uniqueProductIds = [...new Set(response.data.map(item => item.productId))];
-        const tourPromises = uniqueProductIds.map(productId => getProductById(productId));
-  
+
+        const uniqueProductIds = [
+          ...new Set(response.data.map((item) => item.productId)),
+        ];
+        const tourPromises = uniqueProductIds.map((productId) =>
+          getProductById(productId)
+        );
+
         const tourResponses = await Promise.all(tourPromises);
-        console.log("Tour responses",tourResponses);
-        const tours = tourResponses.map(tourResponse => tourResponse.data);
-  
+        console.log("Tour responses", tourResponses);
+        const tours = tourResponses.map((tourResponse) => tourResponse.data);
+
         setFilteredTours(tours);
         console.log(filteredTours);
-  
+
         if (tours.length === 0) {
           alert("No hay tours disponibles para esa fecha.");
         }
-  
       } catch (error) {
         console.error("Error al buscar tours por fecha:", error);
       }
     }
-  };  
+  };
 
   const handleShowCalendar = () => {
     setShowCalendar(!showCalendar);
@@ -132,7 +141,11 @@ const Home = () => {
         <span className={styles.search_text}>Encuentra Destinos Ideales</span>
         <div className={styles.search}>
           <form className={styles.form}>
-            <div className={styles.form_group} ref={target} style={{ position: 'relative' }}>
+            <div
+              className={styles.form_group}
+              ref={target}
+              style={{ position: "relative" }}
+            >
               <Button variant="light" onClick={handleShowCalendar}>
                 Elige una fecha
                 <FontAwesomeIcon
@@ -146,7 +159,10 @@ const Home = () => {
                 placement="bottom"
                 containerPadding={20}
               >
-                <Popover id="popover-contained" style={{ width: 'auto', maxWidth: 'fit-content' }}>
+                <Popover
+                  id="popover-contained"
+                  style={{ width: "auto", maxWidth: "fit-content" }}
+                >
                   <Popover.Body className="custom-popover-body">
                     <DayPicker
                       max={14}
@@ -162,7 +178,10 @@ const Home = () => {
                 </Popover>
               </Overlay>
             </div>
-            <div className={styles.form_group_right} onClick={handleSearchClick}>
+            <div
+              className={styles.form_group_right}
+              onClick={handleSearchClick}
+            >
               <button className={styles.searchButton} type="button">
                 <FontAwesomeIcon
                   icon={faSearch}
@@ -173,14 +192,17 @@ const Home = () => {
           </form>
         </div>
         {isSearching && (
-        <Button className={styles.button} onClick={() => {
-          setIsSearching(false);
-          setSelectedRange(); 
-          setFilteredTours([]);
-          }}>
-          Limpiar Filtros
-        </Button>
-      )}
+          <Button
+            className={styles.button}
+            onClick={() => {
+              setIsSearching(false);
+              setSelectedRange();
+              setFilteredTours([]);
+            }}
+          >
+            Limpiar Filtros
+          </Button>
+        )}
       </div>
       <div className={styles.cat_menu}>
         <Link to="/categories?category=Cultura" className={styles.cat_link}>
@@ -191,10 +213,7 @@ const Home = () => {
           />
           <span className={styles.culturalSpan}>Cultural</span>
         </Link>
-        <Link
-          to="/categories?category=Gastronomía"
-          className={styles.cat_link}
-        >
+        <Link to="/categories?category=Gastronomia" className={styles.cat_link}>
           <FontAwesomeIcon
             icon={faUtensils}
             className={styles.cat_icon}

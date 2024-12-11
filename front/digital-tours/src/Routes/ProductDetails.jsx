@@ -7,6 +7,8 @@ import styles from "../styles/productDetails.module.css";
 import Spinner from "../Components/Spinner/Spinner";
 import AvailabilityCalendar from "../Components/AvailabilityCalendar/AvailabilityCalendar";
 import { getIdFromToken } from "../services/authService";
+import { FacebookShareButton, TwitterShareButton,WhatsappShareButton, TelegramShareButton, FacebookIcon, TwitterIcon, WhatsappIcon, TelegramIcon   } from "next-share";
+
 
 
 const ProductDetails = () => {
@@ -117,6 +119,20 @@ const ProductDetails = () => {
             })}
           </div>
           <h3>{product.price} USD</h3>
+          <div className={styles.share_social_networks}>
+            <FacebookShareButton url={`http://digital-tours-frontend.s3-website-us-east-1.amazonaws.com/products/${id}`} quote={product.description}>
+              <FacebookIcon size={32} round />
+            </FacebookShareButton>
+            <TwitterShareButton url={`http://digital-tours-frontend.s3-website-us-east-1.amazonaws.com/products/${id}`} title={product.description}>
+              <TwitterIcon size={32} round />
+            </TwitterShareButton>
+            <WhatsappShareButton url={`http://digital-tours-frontend.s3-website-us-east-1.amazonaws.com/products/${id}`} title={product.description}>
+              <WhatsappIcon size={32} round />
+            </WhatsappShareButton>
+            <TelegramShareButton url={`http://digital-tours-frontend.s3-website-us-east-1.amazonaws.com/products/${id}`} title={product.description}>
+              <TelegramIcon size={32} round/>
+            </TelegramShareButton>
+          </div>
         </div>
         {userId ? (
           <AvailabilityCalendar productId={id} />

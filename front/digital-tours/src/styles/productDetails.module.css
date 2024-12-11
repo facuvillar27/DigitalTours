@@ -118,6 +118,11 @@
   transform: scale(1.1);
 }
 
+.share_social_networks{
+  display: flex;
+  gap: 10px;
+}
+
 @media (max-width: 992px) {
   .detail {
     align-items: flex-start;
@@ -144,5 +149,11 @@
 @media (max-width: 576px) {
   .image-gallery-content .image-gallery-slide .image-gallery-image {
     max-height: 300px;
+  }
+}
+
+@media (max-width: 470px) {
+  .product_characteristics {
+    grid-template-columns: repeat(2, 0.2fr);
   }
 }

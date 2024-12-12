@@ -21,7 +21,6 @@ const ReservationDetails = () => {
       const userId = getIdFromToken(token);
 
       if (!location.state) {
-        console.log("No se ha pasado estado de reserva");
         return;
       }
   
@@ -31,10 +30,8 @@ const ReservationDetails = () => {
         tourId,
         productId,
       } = location.state;
-      console.log("Datos de reserva:", location.state);
   
       if (!numberOfPeople || !date || !tourId || !productId) {
-        console.log("Faltan datos necesarios en location.state");
         return;
       }
   

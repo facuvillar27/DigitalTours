@@ -22,7 +22,6 @@ const MyReserves = () => {
             try {
             const reservesResponse = await axios.get(`http://34.229.166.90:8080/digitaltours/api/v1/reservations/user/${userId}`); 
             const reservesData = reservesResponse.data.data;
-            console.log("Datos de reservas:", reservesData);
 
             const detailedReservation = await Promise.all(
                 reservesData.map(async (reservation) => {

@@ -159,11 +159,7 @@ const RegisterTourForm = () => {
       images.forEach((image) => {
         formDataToSend.append("image", image);
       });
-      for (let [key, value] of formDataToSend.entries()) {
-        console.log(`${key}: ${value}`);
-      }
-      
-      console.log("Enviando datos:", Object.fromEntries(formDataToSend.entries()));
+    
 
       const response = await axios.post('http://34.229.166.90:8080/digitaltours/api/v1/products/new',  formDataToSend, {
         headers: {

@@ -25,7 +25,6 @@ export const deleteUser = async (id) => {
 
 // Actualizar un usuario (con rol)
 export const updateUser = async (updatedUser) => {
-  console.log(updatedUser);
   try {
     await axios.put(`${API_URL}/${updatedUser.id}`, updatedUser);
   } catch (error) {

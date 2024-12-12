@@ -14,7 +14,6 @@ const CardList = ({ item, onDelete, onEdit }) => {
           "http://34.229.166.90:8080/digitaltours/api/v1/features"
         );
         const data = await response.json();
-        console.log("Características:", data.data);
         setFeaturesList(data.data);
       } catch (error) {
         console.error("Error al cargar las características:", error);

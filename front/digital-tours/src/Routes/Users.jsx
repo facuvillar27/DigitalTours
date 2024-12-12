@@ -18,7 +18,6 @@ const Users = () => {
     const loadUsers = async () => {
       try {
         const usersList = await getUsers();
-        console.log('Usuarios:', usersList);
         setUsers(usersList);
       } catch (error) {
         console.error("Error loading users:", error);
@@ -57,7 +56,6 @@ const Users = () => {
       const updatedUsers = users.map((user) =>
         user.id === updatedUser.id ? updatedUser : user
       );
-      console.log('Usuarios actualizados:', updatedUsers);
       setUsers(updatedUsers);
       setShowEditModal(false);
     } catch (error) {

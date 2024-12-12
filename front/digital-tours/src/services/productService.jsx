@@ -33,7 +33,6 @@ export const createProduct = async (form) => {
       method: 'POST',
       body: formData,
     });
-    console.log("Respuesta del backend:", response.data);
   } catch (error) {
     console.error("Error al crear el producto:", error.response?.data || error.message);
     throw error;

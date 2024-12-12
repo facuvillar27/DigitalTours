@@ -29,7 +29,6 @@ const Fav = () => {
           ...fav,
           tour: tourDetailsResponses[index].data,
         }));
-        console.log("Favoritos con detalles:", favsWithDetails);
         setFavs(favsWithDetails);
         setLoading(false);
       })
@@ -50,7 +49,6 @@ const Fav = () => {
       </div>
     );
   }
-  console.log("Favoritos:", favs);
 
   return (
     <div className={styles.main}>

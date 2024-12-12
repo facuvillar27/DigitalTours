@@ -12,10 +12,10 @@ const Tours = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [categories] = useState([
-    { id: 1, name: "Gastronomía" },
-    { id: 2, name: "Aventura" },
-    { id: 3, name: "Cultura" },
-    { id: 4, name: "Naturaleza" },
+    { id: 1, name: "Aventura" },
+    { id: 2, name: "Cultura" },
+    { id: 3, name: "Naturaleza" },
+    { id: 4, name: "Gastronomía" },
   ]);
 
   useEffect(() => {

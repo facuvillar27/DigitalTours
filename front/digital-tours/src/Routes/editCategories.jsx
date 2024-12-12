@@ -5,10 +5,10 @@ import Tick from '../Components/Tick/Tick';
 import Spinner from '../Components/Spinner/Spinner';
 
 const categories = [
-  { id: 1, name: 'Gastronomía' },
-  { id: 2, name: 'Aventura' },
-  { id: 3, name: 'Cultura' },
-  { id: 4, name: 'Naturaleza' },
+  { id: 1, name: 'Aventura' },
+  { id: 2, name: 'Cultura' },
+  { id: 3, name: 'Naturaleza' },
+  { id: 4, name: 'Gastronomía' },
 ];
 
 const EditCategories = () => {
@@ -41,20 +41,27 @@ const EditCategories = () => {
       setLoadingProductIds((prevIds) => [...prevIds, productId]);
 
       const product = await getProductById(productId);
-      console.log(product);
 
-      const { id, name, description, price, image } = product.data;
       const category = categories.find((c) => c.id === newCategoryId);
 
       const updatedProduct = {
-        id,
-        name,
-        description,
-        category: { id: category.id, name: category.name },
-        price,
-        image,
+        // Pasamos el producto sin el campo 'data'
+        id: product.data.id,
+        name: product.data.name,
+        description: product.data.description,
+        category: {
+          id: category.id,
+          name: category.name,
+          url: product.data.category.url, // Mantén la URL actual de la categoría
+        },
+        price: product.data.price,
+        duration: product.data.duration,
+        startTime: product.data.startTime,
+        departureTime: product.data.departureTime,
+        city: product.data.city,
+        imageUrls: product.data.imageUrls,
+        features: product.data.features,
       };
-      console.log(updatedProduct);
 
       await updateProduct(productId, updatedProduct);
 

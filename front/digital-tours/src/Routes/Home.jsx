@@ -42,7 +42,6 @@ const Home = () => {
         "http://34.229.166.90:8080/digitaltours/api/v1/products"
       );
       const shuffledTours = shuffleTours(response.data.data);
-      console.log(shuffledTours);
       setTours(shuffledTours);
     } catch (error) {
       console.error("Error al obtener los productos:", error);
@@ -95,10 +94,8 @@ const Home = () => {
         let response;
         if (formattedTo) {
           response = await searchToursByDate(formattedFrom, formattedTo);
-          console.log("Response searchtourbydate", response);
         } else {
           response = await searchToursByOneDate(formattedFrom);
-          console.log(response);
         }
 
         const uniqueProductIds = [
@@ -109,12 +106,9 @@ const Home = () => {
         );
 
         const tourResponses = await Promise.all(tourPromises);
-        console.log("Tour responses", tourResponses);
         const tours = tourResponses.map((tourResponse) => tourResponse.data);
 
         setFilteredTours(tours);
-        console.log(filteredTours);
-
         if (tours.length === 0) {
           alert("No hay tours disponibles para esa fecha.");
         }

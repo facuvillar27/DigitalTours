@@ -25,13 +25,16 @@ export const getProductById = async (id) => {
 };
 
 // Crear un nuevo producto
-export const createProduct = async (productData) => {
+export const createProduct = async (form) => {
+  const formData = new FormData(form);
+
   try {
-    const response = await axios.post(API_URL, productData);
-    console.log("Respuesta del backend:", response);
-    return response.data;
+    const response = await fetch(`${API_URL}/new`,{
+      method: 'POST',
+      body: formData,
+    });
   } catch (error) {
-    console.error("Error al crear el producto:", error);
+    console.error("Error al crear el producto:", error.response?.data || error.message);
     throw error;
   }
 };

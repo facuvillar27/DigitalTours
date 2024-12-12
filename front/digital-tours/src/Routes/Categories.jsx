@@ -19,7 +19,6 @@ const Categories = () => {
       );
       const tours = response.data.data;
       setTours(tours);
-      console.log("Tours cat: ", tours);
       setFilteredTours(tours);
     } catch (error) {
       console.error("Error al obtener los productos:", error);
@@ -50,8 +49,6 @@ const Categories = () => {
     const category = e.target.value;
     const isChecked = e.target.checked;
 
-    console.log(category);
-    console.log(isChecked);
 
     let newSelectedCategories = [...selectedCategories];
 
@@ -64,7 +61,7 @@ const Categories = () => {
     }
 
     setSelectedCategories(newSelectedCategories);
-    console.log(newSelectedCategories);
+
 
     if (newSelectedCategories.length === 0) {
       setFilteredTours(tours);

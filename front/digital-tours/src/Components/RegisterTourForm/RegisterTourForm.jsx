@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-import { createProduct, getProducts } from "../../services/productService";
+import { getProducts } from "../../services/productService";
 import styles from "./RegisterTourForm.module.css";
+import axios from "axios";
+import { set } from "react-hook-form";
 
 const categories = [
   { id: 1, name: "Gastronomía" },
@@ -17,13 +19,12 @@ const cities = [
 
 const RegisterTourForm = () => {
   const [products, setProducts] = useState([]);
+  const [images, setImages] = useState([]);
   const [formData, setFormData] = useState({
     name: "",
     category: categories[0].id,
-    // characteristics: "",
     description: "",
     price: "",
-    image: "",
     duration: "",
     city: cities[0].id,
     startTime: "",
@@ -38,7 +39,6 @@ const RegisterTourForm = () => {
     const fetchProducts = async () => {
       try {
         const response = await getProducts();
-        console.log(response);
         setProducts(response);
       } catch (error) {
         console.error("Error al obtener productos", error);
@@ -69,7 +69,9 @@ const RegisterTourForm = () => {
       diferenciaSegundos += 24 * 3600; // Ajuste para tours que cruzan la medianoche
     }
 
-    return Math.floor(diferenciaSegundos / 3600);
+    const horas = diferenciaSegundos / 3600;
+    
+    return parseFloat((horas).toFixed(1));
   };
 
   // Manejar cambios en el formulario
@@ -103,6 +105,11 @@ const RegisterTourForm = () => {
     }
   };
 
+  const handleImageUpload = (e) => {
+    const files = Array.from(e.target.files);
+      setImages(files);
+    };
+
   // Manejar el envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -130,46 +137,56 @@ const RegisterTourForm = () => {
         return;
       }
 
-      const newProduct = {
+      const formDataToSend = new FormData();
+
+      const jsonProduct = JSON.stringify({
         id: 0,
         name: formData.name,
         description: formData.description,
-        category: {
-          id: selectedCategory.id,
-          name: selectedCategory.name,
-        },
+        categoryId: Number(formData.category),
         price: Number(formData.price),
         duration: Number(formData.duration),
-        city: {
-          id: cities.find((city) => city.id === Number(formData.city))?.id || 0,
-          name:
-            cities.find((city) => city.id === Number(formData.city))?.name ||
-            "",
-        },
-        imageUrls: [formData.image || "https://example.com/default.jpg"],
         startTime: formData.startTime,
-        endTime: formData.endTime,
-        features: [],
-      };
+        departureTime: formData.endTime,
+        cityId: Number(formData.city),
+      });
 
-      // Crear el producto usando la función createProduct del servicio
-      console.log("Nuevo pruducto", newProduct);
-      await createProduct(newProduct);
+      const blob = new Blob([jsonProduct], {
+        type: 'application/json'
+      });
 
+      formDataToSend.append("product", blob);
+      images.forEach((image) => {
+        formDataToSend.append("image", image);
+      });
+      for (let [key, value] of formDataToSend.entries()) {
+        console.log(`${key}: ${value}`);
+      }
+      
+      console.log("Enviando datos:", Object.fromEntries(formDataToSend.entries()));
+
+      const response = await axios.post('http://34.229.166.90:8080/digitaltours/api/v1/products/new',  formDataToSend, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          accept: 'application/json',
+        },
+      });
+      if (response.status == 200) {
       setConfirmationMessage("¡Producto registrado exitosamente!");
       setErrorMessage("");
       setIsFormVisible(false);
+      }
+      
 
-      // Restablecer el formulario después de 3 segundos
       setTimeout(() => {
         setConfirmationMessage("");
         setIsFormVisible(true);
+        setImages([]);
         setFormData({
           name: "",
           category: categories[0].id,
           description: "",
           price: "",
-          image: "",
           duration: "",
           city: cities[0].id,
           startTime: "",
@@ -294,26 +311,28 @@ const RegisterTourForm = () => {
           </label>
           <br />
           <label className={styles.product_name}>
-            Imagen (URL):
+            Imágenes:
             <input
               className={styles.input}
-              type="text"
-              name="image"
-              value={formData.image}
-              onChange={handleChange}
-              placeholder="Ingresa la URL de la imagen"
+              type="file"
+              accept="image/*"
+              multiple
+              onChange={handleImageUpload}
               required
             />
           </label>
           <br />
-          {formData.image && (
+          {images.length > 0 && (
             <div>
-              <h4>Vista Previa de la Imagen:</h4>
-              <img
-                src={formData.image}
-                alt="Vista previa"
-                style={{ width: "100px", height: "100px" }}
-              />
+              <h4>Vista Previa de las Imágenes:</h4>
+              {images.map((image, index) => (
+                <img
+                  key={index}
+                  src={URL.createObjectURL(image)}
+                  alt={`Vista previa ${index + 1}`}
+                  style={{ width: "100px", height: "100px", margin: "5px" }}
+                />
+              ))}
             </div>
           )}
           {(errorMessage || confirmationMessage) && (

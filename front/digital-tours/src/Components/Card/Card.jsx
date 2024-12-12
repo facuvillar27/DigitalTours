@@ -142,7 +142,6 @@ const Card = ({ item, isFavorited: initialFavorited, onRemove, shouldUnmountFav 
             <h3 className={styles.product_price}>{item.price} USD</h3>
           </div>
         </div>
-        <button className={styles.book_button}>Reservar</button>
       </Link>
     </div>
   );

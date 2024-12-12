@@ -27,6 +27,7 @@ const AvailabilityCalendar = ({ productId }) => {
           .map((d) => ({
             date: parseLocalDate(d.date),
             id: d.id,
+            available_space: d.available_space,
           }))
       );
       setReservedDates(
@@ -112,6 +113,7 @@ const AvailabilityCalendar = ({ productId }) => {
           date={selectedDate}
           id={selectedDateId}
           productId={productId}
+          availableQuota={availableDates.find((d) => isSameDay(d.date, selectedDate)).available_space}
         />
       )}
     </div>
